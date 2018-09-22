@@ -12,14 +12,18 @@
   "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
   "license": "Apache-2.0",
   "dependencies": {
+    "@types/detect-node": "^2.0.0",
+    "@types/eventemitter2": "^4.1.0",
     "@types/msgpack-lite": "^0.1.6",
+    "@types/text-encoding": "0.0.33",
     "@types/uuid": "^3.4.4",
-    "@types/ws": "^6.0.1",
-    "eventemitter3": "^3.1.0",
+    "@types/websocket": "0.0.40",
+    "detect-node": "^2.0.4",
+    "eventemitter2": "^5.0.1",
     "msgpack-lite": "^0.1.26",
     "text-encoding": "^0.6.4",
     "uuid": "^3.3.2",
-    "ws": "^6.0.0"
+    "websocket": "^1.0.28"
   },
   "files": [
     "lib",
@@ -36,8 +40,5 @@
     "typedoc": "^0.12.0",
     "typescript": "^3.0.3"
   },
-  "optionalDependencies": {
-    "bufferutil": "^4.0.0",
-    "utf-8-validate": "^5.0.1"
-  }
+  "optionalDependencies": {}
 }

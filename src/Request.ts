@@ -1,5 +1,7 @@
-export default class Request {
-    constructor(public clientId: any, public respond?: Function, public additionalData?: any) {
+import Message from "./Message";
 
+export default class Request extends Message {
+    constructor(public id: number, public method: string, public params?: any[]|Object) {
+        super();
     }
 }

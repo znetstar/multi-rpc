@@ -1,27 +1,36 @@
-import * as net from "net";
 import { Socket, Server } from "net";
 import Transport from "../Transport";
 import Serializer from "../Serializer";
 import Message from "../Message";
 import Response from "../Response";
-import Request from "../Request";
-import { InvalidRequest } from "../Errors";
-import * as uuid from "uuid";
+import ClientRequest from "../ClientRequest";
+import * as detectNode from "detect-node";
 
 export default class TCPTransport extends Transport {
     public connection: Socket;
     public connections: Map<any, Socket> = new Map<any, Socket>();
-    protected server: Server;
+    protected server?: Server;
+    protected port?: number;
+    protected path?: string;
 
     constructor(serializer: Serializer, port: number, host: string);
     constructor(serializer: Serializer, port: number);
     constructor(serializer: Serializer, path: string);
-    constructor(serializer: Serializer,  protected portOrPath: string|number, protected host?: string) {
+    constructor(serializer: Serializer, server: Server);
+    constructor(serializer: Serializer,  portPathOrServer: string|number|Server, protected host?: string) {
         super(serializer);
+        if (detectNode && portPathOrServer instanceof Server)
+            this.server = portPathOrServer;
+        
+        if (typeof(portPathOrServer) === "string") 
+            this.path = portPathOrServer;
+
+        if (typeof(portPathOrServer) === "number") 
+            this.port = portPathOrServer;
     }
 
-    protected async connect(): Promise<Socket> {
-        this.connection = typeof(this.portOrPath) === 'string' ? net.connect(this.portOrPath) : net.connect(this.portOrPath, this.host);
+    public async connect(): Promise<Socket> {
+        this.connection = new Socket();
    
         this.connection.on('error', (error) => {
             this.emit('error', error);
@@ -35,23 +44,32 @@ export default class TCPTransport extends Transport {
             this.receive(new Uint8Array(data));
         });
         
-        return await new Promise<Socket>((resolve, reject) => {
+        let p = new Promise<void>((resolve, reject) => {
             this.connection.once('error', reject);
             this.connection.once('connect', () => {
-                resolve(this.connection);
+                resolve();
             });
         });
+
+        if (typeof(this.path) === 'string')
+            this.connection.connect(this.path);
+        else
+            this.connection.connect(this.port, this.host);
+
+        await p;
+
+        return this.connection;
     } 
 
-    public async send(message: Message): Promise<any> {
+    public async send(message: Message): Promise<void> {
         if (!this.connection)
             this.connection = await this.connect();
         
         return await super.send(message);
     }
 
-    public async sendConnection(connection: Socket, message: Message): Promise<any> {
-        return await new Promise((resolve, reject) => {
+    public async sendConnection(connection: Socket, message: Message): Promise<void> {
+        return await new Promise<void>((resolve, reject) => {
             let data: any = this.serializer.serialize(message);
             connection.write(Buffer.from(data), (err: Error) => {
                 if (err) reject(err);
@@ -60,17 +78,18 @@ export default class TCPTransport extends Transport {
         });
     }
 
-    public async listen(): Promise<any> {
-        this.server = new Server((connection: Socket) => {
-            const clientId = TCPTransport.uniqueId();
-            this.connections.set(clientId, connection);
+    public async listen(): Promise<void> {
+        this.server = new Server();
+        
+        this.server.on('connection', (connection: Socket) => {
+            const clientId = this.addConnection(connection);
 
             connection.on('data', (data) => {
                 const respond = (response: Response) => {
                     connection.write(this.serializer.serialize(response));
                 };
 
-                const request = new Request(clientId, respond);
+                const request = new ClientRequest(clientId, respond);
 
                 this.receive(new Uint8Array(data), request);
             });
@@ -84,7 +103,7 @@ export default class TCPTransport extends Transport {
             this.emit('error', error);
         });
 
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             const listenError = (error: Error) => {
                 reject(error);
             };
@@ -96,10 +115,10 @@ export default class TCPTransport extends Transport {
                 resolve();
             };
 
-            if (typeof(this.portOrPath) === 'number') 
-                this.server.listen(this.portOrPath, this.host, listenSuccess);
+            if (typeof(this.port) === 'number') 
+                this.server.listen(this.port, this.host, listenSuccess);
             else
-                this.server.listen(this.portOrPath, listenSuccess);
+                this.server.listen(this.path, listenSuccess);
         });
     }
 }

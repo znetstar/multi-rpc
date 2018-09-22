@@ -2,7 +2,16 @@ import Serializer from "../Serializer";
 import { ParseError } from "../Errors";
 import Response from "../Response";
 import Message from "../Message";
-import { TextEncoder, TextDecoder } from "util";
+import * as detectNode from "detect-node";
+
+let TextEncoder, TextDecoder;
+if (detectNode) {
+    TextEncoder = require("util").TextEncoder;
+    TextDecoder = require("util").TextDecoder;
+} else {
+    TextEncoder = require("text-encoding").TextEncoder;
+    TextDecoder = require("text-encoding").TextDecoder;
+}
 
 const textEncoder = new TextEncoder();
 const textDecoder = new TextDecoder();
@@ -18,7 +27,7 @@ export default class JSONSerializer extends Serializer {
         
         let jsonObject;
         try {
-            jsonObject = JSON.parse(data);
+            jsonObject = JSON.parse(<string>data);
         } catch (error) {
             throw new ParseError(error);
         }

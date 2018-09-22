@@ -1,22 +1,24 @@
 
-import { EventEmitter } from "eventemitter3";
+import { EventEmitter2 } from "eventemitter2";
 import * as _ from "lodash";
 import Transport from "./Transport";
-import Invocation from "./Invocation";
+import Request from "./Request";
 import Notification from "./Notification";
 import Response from "./Response";
 import { MethodNotFound, RPCError, InternalError } from "./Errors";
-import Request from "./Request";
+import ClientRequest from "./ClientRequest";
 import Message from "./Message";
 
-export default class Server extends EventEmitter { 
-    constructor(protected transports: Transport|Array<Transport>, protected method_host: any) {
+export default class Server extends EventEmitter2 { 
+    protected transports: Transport[];
+
+    constructor(transports: Transport|Array<Transport>, protected method_host: any = {}) {
         super();
         this.transports = [].concat(transports);
 
         for (let transport of this.transports) {
-            transport.on("invocation", this.invoke, this);
-            transport.on("notification", this.notification, this);
+            transport.on("request", this.invoke.bind(this));
+            transport.on("notification", this.notification.bind(this));
         }
     }
 
@@ -49,7 +51,7 @@ export default class Server extends EventEmitter {
         }
     };
 
-    public async listen(): Promise<any> {
+    public async listen(): Promise<void> {
         for (let transport of <Array<Transport>>this.transports) {
             await transport.listen();
         }
@@ -72,27 +74,33 @@ export default class Server extends EventEmitter {
         this.clientsByTransport.get(id).sendTo(id, message);
     }
 
-    protected notification(notification: Notification, request?: Request) {
-        this.emit.apply(this.method_host, [notification.method].concat(notification.params));
+    public async sendAll(message: Message) {
+        for (let [id, transport] of this.clientsByTransport) {
+            await transport.sendTo(id, message);
+        }
     }
 
-    protected async invoke(invocation: Invocation, request?: Request): Promise<any> {
-        if (!(invocation.method in this.methods))
-            return request.respond(new Response(invocation.id, new MethodNotFound()));
+    public notification(notification: Notification, clientRequest?: ClientRequest) {
+        this.emit.apply(this.method_host, [notification.method].concat(<any>notification.params));
+    }
+
+    protected async invoke(request: Request, clientRequest?: ClientRequest): Promise<void> {
+        if (!(request.method in this.methods))
+            return clientRequest.respond(new Response(request.id, new MethodNotFound()));
         
-        const method = this.methods[invocation.method];
+        const method = this.methods[request.method];
         try {
-            let result = await method.apply(this.method_host, invocation.params);
+            let result = await method.apply(this.method_host, request.params);
             if (typeof(result) === 'undefined')
                 result = null;
             
-            request.respond(new Response(invocation.id, result));
+            clientRequest.respond(new Response(request.id, result));
         } catch (error) {
             if (error instanceof RPCError)
-                request.respond(new Response(invocation.id, error));
+                clientRequest.respond(new Response(request.id, error));
             else {
                 error.toJSON = RPCError.prototype.toJSON.bind(error);
-                request.respond(new Response(invocation.id, new InternalError(error)));
+                clientRequest.respond(new Response(request.id, new InternalError(error)));
             }
         }
     } 

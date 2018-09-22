@@ -1,20 +1,17 @@
-import * as WebSocket from "ws";
 import Transport from "../Transport";
 import Serializer from "../Serializer";
 import Message from "../Message";
 import Response from "../Response";
-import Request from "../Request";
+import ClientRequest from "../ClientRequest";
 import { Server as HTTPServer, ServerRequest, ServerResponse } from "http";
-import { Socket } from "net";
 import { Server as HTTPSServer } from "https";
-import { InvalidRequest } from "../Errors";
-import * as uuid from "uuid";
-import * as URL from "url";
+import * as detectNode from "detect-node"
+import { server as WebSocketServer, w3cwebsocket as WebSocket, request as WebSocketRequest, connection as WebSocketConnection, IMessage} from "websocket";
 
 export default class WebSocketTransport extends Transport {
     public connection: WebSocket;
-    public connections: Map<any, WebSocket> = new Map<any, WebSocket>();
-    protected server: WebSocket.Server = new WebSocket.Server({ noServer: true });
+    public connections: Map<any, WebSocketConnection> = new Map<any, WebSocketConnection>();
+    protected server: WebSocketServer;
 
     protected port?: number;
     protected httpServer?: HTTPServer|HTTPSServer;
@@ -32,8 +29,8 @@ export default class WebSocketTransport extends Transport {
     constructor(protected serializer: Serializer,  portPathServerOrUrl: HTTPServer|HTTPSServer|string|number, hostOrEndpoint?: string, protected endpoint?: String) {
         super(serializer);
 
-        if (portPathServerOrUrl instanceof HTTPServer || portPathServerOrUrl instanceof HTTPSServer) {
-            this.httpServer = portPathServerOrUrl;
+        if (detectNode && (portPathServerOrUrl instanceof HTTPServer || portPathServerOrUrl instanceof HTTPSServer)) {
+            this.httpServer = <HTTPServer|HTTPSServer>portPathServerOrUrl;
             this.setupHTTPServer();
         }
         else if (typeof(portPathServerOrUrl) === 'number')
@@ -47,47 +44,51 @@ export default class WebSocketTransport extends Transport {
             this.host = hostOrEndpoint;
     }
 
-    protected async connect(): Promise<WebSocket> {
+    public async connect(): Promise<WebSocket> {
         let url = <string>this.urlOrPath;
         if (typeof(this.port) === 'number') {
             const host = this.host || '127.0.0.1';
             url = `ws://${host}:${this.port}`;
         }
+        
         this.connection = new WebSocket(url);
    
-        this.connection.on('error', (error) => {
-            this.emit('error', error);
-        });
+        const onSuccess = () => {
+            this.connection.onerror = (error: Error) => {
+                this.emit('error', error);
+            };
 
-        this.connection.on('close', () => {
-            this.emit('close');
-        });
+            this.connection.onclose = () => {
+                this.emit('close');
+            };
+        };
 
-        this.connection.on('message', (rawData: any) => {
-            let data = rawData;
-            if (typeof(rawData) === 'string')
-                data = Buffer.from(rawData, 'utf8');
-
-            this.receive(new Uint8Array(data));
-        });
+        this.connection.onmessage = (message: any) => {
+            let data = typeof(message.data) === "string" ? message.data : new Uint8Array(message.data);
+            this.receive(data);
+        };
         
         return await new Promise<WebSocket>((resolve, reject) => {
-            this.connection.once('error', reject);
-            this.connection.once('open', () => {
+            this.connection.onerror = (error) => {
+                reject(error);
+            };
+
+            this.connection.onopen = () => {
+                onSuccess();
                 resolve(this.connection);
-            });
+            };
         });
     } 
 
-    public async send(message: Message): Promise<any> {
+    public async send(message: Message): Promise<void> {
         if (!this.connection)
             this.connection = await this.connect();
         
         return await super.send(message);
     }
 
-    public async sendConnection(connection: WebSocket, message: Message): Promise<any> {
-        return await new Promise((resolve, reject) => {
+    public async sendConnection(connection: any, message: Message): Promise<void> {
+        return await new Promise<void>((resolve, reject) => {
             connection.send(this.serializer.serialize(message), (err: Error) => {
                 if (err) reject(err);
                 resolve();
@@ -95,37 +96,45 @@ export default class WebSocketTransport extends Transport {
         });
     }
 
-    protected setupHTTPServer(): void {
-        this.server.on("connection", (socket: WebSocket) => {
-            const clientId = WebSocketTransport.uniqueId();
-            this.connections.set(clientId, socket);
+    public authorizeOrigin(origin: string): boolean {
+        return true;
+    }
 
-            socket.on("message", (rawData: any) => {
-                let data = rawData;
-                if (typeof(rawData) === 'string')
-                    data = Buffer.from(rawData, "utf8");
+    protected setupHTTPServer(): void {
+        this.server = new WebSocketServer({ httpServer: this.httpServer, autoAcceptConnections: false });
+        this.server.on("request", (request: WebSocketRequest) => {
+            if (!this.authorizeOrigin(request.origin)) {
+                request.reject(403, "Invalid origin");
+                return;
+            }
+
+            if (typeof(this.endpoint) === 'string' && request.resource !== this.endpoint) {
+                request.reject(404, `${request.resource} does not exist`);
+                return;
+            }
+
+            const connection = request.accept();
+
+            const clientId = this.addConnection(connection);
+
+            connection.on("message", (message: IMessage) => {
+                let data = (message.type === 'utf8') ? Buffer.from(message.utf8Data) : message.binaryData;
     
-                const req = new Request(clientId, (res: Response) => {
-                    socket.send(this.serializer.serialize(res), (err: Error) => {
-                        this.emit("error", err);
+                const req = new ClientRequest(clientId, (res: Response) => {
+                    let data = this.serializer.serialize(res);
+                    data = (typeof(data) === 'string') ? data : Buffer.from(data);
+                    let sendFunc: Function = ((typeof(data) === 'string') ? connection.sendUTF : connection.sendBytes);
+                    sendFunc.call(connection, data, (err: Error) => {
+                        if (err) 
+                            this.emit("error", err);
                     });
                 });
 
                 this.receive(new Uint8Array(data), req);
             });
 
-            socket.on("close", () => {
+            connection.on("close", () => {
                 this.connections.delete(clientId);
-            });
-        });
-
-        this.httpServer.on('upgrade', (request: ServerRequest, socket: Socket, head: Buffer) => {
-            const { pathname } = URL.parse(request.url);
-            if (typeof(this.endpoint) === 'string' && ( pathname !== this.endpoint )) 
-                return socket.destroy();
-            
-            this.server.handleUpgrade(request, socket, head, (socket: WebSocket) => {
-                this.server.emit("connection", socket);
             });
         });
     }
@@ -135,11 +144,11 @@ export default class WebSocketTransport extends Transport {
         res.end();
     }
 
-    public async listen(): Promise<any> {
+    public async listen(): Promise<void> {
         this.httpServer = new HTTPServer(this.httpHandler);
         this.setupHTTPServer();
 
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             const listenError = (error: Error) => {
                 reject(error);
             };
