@@ -1,0 +1,43 @@
+{
+  "name": "multi-jrpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha test/index.js",
+    "docs": "grunt docs",
+    "build": "grunt build",
+    "prepublish": "npm run build"
+  },
+  "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@types/msgpack-lite": "^0.1.6",
+    "@types/uuid": "^3.4.4",
+    "@types/ws": "^6.0.1",
+    "eventemitter3": "^3.1.0",
+    "msgpack-lite": "^0.1.26",
+    "text-encoding": "^0.6.4",
+    "uuid": "^3.3.2",
+    "ws": "^6.0.0"
+  },
+  "files": [
+    "lib",
+    "LICENSE.txt",
+    "README.md"
+  ],
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-ts": "^6.0.0-beta.21",
+    "grunt-typedoc": "^0.2.4",
+    "mocha": "^5.2.0",
+    "shelljs": "^0.8.2",
+    "typedoc": "^0.12.0",
+    "typescript": "^3.0.3"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.0",
+    "utf-8-validate": "^5.0.1"
+  }
+}
