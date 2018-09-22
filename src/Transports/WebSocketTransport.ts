@@ -118,7 +118,7 @@ export default class WebSocketTransport extends Transport {
             const clientId = this.addConnection(connection);
 
             connection.on("message", (message: IMessage) => {
-                let data = (message.type === 'utf8') ? Buffer.from(message.utf8Data) : message.binaryData;
+                let data: Uint8Array|String = (message.type === 'utf8') ? message.utf8Data : new Uint8Array(message.binaryData);
     
                 const req = new ClientRequest(clientId, (res: Response) => {
                     let data = this.serializer.serialize(res);
@@ -130,7 +130,7 @@ export default class WebSocketTransport extends Transport {
                     });
                 });
 
-                this.receive(new Uint8Array(data), req);
+                this.receive(data, req);
             });
 
             connection.on("close", () => {
