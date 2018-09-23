@@ -1,4 +1,5 @@
 const { cp } = require('shelljs');
+const pkg = JSON.parse(require('fs').readFileSync("./package.json", "utf8"))
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -7,7 +8,7 @@ module.exports = function(grunt) {
                 options: {
                     module: 'commonjs',
                     out: './docs',
-                    name: 'face-command-common',
+                    name: pkg.name,
                     target: 'es2018'
                 },
                 src: ['./src/**/*']

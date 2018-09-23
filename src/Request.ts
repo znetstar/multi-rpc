@@ -8,10 +8,10 @@ export default class Request extends Message {
     /**
      * Creates a JSON-RPC Request.
      * @param id - The identifier for the request, the response will have the same identifier.
-     * @param method - Name of method to execute on the Server.
-     * @param params - Parameters to pass to the method.
+     * @param method - Name of method to execute on the server.
+     * @param params - Arguments to pass to the method.
      */
-    constructor(public id: number|string|null, public method: string, public params?: any[]|Object) {
+    constructor(public id: number|string|null, public method: string, public params?: Array<any>|Object) {
         super();
     }
 }

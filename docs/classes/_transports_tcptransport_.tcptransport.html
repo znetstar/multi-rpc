@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TCPTransport | face-command-common</title>
+	<title>TCPTransport | multi-rpc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">face-command-common</a>
+					<a href="../index.html" class="title">multi-rpc</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -95,6 +95,12 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_transports_tcptransport_.tcptransport.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_transports_tcptransport_.tcptransport.html#connection" class="tsd-kind-icon">connection</a></li>
@@ -143,6 +149,166 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new TCPTransport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new TCPTransport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new TCPTransport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new TCPTransport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, server<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Server</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/TCPTransport.ts:34</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a TCP transport that will listen on or connect to a port and host.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>port: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The port to listen on or connect to.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>host: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The host to listen on or connect to.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/TCPTransport.ts:42</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a TCP transport that will listen on a port on all interfaces, or connect to a port on localhost.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>port: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The port to listen on or connect to.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/TCPTransport.ts:48</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a TCP transport that will listen on or connect to an IPC Path.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections">https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The IPC Path to listen on or connect to.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/TCPTransport.ts:55</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a TCP transport that will use an existing net.Server.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>server: <span class="tsd-signature-type">Server</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The net.Server to listen on.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 					<a name="connection" class="tsd-anchor"></a>
@@ -182,7 +348,7 @@
 					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Transports/TCPTransport.ts:63</li>
+							<li>Defined in Transports/TCPTransport.ts:71</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -197,13 +363,18 @@
 					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Transports/TCPTransport.ts:33</li>
+							<li>Defined in Transports/TCPTransport.ts:34</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The IPC Path the client will connect to or server will listen on.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections">https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections</a></p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
@@ -266,7 +437,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#addconnection">addConnection</a></p>
 								<ul>
-									<li>Defined in PersistentTransport.ts:67</li>
+									<li>Defined in PersistentTransport.ts:60</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -285,7 +456,7 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> id: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;Transport.uniqueId()</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>A globally unqiue identifier for the client which will be used across the server (across multiple transports). Defaults to a UUID v4.</p>
+										<p>A globally unqiue identifier for the connection which will be used across the server (across multiple transports). Defaults to a UUID v4.</p>
 									</div>
 								</li>
 							</ul>
@@ -331,7 +502,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#connect">connect</a></p>
 								<ul>
-									<li>Defined in Transports/TCPTransport.ts:82</li>
+									<li>Defined in Transports/TCPTransport.ts:91</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,6 +512,9 @@
 								<dl class="tsd-comment-tags">
 									<dt>async</dt>
 									<dd></dd>
+									<dt>throws</dt>
+									<dd><p>{TransportInServerState} - If the transport is already acting as a server.</p>
+									</dd>
 									<dt>throws</dt>
 									<dd><ul>
 											<li>If the connection attempt fails.</li>
@@ -435,7 +609,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#listen">listen</a></p>
 								<ul>
-									<li>Defined in Transports/TCPTransport.ts:182</li>
+									<li>Defined in Transports/TCPTransport.ts:191</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -772,12 +946,12 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#receive">receive</a></p>
 								<ul>
-									<li>Defined in Transport.ts:51</li>
+									<li>Defined in Transport.ts:41</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This method is called when the server has sent a message to a client or vice versa.</p>
+									<p>This method is called when the server has sent a message to a client and vice versa.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -785,13 +959,13 @@
 								<li>
 									<h5>data: <span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The serialized message either in binary or as text.</p>
+										<p>The serialized message as either binary or text.</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> clientRequest: <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>If acting as a server contains data on the inbound request, including the clientId.</p>
+										<p>Contains data on the inbound request, including the client&#39;s ID.</p>
 									</div>
 								</li>
 							</ul>
@@ -834,7 +1008,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#removeconnection">removeConnection</a></p>
 								<ul>
-									<li>Defined in PersistentTransport.ts:76</li>
+									<li>Defined in PersistentTransport.ts:69</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -893,7 +1067,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#send">send</a></p>
 								<ul>
-									<li>Defined in Transports/TCPTransport.ts:123</li>
+									<li>Defined in Transports/TCPTransport.ts:132</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -929,7 +1103,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#sendconnection">sendConnection</a></p>
 								<ul>
-									<li>Defined in Transports/TCPTransport.ts:139</li>
+									<li>Defined in Transports/TCPTransport.ts:148</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -976,7 +1150,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#sendto">sendTo</a></p>
 								<ul>
-									<li>Defined in PersistentTransport.ts:86</li>
+									<li>Defined in PersistentTransport.ts:81</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -986,6 +1160,12 @@
 								<dl class="tsd-comment-tags">
 									<dt>async</dt>
 									<dd></dd>
+									<dt>throws</dt>
+									<dd><p>{TransportInClientState} - If the transport is already acting as a client.</p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{NonExistantClient} - If client referenced does not exist.</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1042,7 +1222,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#uniqueid">uniqueId</a></p>
 								<ul>
-									<li>Defined in Transport.ts:32</li>
+									<li>Defined in Transport.ts:109</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1120,6 +1300,9 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_transports_tcptransport_.tcptransport.html" class="tsd-kind-icon">TCPTransport</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_transports_tcptransport_.tcptransport.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_transports_tcptransport_.tcptransport.html#connection" class="tsd-kind-icon">connection</a>
 							</li>

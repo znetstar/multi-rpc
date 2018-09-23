@@ -7,7 +7,7 @@ import ClientRequest from "./ClientRequest";
 import Response from "./Response";
 
 /**
- * Represents a client that will connect to an RPC server.
+ * A client that will connect to an RPC server.
  */
 export default class Client extends EventEmitter2 {
     /**
@@ -23,8 +23,7 @@ export default class Client extends EventEmitter2 {
         super();
 
         /**
-         * Receives a "Notification" object from the transport and emits it on the event emitter.
-         * To listen for notifications.
+         * Receives a "Notification" object from the transport and emits it.
          * The example below will log "bar" to the console.
          * @example
          * // notification: { "jsonrpc": "2.0", "method": "foo", "params": ["bar"] }

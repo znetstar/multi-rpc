@@ -30,7 +30,7 @@ export default abstract class Serializer {
      * This method verifies that the object conforms to the JSON-RPC 2.0 specification
      * 
      * @param object - The object.
-     * @param batch - Indicates if the message may be a batch request.
+     * @param batch - Indicates if the message may be a batch request (array of messages).
      */
     deserialize(object: any, batch: boolean = true): Request|Notification|Response|Array<Request>|Array<Notification>|Array<Response> {
         let result;

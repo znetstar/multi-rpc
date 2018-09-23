@@ -2,7 +2,7 @@ import Transport from "./Transport";
 import Message from "./Message";
 
 /**
- * Thrown if the server attempts to send a notification to a client that doesn't exist.
+ * An error that occurs when the server attempts to send a notification to a client that doesn't exist.
  */
 export class NonExistantClient extends Error {
     constructor(id: any) {
@@ -11,7 +11,7 @@ export class NonExistantClient extends Error {
 }
 
 /**
- * Thrown when a non-persistent transport is used as a persistent transport. 
+ * An error that occurs when a non-persistent transport is used as a persistent transport. 
  */
 export class TransportIsNotPersistant extends Error {
     constructor() {
@@ -20,7 +20,7 @@ export class TransportIsNotPersistant extends Error {
 }
 
 /**
- * Thrown if the transport is used like a Client but is already functioning as a Server.
+ * An error that occurs when the transport is used like a Client but is already functioning as a Server.
  */
 export class TransportInServerState extends Error {
     constructor() {
@@ -29,7 +29,7 @@ export class TransportInServerState extends Error {
 }
 
 /**
- * Thrown if the transport is used like a Server but is already functioning as a Client.
+ * An error that occurs when the transport is used like a Server but is already functioning as a Client.
  */
 export class TransportInClientState extends Error {
     constructor() {
@@ -38,31 +38,24 @@ export class TransportInClientState extends Error {
 }
 
 /**
- * Represents a transport that maintains a persistant connection to the server.
+ * A transport that maintains a persistant connection to the server.
  */
 export default abstract class PersistentTransport extends Transport {
     /**
-     * Initiates a connection to the server.
-     * @returns - Promise resolves when connected
-     * @async
-     */
-    public abstract connect(): Promise<any>;
-
-    /**
-     * When used as a server a map that contains all current connections to the server using this transport.
+     * A map that contains all current connections to the server using this transport.
      * The key is the id assigned to the connection and the value is the connection itself.
      */
     public abstract connections: Map<any, any>;
 
     /**
-     * When used as a client the connection to the server.
+     * The connection to the server.
      */
     public abstract connection: any;
 
     /**
      * Adds a connection to the map of connections.
      * @param connection - The connection to the server.
-     * @param id - A globally unqiue identifier for the client which will be used across the server (across multiple transports). Defaults to a UUID v4.
+     * @param id - A globally unqiue identifier for the connection which will be used across the server (across multiple transports). Defaults to a UUID v4.
      */
     public addConnection(connection: any, id: any = Transport.uniqueId()): void {
         this.connections.set(id, connection);
@@ -82,6 +75,8 @@ export default abstract class PersistentTransport extends Transport {
      * @param id - ID of the client.
      * @param message - Message to send.
      * @async
+     * @throws {TransportInClientState} - If the transport is already acting as a client.
+     * @throws {NonExistantClient} - If client referenced does not exist.
      */
     public async sendTo(id: any, message: Message): Promise<void> {
         if (!this.connections) {
@@ -96,15 +91,17 @@ export default abstract class PersistentTransport extends Transport {
 
     /**
      * Sends a message to a client.
-     * @param connection - The connection from the client.
+     * @param connection - The connection to the client.
      * @param message - Message to send.
      * @async
      */
     protected abstract sendConnection(connection: any, message: Message): Promise<void>;
-
+    
     /**
-     * When acting as a client sends a message to the server.
+     * Sends a message to the server.
      * @param message - Message to send.
+     * @async
+     * @throws {TransportInServerState} - If the transport is already acting as a server.
      */
     public async send(message: Message): Promise<void> {
         if (!this.connection) {
@@ -113,4 +110,10 @@ export default abstract class PersistentTransport extends Transport {
         await this.sendConnection(this.connection, message);
     }
 
+    /**
+     * Initiates a connection to the server.
+     * @returns - Promise resolves when connected
+     * @async
+     */
+    public abstract connect(): Promise<any>;
 }

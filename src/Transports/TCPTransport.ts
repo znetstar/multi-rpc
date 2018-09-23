@@ -29,6 +29,7 @@ export default class TCPTransport extends PersistentTransport {
     protected port?: number;
     /**
      * The IPC Path the client will connect to or server will listen on.
+     * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
     protected path?: string;
 
@@ -49,6 +50,7 @@ export default class TCPTransport extends PersistentTransport {
      * Creates a TCP transport that will listen on or connect to an IPC Path.
      * @param serializer - The serializer to use for encoding/decoding messages.
      * @param path - The IPC Path to listen on or connect to.
+     * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
     constructor(serializer: Serializer, path: string);
     /**
@@ -58,7 +60,13 @@ export default class TCPTransport extends PersistentTransport {
      */
     constructor(serializer: Serializer, server: Server);
     /**
-     * @ignore
+     * Creates a TCP transport using an existing net.Server, path or port and host.
+     * The transport can act as either a server or client.
+     * @param serializer - The serializer to use for encoding/decoding messages.
+     * @param portPathOrServer - The port, path or net.Server the transport should listen on or connect to.
+     * @param host - The host the transport should listen on or connect to. If omitted defaults to all interfaces.
+     * 
+     * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
     constructor(serializer: Serializer,  portPathOrServer: string|number|Server, protected host?: string) {
         super(serializer);
@@ -77,6 +85,7 @@ export default class TCPTransport extends PersistentTransport {
     /**
      * Connects to the server using the provided details.
      * @async
+     * @throws {TransportInServerState} - If the transport is already acting as a server.
      * @throws - If the connection attempt fails.
      */
     public async connect(): Promise<Socket> {

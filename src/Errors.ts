@@ -1,5 +1,5 @@
 /**
- * Represents a generic RPC Error.
+ * A generic RPC Error.
  */
 export class RPCError extends Error {
     /**
@@ -25,7 +25,7 @@ export class RPCError extends Error {
 }
 
 /**
- * Represents an error that occurs when the message cannot be deserialized. 
+ * An error that occurs when the message cannot be deserialized. 
  */
 export class ParseError extends RPCError {
     /**
@@ -38,7 +38,7 @@ export class ParseError extends RPCError {
 }
 
 /**
- * Represents an error that occurs when the request is not formatted correctly.
+ * An error that occurs when the request is not formatted correctly.
  */
 export class InvalidRequest extends RPCError {
     /**
@@ -51,7 +51,7 @@ export class InvalidRequest extends RPCError {
 }
 
 /**
- * Represents an error that occurs when a method has been called that does not exist.
+ * An error that occurs when a method has been called that does not exist.
  */
 export class MethodNotFound extends RPCError {
     /**
@@ -64,7 +64,7 @@ export class MethodNotFound extends RPCError {
 }
 
 /**
- * Represents an error that could occur when a method has been called with invalid params.
+ * An error that could occur when a method has been called with invalid arguments.
  * Since JavaScript methods that can accept a variable number of arguments, the server will not raise this error. 
  */
 export class InvalidParams extends RPCError {
@@ -78,7 +78,7 @@ export class InvalidParams extends RPCError {
 }
 
 /**
- * Represents an unknown internal error.
+ * An unknown internal error.
  */
 export class InternalError extends RPCError {
     /**
@@ -91,7 +91,7 @@ export class InternalError extends RPCError {
 }
 
 /**
- * Represents a server error.
+ * A server error.
  */
 export class ServerError extends RPCError {
     /**

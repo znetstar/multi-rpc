@@ -1,5 +1,5 @@
 {
-  "name": "multi-jrpc",
+  "name": "multi-rpc",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Transport | face-command-common</title>
+	<title>Transport | multi-rpc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">face-command-common</a>
+					<a href="../index.html" class="title">multi-rpc</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -72,8 +72,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Transports facilitate exchanging messages between Server and Client.
-						The transport can be used either as a server (listening for connections) or as a client (maintaining a single connection).</p>
+						<p>Transports facilitate the exchange of messages between Server and Client.
+						The transport can be used either as a server (listening for connections) or as a client (maintaining a single connection to a server).</p>
 					</div>
 				</div>
 			</section>
@@ -160,7 +160,7 @@
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a Transport object. Cannot be called directly.</p>
+									<p>Creates a Transport object.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -308,7 +308,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Transport.ts:116</li>
+									<li>Defined in Transport.ts:120</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -643,12 +643,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Transport.ts:51</li>
+									<li>Defined in Transport.ts:41</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This method is called when the server has sent a message to a client or vice versa.</p>
+									<p>This method is called when the server has sent a message to a client and vice versa.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -656,13 +656,13 @@
 								<li>
 									<h5>data: <span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The serialized message either in binary or as text.</p>
+										<p>The serialized message as either binary or text.</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> clientRequest: <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>If acting as a server contains data on the inbound request, including the clientId.</p>
+										<p>Contains data on the inbound request, including the client&#39;s ID.</p>
 									</div>
 								</li>
 							</ul>
@@ -731,7 +731,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Transport.ts:44</li>
+									<li>Defined in Transport.ts:34</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -793,7 +793,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Transport.ts:32</li>
+									<li>Defined in Transport.ts:109</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

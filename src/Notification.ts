@@ -8,7 +8,7 @@ export default class Notification extends Message {
     /**
      * Creates a Notification object.
      * @param method - The method (or event name).
-     * @param params - The params for the event.
+     * @param params - The arguments for the event.
      */
     constructor(public method: string, public params?: Array<any>|Object) {
         super();

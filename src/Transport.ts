@@ -9,12 +9,12 @@ import ClientRequest from "./ClientRequest";
 import * as uuid from "uuid";
 
 /**
- * Transports facilitate exchanging messages between Server and Client.
- * The transport can be used either as a server (listening for connections) or as a client (maintaining a single connection).
+ * Transports facilitate the exchange of messages between Server and Client.
+ * The transport can be used either as a server (listening for connections) or as a client (maintaining a single connection to a server).
  */
 export default abstract class Transport extends EventEmitter2 {
     /**
-     * Creates a Transport object. Cannot be called directly.
+     * Creates a Transport object.
      * @param serializer - The serializer that will be used to serialize and deserialize requests.
      */
     constructor(protected serializer: Serializer) {
@@ -26,16 +26,6 @@ export default abstract class Transport extends EventEmitter2 {
     }
 
     /**
-     * Generates a unique id that can be used to distinguish between connected clients.
-     * The unique id will be a UUID v4 returned as a Uint8Array.
-     */
-    static uniqueId(): Uint8Array {
-        const uniqueId = new Uint8Array(16);
-        uuid.v4(null, uniqueId, 0);
-        return uniqueId;
-    }
-
-    /**
      * This method will be used to send a Message to the server, using the serializer, via the underlying protocol.
      * @param message - The message to send to the server.
      * @returns - A Promise that will resolve when the message has been sent.
@@ -44,9 +34,9 @@ export default abstract class Transport extends EventEmitter2 {
     public abstract send(message: Message): Promise<void>;
 
     /**
-     * This method is called when the server has sent a message to a client or vice versa.
-     * @param data - The serialized message either in binary or as text. 
-     * @param clientRequest - If acting as a server contains data on the inbound request, including the clientId.
+     * This method is called when the server has sent a message to a client and vice versa.
+     * @param data - The serialized message as either binary or text. 
+     * @param clientRequest - Contains data on the inbound request, including the client's ID.
      */
     protected receive(data: Uint8Array|string, clientRequest?: ClientRequest) {
         let message;
@@ -65,8 +55,9 @@ export default abstract class Transport extends EventEmitter2 {
              * @event Transport#batch
              * @fires Transport#batch
              * @param {Array<Message>} message - An array of messages to be processed sequentially.
+             * @param {ClientRequest} clientRequest - Contains data on the inbound request, including the client's ID.
              */
-            this.emit("batch", message);
+            this.emit("batch", message, clientRequest);
 
         else if (message instanceof Request)
             /**
@@ -74,6 +65,7 @@ export default abstract class Transport extends EventEmitter2 {
              * @event Transport#request
              * @fires Transport#request
              * @param {Request} message - The RPC method call.
+             * @param {ClientRequest} clientRequest - Contains data on the inbound request, including the client's ID.
              */
             this.emit("request", <Request>message, clientRequest);
 
@@ -83,20 +75,22 @@ export default abstract class Transport extends EventEmitter2 {
              * @event Transport#notification
              * @fires Transport#notification
              * @param {Notification} message - The notification.
+             * @param {ClientRequest} clientRequest - Contains data on the inbound request, including the client's ID.
              */
             this.emit("notification", <Notification>message, clientRequest);
 
         else if (message instanceof Response) {
             const response = <Response>message;
             /**
-             * Emitted when either the client has received a response from the server.
+             * Emitted when the client has received a response from the server.
              * 
-             * The name of the event will contain the ID of the request that was made
+             * The name of the event will contain the ID of the request that was made.
              * To listen for all requests listen to "response:*".
              * 
              * @event Transport#response:*
              * @fires Transport#response:*
              * @param {Response} message - The response from the request that was made.
+             * @param {ClientRequest} clientRequest - Contains data on the inbound request, including the client's ID.
              * 
              * @example
              * // response: { "id": 1, "result": { "foo": "bar" } }
@@ -106,6 +100,16 @@ export default abstract class Transport extends EventEmitter2 {
              */
             this.emit(`response:${response.id}`, response, clientRequest);
         }
+    }
+
+    /**
+     * Generates a unique id that can be used to distinguish between connected clients.
+     * The unique id will be a UUID v4 returned as a Uint8Array.
+     */
+    static uniqueId(): Uint8Array {
+        const uniqueId = new Uint8Array(16);
+        uuid.v4(null, uniqueId, 0);
+        return uniqueId;
     }
 
     /**

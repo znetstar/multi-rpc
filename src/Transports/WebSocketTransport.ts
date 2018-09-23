@@ -1,4 +1,4 @@
-import PersistantTransport from "../PersistentTransport";
+import PersistantTransport, { TransportInServerState } from "../PersistentTransport";
 import Serializer from "../Serializer";
 import Message from "../Message";
 import Response from "../Response";
@@ -9,7 +9,7 @@ import * as detectNode from "detect-node"
 import { server as WebSocketServer, w3cwebsocket as WebSocket, request as WebSocketRequest, connection as WebSocketConnection, IMessage} from "websocket";
 
 /**
- * This a transport that uses WebSocket as its protocol.
+ * A transport that uses WebSocket as its protocol.
  * Using this transport as a client will work in the browser.
  */
 export default class WebSocketTransport extends PersistantTransport {
@@ -28,17 +28,18 @@ export default class WebSocketTransport extends PersistantTransport {
     protected server: WebSocketServer;
 
     /**
-     * Port number the server to listen on.
+     * Port number of the server to listen on.
      */
     protected port?: number;
 
     /**
-     * The HTTP Server underlying the WebSocket Server.
+     * The HTTP(S) Server underlying the WebSocket Server.
      */
     protected httpServer?: HTTPServer|HTTPSServer;
 
     /**
      * The URL of the WebSocket server to connect to or the IPC path to listen on.
+     * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
     protected urlOrPath?: string;
 
@@ -48,7 +49,7 @@ export default class WebSocketTransport extends PersistantTransport {
     protected host?: string;
 
     /**
-     * Creates a WebSocket transport using an existing HTTP or HTTPS server.
+     * Creates a WebSocket transport using an existing HTTP or HTTPS server and will listen on a specified endpoint.
      * @param serializer - The serializer to use for encoding/decoding messages.
      * @param httpServer - The HTTP or HTTPS server to listen on.
      * @param endpoint - The endpoint (or path) the WebSocket server should listen on (e.g. "/api").
@@ -82,26 +83,33 @@ export default class WebSocketTransport extends PersistantTransport {
      */
     constructor(serializer: Serializer, port: number);
     /**
-     * Creates a WebSocket transport listening on an IPC Path and an endpoint.
+     * Creates a WebSocket transport listening on a port and an endpoint.
      * @param serializer - The serializer to use for encoding/decoding messages.
-     * @param path - The IPC Path to listen on.
-     * @param endpint - The endpoint (or path) the WebSocket server should listen on (e.g. "/api"). 
+     * @param port - The port to listen on.
+     * @param endpint - The endpoint (or path) the WebSocket server should listen on (e.g. "/api").
      */
     constructor(serializer: Serializer, path: string, endpoint: string);
     /**
      * Creates a WebSocket transport listening on an IPC Path and an endpoint.
      * @param serializer - The serializer to use for encoding/decoding messages.
      * @param path - The IPC Path to listen on.
+     * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
     constructor(serializer: Serializer, path: string);
     /**
      * Creates a WebSocket transport that connects to a server at a specified url.
      * @param serializer - The serializer to use for encoding/decoding messages.
-     * @param url - Url of the server to connect to (e.g. "ws://localhost")
+     * @param url - Url of the server to connect to (e.g. "ws://localhost").
      */
     constructor(serializer: Serializer, url: string);
     /**
-     * @ignore
+     * Creates a WebSocket transport as a server using an existing HTTP(S) server, path or port and host, or as a client using a URL.
+     * @param serializer - The serializer to use for encoding/decoding messages.
+     * @param portPathServerOrUrl - The port, path or HTTP(S) server the transport should listen on, or the URL the client should connect to.
+     * @param hostOrEndpoint - The host the transport should listen or endpoint the server should listen on. If omitted defaults to all interfaces.
+     * @param endpoint - The endpoint the server should listen on.
+     * 
+     * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
     constructor(protected serializer: Serializer,  portPathServerOrUrl: HTTPServer|HTTPSServer|string|number, hostOrEndpoint?: string, protected endpoint?: string) {
         super(serializer);
@@ -122,11 +130,15 @@ export default class WebSocketTransport extends PersistantTransport {
     }
 
     /**
-     * Connects to the WebSocket Server using the given url.
+     * Connects to the WebSocket Server using the given URL.
      * @async
      * @throws - If the connection attempt fails.
+     * @throws {TransportInServerState} - If the transport is already acting as a server.
      */
     public async connect(): Promise<WebSocket> {
+        if (this.connections)
+            throw new TransportInServerState();
+
         let url = <string>this.urlOrPath;
         if (typeof(this.port) === 'number') {
             const host = this.host || '127.0.0.1';

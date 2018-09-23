@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>WebSocketTransport | face-command-common</title>
+	<title>WebSocketTransport | multi-rpc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">face-command-common</a>
+					<a href="../index.html" class="title">multi-rpc</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>This a transport that uses WebSocket as its protocol.
+						<p>A transport that uses WebSocket as its protocol.
 						Using this transport as a client will work in the browser.</p>
 					</div>
 				</div>
@@ -94,6 +94,12 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_transports_websockettransport_.websockettransport.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
@@ -147,6 +153,334 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, httpServer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTTPServer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTTPSServer</span>, endpoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, httpServer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTTPServer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTTPSServer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, endpoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, port<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, endpoint<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/WebSocketTransport.ts:49</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a WebSocket transport using an existing HTTP or HTTPS server and will listen on a specified endpoint.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>httpServer: <span class="tsd-signature-type">HTTPServer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTTPSServer</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The HTTP or HTTPS server to listen on.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>endpoint: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The endpoint (or path) the WebSocket server should listen on (e.g. &quot;/api&quot;).</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/WebSocketTransport.ts:57</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a WebSocket transport using an existing HTTP or HTTPS server.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>httpServer: <span class="tsd-signature-type">HTTPServer</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">HTTPSServer</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The HTTP or HTTPS server to listen on.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/WebSocketTransport.ts:63</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a WebSocket transport listening on a port, host and endpoint.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>port: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Port the server should listen on.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>host: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Host the server should listen on.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>endpoint: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The endpoint (or path) the WebSocket server should listen on (e.g. &quot;/api&quot;).</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/WebSocketTransport.ts:71</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a WebSocket transport listening on a port and host.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>port: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Port the server should listen on.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>host: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Host the server should listen on.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/WebSocketTransport.ts:78</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a WebSocket transport listening on a port.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>port: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Port the server should listen on.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/WebSocketTransport.ts:84</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a WebSocket transport listening on a port and an endpoint.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The IPC Path to listen on.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>endpoint: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The endpoint (or path) the WebSocket server should listen on (e.g. &quot;/api&quot;).</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/WebSocketTransport.ts:91</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a WebSocket transport listening on an IPC Path and an endpoint.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>see</dt>
+									<dd><p><a href="https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections">https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The IPC Path to listen on.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
+								<ul>
+									<li>Defined in Transports/WebSocketTransport.ts:98</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a WebSocket transport that connects to a server at a specified url.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The serializer to use for encoding/decoding messages.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>url: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Url of the server to connect to (e.g. &quot;ws://localhost&quot;).</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 					<a name="connection" class="tsd-anchor"></a>
@@ -186,7 +520,7 @@
 					<div class="tsd-signature tsd-kind-icon">endpoint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Transports/WebSocketTransport.ts:106</li>
+							<li>Defined in Transports/WebSocketTransport.ts:114</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -201,7 +535,7 @@
 					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Transports/WebSocketTransport.ts:48</li>
+							<li>Defined in Transports/WebSocketTransport.ts:49</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -221,7 +555,7 @@
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The HTTP Server underlying the WebSocket Server.</p>
+							<p>The HTTP(S) Server underlying the WebSocket Server.</p>
 						</div>
 					</div>
 				</section>
@@ -236,7 +570,7 @@
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Port number the server to listen on.</p>
+							<p>Port number of the server to listen on.</p>
 						</div>
 					</div>
 				</section>
@@ -247,7 +581,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#serializer">serializer</a></p>
 						<ul>
-							<li>Defined in Transports/WebSocketTransport.ts:106</li>
+							<li>Defined in Transports/WebSocketTransport.ts:114</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -277,13 +611,18 @@
 					<div class="tsd-signature tsd-kind-icon">url<wbr>OrPath<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Transports/WebSocketTransport.ts:43</li>
+							<li>Defined in Transports/WebSocketTransport.ts:44</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The URL of the WebSocket server to connect to or the IPC path to listen on.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections">https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections</a></p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -300,7 +639,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#addconnection">addConnection</a></p>
 								<ul>
-									<li>Defined in PersistentTransport.ts:67</li>
+									<li>Defined in PersistentTransport.ts:60</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -319,7 +658,7 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> id: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;Transport.uniqueId()</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>A globally unqiue identifier for the client which will be used across the server (across multiple transports). Defaults to a UUID v4.</p>
+										<p>A globally unqiue identifier for the connection which will be used across the server (across multiple transports). Defaults to a UUID v4.</p>
 									</div>
 								</li>
 							</ul>
@@ -364,7 +703,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Transports/WebSocketTransport.ts:199</li>
+									<li>Defined in Transports/WebSocketTransport.ts:211</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -398,12 +737,12 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#connect">connect</a></p>
 								<ul>
-									<li>Defined in Transports/WebSocketTransport.ts:129</li>
+									<li>Defined in Transports/WebSocketTransport.ts:138</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Connects to the WebSocket Server using the given url.</p>
+									<p>Connects to the WebSocket Server using the given URL.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>async</dt>
@@ -412,6 +751,9 @@
 									<dd><ul>
 											<li>If the connection attempt fails.</li>
 										</ul>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{TransportInServerState} - If the transport is already acting as a server.</p>
 									</dd>
 								</dl>
 							</div>
@@ -501,7 +843,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Transports/WebSocketTransport.ts:252</li>
+									<li>Defined in Transports/WebSocketTransport.ts:264</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -540,7 +882,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#listen">listen</a></p>
 								<ul>
-									<li>Defined in Transports/WebSocketTransport.ts:262</li>
+									<li>Defined in Transports/WebSocketTransport.ts:274</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -877,12 +1219,12 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#receive">receive</a></p>
 								<ul>
-									<li>Defined in Transport.ts:51</li>
+									<li>Defined in Transport.ts:41</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This method is called when the server has sent a message to a client or vice versa.</p>
+									<p>This method is called when the server has sent a message to a client and vice versa.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -890,13 +1232,13 @@
 								<li>
 									<h5>data: <span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The serialized message either in binary or as text.</p>
+										<p>The serialized message as either binary or text.</p>
 									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> clientRequest: <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>If acting as a server contains data on the inbound request, including the clientId.</p>
+										<p>Contains data on the inbound request, including the client&#39;s ID.</p>
 									</div>
 								</li>
 							</ul>
@@ -939,7 +1281,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#removeconnection">removeConnection</a></p>
 								<ul>
-									<li>Defined in PersistentTransport.ts:76</li>
+									<li>Defined in PersistentTransport.ts:69</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -998,7 +1340,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#send">send</a></p>
 								<ul>
-									<li>Defined in Transports/WebSocketTransport.ts:170</li>
+									<li>Defined in Transports/WebSocketTransport.ts:182</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1034,7 +1376,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#sendconnection">sendConnection</a></p>
 								<ul>
-									<li>Defined in Transports/WebSocketTransport.ts:184</li>
+									<li>Defined in Transports/WebSocketTransport.ts:196</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1081,7 +1423,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>.<a href="_persistenttransport_.persistenttransport.html#sendto">sendTo</a></p>
 								<ul>
-									<li>Defined in PersistentTransport.ts:86</li>
+									<li>Defined in PersistentTransport.ts:81</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1091,6 +1433,12 @@
 								<dl class="tsd-comment-tags">
 									<dt>async</dt>
 									<dd></dd>
+									<dt>throws</dt>
+									<dd><p>{TransportInClientState} - If the transport is already acting as a client.</p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{NonExistantClient} - If client referenced does not exist.</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1147,7 +1495,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#uniqueid">uniqueId</a></p>
 								<ul>
-									<li>Defined in Transport.ts:32</li>
+									<li>Defined in Transport.ts:109</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1225,6 +1573,9 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_transports_websockettransport_.websockettransport.html" class="tsd-kind-icon">Web<wbr>Socket<wbr>Transport</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_transports_websockettransport_.websockettransport.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_transports_websockettransport_.websockettransport.html#connection" class="tsd-kind-icon">connection</a>
 							</li>

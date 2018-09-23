@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Server | multi-rpc</title>
+	<title>PersistentTransport | multi-rpc</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_server_.html">&quot;Server&quot;</a>
+					<a href="../modules/_persistenttransport_.html">&quot;PersistentTransport&quot;</a>
 				</li>
 				<li>
-					<a href="_server_.server.html">Server</a>
+					<a href="_persistenttransport_.persistenttransport.html">PersistentTransport</a>
 				</li>
 			</ul>
-			<h1>Class Server</h1>
+			<h1>Class PersistentTransport</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An RPC server that will listen for clients.</p>
+						<p>A transport that maintains a persistant connection to the server.</p>
 					</div>
 				</div>
 			</section>
@@ -80,10 +80,18 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">EventEmitter2</span>
+						<a href="_transport_.transport.html" class="tsd-signature-type">Transport</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Server</span>
+								<span class="target">PersistentTransport</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="_transports_tcptransport_.tcptransport.html" class="tsd-signature-type">TCPTransport</a>
+									</li>
+									<li>
+										<a href="_transports_websockettransport_.websockettransport.html" class="tsd-signature-type">WebSocketTransport</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
@@ -93,215 +101,183 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_server_.server.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_server_.server.html#method_host" class="tsd-kind-icon">method_<wbr>host</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_server_.server.html#transports" class="tsd-kind-icon">transports</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Accessors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected"><a href="_server_.server.html#clientsbytransport" class="tsd-kind-icon">clients<wbr>ByTransport</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_server_.server.html#methods" class="tsd-kind-icon">methods</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#connection" class="tsd-kind-icon">connection</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#connections" class="tsd-kind-icon">connections</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_persistenttransport_.persistenttransport.html#serializer" class="tsd-kind-icon">serializer</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_server_.server.html#batch" class="tsd-kind-icon">batch</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#emit" class="tsd-kind-icon">emit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#emitasync" class="tsd-kind-icon">emit<wbr>Async</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_server_.server.html#executemethod" class="tsd-kind-icon">execute<wbr>Method</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_server_.server.html#invoke" class="tsd-kind-icon">invoke</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_server_.server.html#listen" class="tsd-kind-icon">listen</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#listeners" class="tsd-kind-icon">listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#listenersany" class="tsd-kind-icon">listeners<wbr>Any</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#many" class="tsd-kind-icon">many</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_server_.server.html#notification" class="tsd-kind-icon">notification</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#off" class="tsd-kind-icon">off</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#offany" class="tsd-kind-icon">off<wbr>Any</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#on" class="tsd-kind-icon">on</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#onany" class="tsd-kind-icon">on<wbr>Any</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#once" class="tsd-kind-icon">once</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#prependany" class="tsd-kind-icon">prepend<wbr>Any</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#prependmany" class="tsd-kind-icon">prepend<wbr>Many</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_server_.server.html#sendall" class="tsd-kind-icon">send<wbr>All</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_server_.server.html#sendto" class="tsd-kind-icon">send<wbr>To</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_server_.server.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Object literals</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class"><a href="_server_.server.html#method_handler" class="tsd-kind-icon">method_<wbr>handler</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#addconnection" class="tsd-kind-icon">add<wbr>Connection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#connect" class="tsd-kind-icon">connect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#emit" class="tsd-kind-icon">emit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#emitasync" class="tsd-kind-icon">emit<wbr>Async</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#listen" class="tsd-kind-icon">listen</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#listeners" class="tsd-kind-icon">listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#listenersany" class="tsd-kind-icon">listeners<wbr>Any</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#many" class="tsd-kind-icon">many</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#off" class="tsd-kind-icon">off</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#offany" class="tsd-kind-icon">off<wbr>Any</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#on" class="tsd-kind-icon">on</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#onany" class="tsd-kind-icon">on<wbr>Any</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#once" class="tsd-kind-icon">once</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#prependany" class="tsd-kind-icon">prepend<wbr>Any</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#prependmany" class="tsd-kind-icon">prepend<wbr>Many</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_persistenttransport_.persistenttransport.html#receive" class="tsd-kind-icon">receive</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#removeconnection" class="tsd-kind-icon">remove<wbr>Connection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_persistenttransport_.persistenttransport.html#send" class="tsd-kind-icon">send</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="_persistenttransport_.persistenttransport.html#sendconnection" class="tsd-kind-icon">send<wbr>Connection</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#sendto" class="tsd-kind-icon">send<wbr>To</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="_persistenttransport_.persistenttransport.html#uniqueid" class="tsd-kind-icon">unique<wbr>Id</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Server<span class="tsd-signature-symbol">(</span>transports<span class="tsd-signature-symbol">: </span><a href="_transport_.transport.html" class="tsd-signature-type">Transport</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_transport_.transport.html" class="tsd-signature-type">Transport</a><span class="tsd-signature-symbol">&gt;</span>, method_host<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_server_.server.html" class="tsd-signature-type">Server</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Persistent<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_persistenttransport_.persistenttransport.html" class="tsd-signature-type">PersistentTransport</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
 								<p>Overrides EventEmitter2.__constructor</p>
 								<ul>
-									<li>Defined in Server.ts:106</li>
+									<li>Defined in Transport.ts:15</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a RPC server using one or more transports.
-									Using multiple transports the server can listen for RPC requests on multiple protocols.</p>
+									<p>Creates a Transport object.</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>example</dt>
-									<dd><p>let tcpTransport = new TCPTransport(1234);
-											let methods = {
-											foo: (bar) =&gt; {
-											console.log(bar);
-											}
-											};
-										new Server(tcpTransport, methods);</p>
-									</dd>
-								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>transports: <a href="_transport_.transport.html" class="tsd-signature-type">Transport</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_transport_.transport.html" class="tsd-signature-type">Transport</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>An array of transports or single transport that the server will listen on.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> method_host: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>An object containing methods that will be executed upon request from the client.</p>
+											<p>The serializer that will be used to serialize and deserialize requests.</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_server_.server.html" class="tsd-signature-type">Server</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_persistenttransport_.persistenttransport.html" class="tsd-signature-type">PersistentTransport</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="method_host" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> method_<wbr>host</h3>
-					<div class="tsd-signature tsd-kind-icon">method_<wbr>host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="connection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> connection</h3>
+					<div class="tsd-signature tsd-kind-icon">connection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Server.ts:123</li>
+							<li>Defined in PersistentTransport.ts:53</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An object containing methods that will be executed upon request from the client.</p>
+							<p>The connection to the server.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="transports" class="tsd-anchor"></a>
-					<h3>transports</h3>
-					<div class="tsd-signature tsd-kind-icon">transports<span class="tsd-signature-symbol">:</span> <a href="_transport_.transport.html" class="tsd-signature-type">Transport</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="connections" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> connections</h3>
+					<div class="tsd-signature tsd-kind-icon">connections<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Server.ts:19</li>
+							<li>Defined in PersistentTransport.ts:48</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Transports the server is currently listening on.</p>
+							<p>A map that contains all current connections to the server using this transport.
+							The key is the id assigned to the connection and the value is the connection itself.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="serializer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> serializer</h3>
+					<div class="tsd-signature tsd-kind-icon">serializer<span class="tsd-signature-symbol">:</span> <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#serializer">serializer</a></p>
+						<ul>
+							<li>Defined in Transport.ts:20</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The serializer that will be used to serialize and deserialize requests.</p>
 						</div>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
-					<a name="clientsbytransport" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> clients<wbr>ByTransport</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> clientsByTransport<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><a href="_persistenttransport_.persistenttransport.html" class="tsd-signature-type">PersistentTransport</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in Server.ts:97</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>A map of clients IDs to transport the client is connected on.
-										This can be used to determine what transport a client is connected to.
-									This of course only applies to PersistentTransports</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><a href="_persistenttransport_.persistenttransport.html" class="tsd-signature-type">PersistentTransport</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="methods" class="tsd-anchor"></a>
-					<h3>methods</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> methods<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in Server.ts:88</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>A Proxy that can be used to set/access the methods that clients can execute.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>example</dt>
-									<dd><p>Server.methods[&quot;foo&quot;] = () =&gt; {
-											...
-										};</p>
-										<p>Client.invoke(&quot;foo&quot;);</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addconnection" class="tsd-anchor"></a>
+					<h3>add<wbr>Connection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Connection<span class="tsd-signature-symbol">(</span>connection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in PersistentTransport.ts:60</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a connection to the map of connections.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>connection: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The connection to the server.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> id: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;Transport.uniqueId()</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A globally unqiue identifier for the connection which will be used across the server (across multiple transports). Defaults to a UUID v4.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="addlistener" class="tsd-anchor"></a>
 					<h3>add<wbr>Listener</h3>
@@ -329,48 +305,32 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="batch" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> batch</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">batch<span class="tsd-signature-symbol">(</span>messages<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_request_.request.html" class="tsd-signature-type">Request</a><span class="tsd-signature-symbol"> | </span><a href="_notification_.notification.html" class="tsd-signature-type">Notification</a><span class="tsd-signature-symbol">&gt;</span>, clientRequest<span class="tsd-signature-symbol">: </span><a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="connect" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> connect</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">connect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Server.ts:143</li>
+									<li>Defined in PersistentTransport.ts:118</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This method is called when the server recieves a batch request (an array with multiple requests).
-										Requests will be executed sequentially and responses will be in the same order as the corresponding requests.
-										Notifications will be executed but of course will generate no response.
-									If a request has an error the error will stand in place of a response, but subsequent requests will still be executed.</p>
+									<p>Initiates a connection to the server.</p>
 								</div>
 								<dl class="tsd-comment-tags">
-									<dt>listens</dt>
-									<dd><p>Transport#batch</p>
-									</dd>
+									<dt>async</dt>
+									<dd></dd>
 								</dl>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>messages: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_request_.request.html" class="tsd-signature-type">Request</a><span class="tsd-signature-symbol"> | </span><a href="_notification_.notification.html" class="tsd-signature-type">Notification</a><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>An array of either Request or Notification objects.</p>
-									</div>
-								</li>
-								<li>
-									<h5>clientRequest: <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The ClientRequest object that contains information on the request that was made (e.g. client&#39;s ID).</p>
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<ul>
+								<li>Promise resolves when connected</li>
+							</ul>
 						</li>
 					</ul>
 				</section>
@@ -446,110 +406,23 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="executemethod" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> execute<wbr>Method</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">execute<wbr>Method<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><a href="_request_.request.html" class="tsd-signature-type">Request</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in Server.ts:211</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This method executes the method specified in the request and returns the result of the request.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>async</dt>
-									<dd></dd>
-									<dt>throws</dt>
-									<dd><p>{MethodNotFound} - If the method requested does not exist.</p>
-									</dd>
-									<dt>throws</dt>
-									<dd><p>{InternalError} - If the underlying method throws an Error that is not an RPCError. The &quot;data&quot; field of the RPCError will be the error that was thrown by the method.</p>
-									</dd>
-									<dt>throws</dt>
-									<dd><p>{RPCError} - If the underlying method throws an RPC Error.</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>request: <a href="_request_.request.html" class="tsd-signature-type">Request</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The incoming request.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="invoke" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> invoke</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">invoke<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><a href="_request_.request.html" class="tsd-signature-type">Request</a>, clientRequest<span class="tsd-signature-symbol">?: </span><a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in Server.ts:169</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This method is called when the server recieves a RPC Request. It will execute the method specified and send the response (or an error) to the client.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>listens</dt>
-									<dd><p>Transport#Request</p>
-									</dd>
-									<dt>async</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>request: <a href="_request_.request.html" class="tsd-signature-type">Request</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The Request object containing details (method, params).</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> clientRequest: <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The ClientRequest object that contains information on the request (e.g. client&#39;s ID).</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="listen" class="tsd-anchor"></a>
-					<h3>listen</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> listen</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">listen<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#listen">listen</a></p>
 								<ul>
-									<li>Defined in Server.ts:265</li>
+									<li>Defined in Transport.ts:120</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Begins listening for incoming connections.</p>
+									<p>Begin listening for incoming connections.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>async</dt>
@@ -629,55 +502,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="notification" class="tsd-anchor"></a>
-					<h3>notification</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">notification<span class="tsd-signature-symbol">(</span>notification<span class="tsd-signature-symbol">: </span><a href="_notification_.notification.html" class="tsd-signature-type">Notification</a>, clientRequest<span class="tsd-signature-symbol">?: </span><a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in Server.ts:199</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This method is called when the server receives a notification from a client.
-									The notification will be emitted.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>listens</dt>
-									<dd><p>Transport#notification</p>
-									</dd>
-									<dt>example</dt>
-									<dd><p>Server.on(&quot;foo&quot;, (msg) =&gt; {
-											console.log(msg)
-										})</p>
-										<p>Client.notify(&quot;foo&quot;, &quot;bar&quot;);</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>notification: <a href="_notification_.notification.html" class="tsd-signature-type">Notification</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The notification to emit.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> clientRequest: <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The ClientRequest object that contains information on the request (e.g. client&#39;s ID). The ClientRequest object will always be the last argument passed to the event listener.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -918,6 +742,44 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="receive" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> receive</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">receive<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, clientRequest<span class="tsd-signature-symbol">?: </span><a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#receive">receive</a></p>
+								<ul>
+									<li>Defined in Transport.ts:41</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>This method is called when the server has sent a message to a client and vice versa.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">Uint8Array</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The serialized message as either binary or text.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> clientRequest: <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Contains data on the inbound request, including the client&#39;s ID.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="removealllisteners" class="tsd-anchor"></a>
 					<h3>remove<wbr>All<wbr>Listeners</h3>
@@ -939,6 +801,37 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeconnection" class="tsd-anchor"></a>
+					<h3>remove<wbr>Connection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Connection<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in PersistentTransport.ts:69</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes a connection from the map of connections.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>ID of the connection.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -969,24 +862,62 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="sendall" class="tsd-anchor"></a>
-					<h3>send<wbr>All</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>All<span class="tsd-signature-symbol">(</span>notification<span class="tsd-signature-symbol">: </span><a href="_notification_.notification.html" class="tsd-signature-type">Notification</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="send" class="tsd-anchor"></a>
+					<h3>send</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><a href="_message_.message.html" class="tsd-signature-type">Message</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#send">send</a></p>
+								<ul>
+									<li>Defined in PersistentTransport.ts:106</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sends a message to the server.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>async</dt>
+									<dd></dd>
+									<dt>throws</dt>
+									<dd><p>{TransportInServerState} - If the transport is already acting as a server.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>message: <a href="_message_.message.html" class="tsd-signature-type">Message</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Message to send.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="sendconnection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> send<wbr>Connection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Connection<span class="tsd-signature-symbol">(</span>connection<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, message<span class="tsd-signature-symbol">: </span><a href="_message_.message.html" class="tsd-signature-type">Message</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Server.ts:254</li>
+									<li>Defined in PersistentTransport.ts:98</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This feature is not offically supported by JSON-RPC 2.0</p>
+									<p>Sends a message to a client.</p>
 								</div>
-								<p>Using this method the server can send notifications to all clients connected.</p>
 								<dl class="tsd-comment-tags">
 									<dt>async</dt>
 									<dd></dd>
@@ -995,9 +926,15 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>notification: <a href="_notification_.notification.html" class="tsd-signature-type">Notification</a></h5>
+									<h5>connection: <span class="tsd-signature-type">any</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The notification to send to all clients.</p>
+										<p>The connection to the client.</p>
+									</div>
+								</li>
+								<li>
+									<h5>message: <a href="_message_.message.html" class="tsd-signature-type">Message</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Message to send.</p>
 									</div>
 								</li>
 							</ul>
@@ -1009,23 +946,28 @@
 					<a name="sendto" class="tsd-anchor"></a>
 					<h3>send<wbr>To</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>To<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, notification<span class="tsd-signature-symbol">: </span><a href="_notification_.notification.html" class="tsd-signature-type">Notification</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>To<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, message<span class="tsd-signature-symbol">: </span><a href="_message_.message.html" class="tsd-signature-type">Message</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Server.ts:242</li>
+									<li>Defined in PersistentTransport.ts:81</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>This feature is not offically supported by JSON-RPC 2.0</p>
+									<p>Sends a message to a client by its ID.</p>
 								</div>
-								<p>Using this method the server can send a notification to a client connection.</p>
 								<dl class="tsd-comment-tags">
 									<dt>async</dt>
 									<dd></dd>
+									<dt>throws</dt>
+									<dd><p>{TransportInClientState} - If the transport is already acting as a client.</p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{NonExistantClient} - If client referenced does not exist.</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1033,13 +975,13 @@
 								<li>
 									<h5>id: <span class="tsd-signature-type">any</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The ID of the client.</p>
+										<p>ID of the client.</p>
 									</div>
 								</li>
 								<li>
-									<h5>notification: <a href="_notification_.notification.html" class="tsd-signature-type">Notification</a></h5>
+									<h5>message: <a href="_message_.message.html" class="tsd-signature-type">Message</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The notification to send.</p>
+										<p>Message to send.</p>
 									</div>
 								</li>
 							</ul>
@@ -1071,113 +1013,29 @@
 						</li>
 					</ul>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class">
-					<a name="method_handler" class="tsd-anchor"></a>
-					<h3>method_<wbr>handler</h3>
-					<div class="tsd-signature tsd-kind-icon">method_<wbr>handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in Server.ts:31</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>This Proxy handler details how methods will be looked up when requested.
-								By methods can be referenced by dot-notation.
-							For a different functionality this handler can be overriden.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>example</dt>
-							<dd><p>const myFunc = () =&gt; { ... };
-									new Server(transport, { foo: { bar: myFunc } })
-								(Server.methods[&quot;foo.bar&quot;] === myFunc) === true</p>
-							</dd>
-						</dl>
-					</div>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="method_handler.get" class="tsd-anchor"></a>
-						<h3>get</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, prop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in Server.ts:49</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>host: <span class="tsd-signature-type">any</span></h5>
-									</li>
-									<li>
-										<h5>prop: <span class="tsd-signature-type">any</span></h5>
-									</li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a name="uniqueid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> unique<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">unique<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uint8Array</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#uniqueid">uniqueId</a></p>
+								<ul>
+									<li>Defined in Transport.ts:109</li>
 								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="method_handler.has" class="tsd-anchor"></a>
-						<h3>has</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">has<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, prop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in Server.ts:62</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>host: <span class="tsd-signature-type">any</span></h5>
-									</li>
-									<li>
-										<h5>prop: <span class="tsd-signature-type">any</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							</li>
-						</ul>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
-						<a name="method_handler.set" class="tsd-anchor"></a>
-						<h3>set</h3>
-						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
-							<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span>host<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, prop<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-						</ul>
-						<ul class="tsd-descriptions">
-							<li class="tsd-description">
-								<aside class="tsd-sources">
-									<ul>
-										<li>Defined in Server.ts:32</li>
-									</ul>
-								</aside>
-								<h4 class="tsd-parameters-title">Parameters</h4>
-								<ul class="tsd-parameters">
-									<li>
-										<h5>host: <span class="tsd-signature-type">any</span></h5>
-									</li>
-									<li>
-										<h5>prop: <span class="tsd-signature-type">any</span></h5>
-									</li>
-									<li>
-										<h5>value: <span class="tsd-signature-type">any</span></h5>
-									</li>
-								</ul>
-								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-							</li>
-						</ul>
-					</section>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates a unique id that can be used to distinguish between connected clients.
+									The unique id will be a UUID v4 returned as a Uint8Array.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Uint8Array</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -1202,7 +1060,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_notification_.html">"<wbr>Notification"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_persistenttransport_.html">"<wbr>Persistent<wbr>Transport"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -1220,7 +1078,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_serializers_msgpackserializer_.html">"<wbr>Serializers/<wbr>Msg<wbr>Pack<wbr>Serializer"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_server_.html">"<wbr>Server"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -1239,111 +1097,123 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_persistenttransport_.nonexistantclient.html" class="tsd-kind-icon">Non<wbr>Existant<wbr>Client</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_server_.server.html" class="tsd-kind-icon">Server</a>
+						<a href="_persistenttransport_.persistenttransport.html" class="tsd-kind-icon">Persistent<wbr>Transport</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="_server_.server.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="_server_.server.html#method_host" class="tsd-kind-icon">method_<wbr>host</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_server_.server.html#transports" class="tsd-kind-icon">transports</a>
+								<a href="_persistenttransport_.persistenttransport.html#connection" class="tsd-kind-icon">connection</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-protected">
-								<a href="_server_.server.html#clientsbytransport" class="tsd-kind-icon">clients<wbr>ByTransport</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#connections" class="tsd-kind-icon">connections</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="_server_.server.html#methods" class="tsd-kind-icon">methods</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="_persistenttransport_.persistenttransport.html#serializer" class="tsd-kind-icon">serializer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#addconnection" class="tsd-kind-icon">add<wbr>Connection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
+								<a href="_persistenttransport_.persistenttransport.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#connect" class="tsd-kind-icon">connect</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#emit" class="tsd-kind-icon">emit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#emitasync" class="tsd-kind-icon">emit<wbr>Async</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#listen" class="tsd-kind-icon">listen</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#listeners" class="tsd-kind-icon">listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#listenersany" class="tsd-kind-icon">listeners<wbr>Any</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#many" class="tsd-kind-icon">many</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#off" class="tsd-kind-icon">off</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#offany" class="tsd-kind-icon">off<wbr>Any</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#on" class="tsd-kind-icon">on</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#onany" class="tsd-kind-icon">on<wbr>Any</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#once" class="tsd-kind-icon">once</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#prependany" class="tsd-kind-icon">prepend<wbr>Any</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#prependmany" class="tsd-kind-icon">prepend<wbr>Many</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="_persistenttransport_.persistenttransport.html#receive" class="tsd-kind-icon">receive</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#removeconnection" class="tsd-kind-icon">remove<wbr>Connection</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_persistenttransport_.persistenttransport.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="_persistenttransport_.persistenttransport.html#send" class="tsd-kind-icon">send</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="_server_.server.html#batch" class="tsd-kind-icon">batch</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#emit" class="tsd-kind-icon">emit</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#emitasync" class="tsd-kind-icon">emit<wbr>Async</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="_server_.server.html#executemethod" class="tsd-kind-icon">execute<wbr>Method</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="_server_.server.html#invoke" class="tsd-kind-icon">invoke</a>
+								<a href="_persistenttransport_.persistenttransport.html#sendconnection" class="tsd-kind-icon">send<wbr>Connection</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_server_.server.html#listen" class="tsd-kind-icon">listen</a>
+								<a href="_persistenttransport_.persistenttransport.html#sendto" class="tsd-kind-icon">send<wbr>To</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#listeners" class="tsd-kind-icon">listeners</a>
+								<a href="_persistenttransport_.persistenttransport.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#listenersany" class="tsd-kind-icon">listeners<wbr>Any</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#many" class="tsd-kind-icon">many</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_server_.server.html#notification" class="tsd-kind-icon">notification</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#off" class="tsd-kind-icon">off</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#offany" class="tsd-kind-icon">off<wbr>Any</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#on" class="tsd-kind-icon">on</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#onany" class="tsd-kind-icon">on<wbr>Any</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#once" class="tsd-kind-icon">once</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#prependany" class="tsd-kind-icon">prepend<wbr>Any</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#prependmany" class="tsd-kind-icon">prepend<wbr>Many</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_server_.server.html#sendall" class="tsd-kind-icon">send<wbr>All</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_server_.server.html#sendto" class="tsd-kind-icon">send<wbr>To</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_server_.server.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
-							</li>
-							<li class=" tsd-kind-object-literal tsd-parent-kind-class">
-								<a href="_server_.server.html#method_handler" class="tsd-kind-icon">method_<wbr>handler</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+								<a href="_persistenttransport_.persistenttransport.html#uniqueid" class="tsd-kind-icon">unique<wbr>Id</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_persistenttransport_.transportinclientstate.html" class="tsd-kind-icon">Transport<wbr>InClient<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_persistenttransport_.transportinserverstate.html" class="tsd-kind-icon">Transport<wbr>InServer<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_persistenttransport_.transportisnotpersistant.html" class="tsd-kind-icon">Transport<wbr>IsNot<wbr>Persistant</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
