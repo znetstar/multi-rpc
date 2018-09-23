@@ -69,6 +69,18 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a JSON-RPC 2.0 Notification Notification object.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="https://www.jsonrpc.org/specification#notification">https://www.jsonrpc.org/specification#notification</a></p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -109,23 +121,38 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Notification<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_notification_.notification.html" class="tsd-signature-type">Notification</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Notification<span class="tsd-signature-symbol">(</span>method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_notification_.notification.html" class="tsd-signature-type">Notification</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_message_.message.html">Message</a>.<a href="_message_.message.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in Notification.ts:3</li>
+									<li>Defined in Notification.ts:7</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Notification object.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>method: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The method (or event name).</p>
+										</div>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The params for the event.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_notification_.notification.html" class="tsd-signature-type">Notification</a></h4>
@@ -142,7 +169,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_message_.message.html">Message</a>.<a href="_message_.message.html#jsonrpc">jsonrpc</a></p>
 						<ul>
-							<li>Defined in Message.ts:2</li>
+							<li>Defined in Message.ts:5</li>
 						</ul>
 					</aside>
 				</section>
@@ -152,19 +179,29 @@
 					<div class="tsd-signature tsd-kind-icon">method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Notification.ts:4</li>
+							<li>Defined in Notification.ts:13</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The method (or event name).</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="params" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> params</h3>
-					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Notification.ts:4</li>
+							<li>Defined in Notification.ts:13</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The params for the event.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -178,16 +215,19 @@
 						<a href="../modules/_client_.html">"<wbr>Client"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_errors_.html">"<wbr>Errors"</a>
+						<a href="../modules/_clientrequest_.html">"<wbr>Client<wbr>Request"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_invocation_.html">"<wbr>Invocation"</a>
+						<a href="../modules/_errors_.html">"<wbr>Errors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_message_.html">"<wbr>Message"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_notification_.html">"<wbr>Notification"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_persistenttransport_.html">"<wbr>Persistent<wbr>Transport"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_request_.html">"<wbr>Request"</a>

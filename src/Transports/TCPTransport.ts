@@ -1,26 +1,71 @@
 import { Socket, Server } from "net";
-import Transport from "../Transport";
+import PersistentTransport, { TransportInServerState } from "../PersistentTransport";
 import Serializer from "../Serializer";
 import Message from "../Message";
 import Response from "../Response";
 import ClientRequest from "../ClientRequest";
 import * as detectNode from "detect-node";
 
-export default class TCPTransport extends Transport {
+/**
+ * A transport uses TCP as its protocol.
+ * This transport will not work in the browser.
+ */
+export default class TCPTransport extends PersistentTransport {
+    /**
+     * The connection to the server.
+     */
     public connection: Socket;
+    /**
+     * A map of clients and their IDs.
+     */
     public connections: Map<any, Socket> = new Map<any, Socket>();
+    /**
+     * The net.Server instance.
+     */
     protected server?: Server;
+    /**
+     * The port the client will to connect to or server will listen on.
+     */
     protected port?: number;
+    /**
+     * The IPC Path the client will connect to or server will listen on.
+     */
     protected path?: string;
 
+    /**
+     * Creates a TCP transport that will listen on or connect to a port and host.
+     * @param serializer - The serializer to use for encoding/decoding messages.
+     * @param port - The port to listen on or connect to.
+     * @param host - The host to listen on or connect to. 
+     */
     constructor(serializer: Serializer, port: number, host: string);
+    /**
+     * Creates a TCP transport that will listen on a port on all interfaces, or connect to a port on localhost.
+     * @param serializer - The serializer to use for encoding/decoding messages.
+     * @param port - The port to listen on or connect to.
+     */
     constructor(serializer: Serializer, port: number);
+    /**
+     * Creates a TCP transport that will listen on or connect to an IPC Path.
+     * @param serializer - The serializer to use for encoding/decoding messages.
+     * @param path - The IPC Path to listen on or connect to.
+     */
     constructor(serializer: Serializer, path: string);
+    /**
+     * Creates a TCP transport that will use an existing net.Server.
+     * @param serializer - The serializer to use for encoding/decoding messages.
+     * @param server - The net.Server to listen on. 
+     */
     constructor(serializer: Serializer, server: Server);
+    /**
+     * @ignore
+     */
     constructor(serializer: Serializer,  portPathOrServer: string|number|Server, protected host?: string) {
         super(serializer);
-        if (detectNode && portPathOrServer instanceof Server)
+        if (detectNode && portPathOrServer instanceof Server){
             this.server = portPathOrServer;
+            this.setupTCPServer();
+        }
         
         if (typeof(portPathOrServer) === "string") 
             this.path = portPathOrServer;
@@ -29,7 +74,16 @@ export default class TCPTransport extends Transport {
             this.port = portPathOrServer;
     }
 
+    /**
+     * Connects to the server using the provided details.
+     * @async
+     * @throws - If the connection attempt fails.
+     */
     public async connect(): Promise<Socket> {
+        if (this.connections) {
+            throw new TransportInServerState();
+        }
+
         this.connection = new Socket();
    
         this.connection.on('error', (error) => {
@@ -61,13 +115,27 @@ export default class TCPTransport extends Transport {
         return this.connection;
     } 
 
+    /**
+     * Sends a message to the server, connecting to the server if a connection has not been made.
+     * @param message - Message to send.
+     * @async
+     */
     public async send(message: Message): Promise<void> {
+        if (this.connections) 
+            throw new TransportInServerState;
         if (!this.connection)
             this.connection = await this.connect();
         
         return await super.send(message);
     }
 
+    /**
+     * Sends a message via the provided connection.
+     * @param connection - The connection to use.
+     * @param message - Message to send.
+     * @async
+     * @throws - If sending the message fails.
+     */
     public async sendConnection(connection: Socket, message: Message): Promise<void> {
         return await new Promise<void>((resolve, reject) => {
             let data: any = this.serializer.serialize(message);
@@ -78,9 +146,11 @@ export default class TCPTransport extends Transport {
         });
     }
 
-    public async listen(): Promise<void> {
-        this.server = new Server();
-        
+    /**
+     * Sets up the net.Server (adds event listeners).
+     * @ignore
+     */
+    protected setupTCPServer() {
         this.server.on('connection', (connection: Socket) => {
             const clientId = this.addConnection(connection);
 
@@ -102,6 +172,19 @@ export default class TCPTransport extends Transport {
         this.server.on('error', (error) => {
             this.emit('error', error);
         });
+    }
+
+    /**
+     * Begins listening for connections using the TCP Server.
+     * If a server was passed in the constructor, this function does nothing.
+     * @async
+     */
+    public async listen(): Promise<void> {        
+        if (this.server) {
+            return;
+        }
+        this.server = new Server();
+        this.setupTCPServer();
 
         return new Promise<void>((resolve, reject) => {
             const listenError = (error: Error) => {

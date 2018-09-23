@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TransportInClientState | face-command-common</title>
+	<title>ClientRequest | face-command-common</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,29 +56,31 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_transport_.html">&quot;Transport&quot;</a>
+					<a href="../modules/_clientrequest_.html">&quot;ClientRequest&quot;</a>
 				</li>
 				<li>
-					<a href="_transport_.transportinclientstate.html">TransportInClientState</a>
+					<a href="_clientrequest_.clientrequest.html">ClientRequest</a>
 				</li>
 			</ul>
-			<h1>Class TransportInClientState</h1>
+			<h1>Class ClientRequest</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Contains information on the request that was made by a client.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">Error</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">TransportInClientState</span>
-							</li>
-						</ul>
+						<span class="target">ClientRequest</span>
 					</li>
 				</ul>
 			</section>
@@ -89,16 +91,15 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_transport_.transportinclientstate.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_clientrequest_.clientrequest.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transport_.transportinclientstate.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_transport_.transportinclientstate.html#name" class="tsd-kind-icon">name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_transport_.transportinclientstate.html#stack" class="tsd-kind-icon">stack</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_transport_.transportinclientstate.html#error" class="tsd-kind-icon">Error</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_clientrequest_.clientrequest.html#additionaldata" class="tsd-kind-icon">additional<wbr>Data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_clientrequest_.clientrequest.html#clientid" class="tsd-kind-icon">client<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_clientrequest_.clientrequest.html#respond" class="tsd-kind-icon">respond</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,65 +111,95 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Transport<wbr>InClient<wbr>State<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transport_.transportinclientstate.html" class="tsd-signature-type">TransportInClientState</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Client<wbr>Request<span class="tsd-signature-symbol">(</span>clientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, respond<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Function</span>, additionalData<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in Transport.ts:23</li>
+									<li>Defined in ClientRequest.ts:4</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_transport_.transportinclientstate.html" class="tsd-signature-type">TransportInClientState</a></h4>
+							<div class="tsd-comment tsd-typography">
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>clientId: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The unique id of the client.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> respond: <span class="tsd-signature-type">Function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>A function that will be called send the response to the client.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> additionalData: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Any additonal data that will be needed to service the request (IP Address, authentication, etc.).</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="message" class="tsd-anchor"></a>
-					<h3>message</h3>
-					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="additionaldata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> additional<wbr>Data</h3>
+					<div class="tsd-signature tsd-kind-icon">additional<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from Error.message</p>
 						<ul>
-							<li>Defined in /Users/zachary/Projects/rpc/node_modules/typescript/lib/lib.es5.d.ts:904</li>
+							<li>Defined in ClientRequest.ts:11</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Any additonal data that will be needed to service the request (IP Address, authentication, etc.).</p>
+						</div>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="name" class="tsd-anchor"></a>
-					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="clientid" class="tsd-anchor"></a>
+					<h3>client<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">client<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from Error.name</p>
 						<ul>
-							<li>Defined in /Users/zachary/Projects/rpc/node_modules/typescript/lib/lib.es5.d.ts:903</li>
+							<li>Defined in ClientRequest.ts:11</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The unique id of the client.</p>
+						</div>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-					<a name="stack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
-					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from Error.stack</p>
-						<p>Overrides Error.stack</p>
-						<ul>
-							<li>Defined in /Users/zachary/Projects/rpc/node_modules/typescript/lib/lib.es5.d.ts:905</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="error" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Error</h3>
-					<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrorConstructor</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="respond" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> respond</h3>
+					<div class="tsd-signature tsd-kind-icon">respond<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in /Users/zachary/Projects/rpc/node_modules/typescript/lib/lib.es5.d.ts:914</li>
+							<li>Defined in ClientRequest.ts:11</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A function that will be called send the response to the client.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -181,17 +212,20 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_client_.html">"<wbr>Client"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_errors_.html">"<wbr>Errors"</a>
+					<li class="current tsd-kind-external-module">
+						<a href="../modules/_clientrequest_.html">"<wbr>Client<wbr>Request"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_invocation_.html">"<wbr>Invocation"</a>
+						<a href="../modules/_errors_.html">"<wbr>Errors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_message_.html">"<wbr>Message"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_notification_.html">"<wbr>Notification"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_persistenttransport_.html">"<wbr>Persistent<wbr>Transport"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_request_.html">"<wbr>Request"</a>
@@ -211,7 +245,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_server_.html">"<wbr>Server"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_transport_.html">"<wbr>Transport"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -227,39 +261,27 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_transport_.nonexistantclient.html" class="tsd-kind-icon">Non<wbr>Existant<wbr>Client</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-						<a href="_transport_.transport.html" class="tsd-kind-icon">Transport</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_transport_.transportinclientstate.html" class="tsd-kind-icon">Transport<wbr>InClient<wbr>State</a>
+						<a href="_clientrequest_.clientrequest.html" class="tsd-kind-icon">Client<wbr>Request</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_transport_.transportinclientstate.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_clientrequest_.clientrequest.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="_transport_.transportinclientstate.html#message" class="tsd-kind-icon">message</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_clientrequest_.clientrequest.html#additionaldata" class="tsd-kind-icon">additional<wbr>Data</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="_transport_.transportinclientstate.html#name" class="tsd-kind-icon">name</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_clientrequest_.clientrequest.html#clientid" class="tsd-kind-icon">client<wbr>Id</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-								<a href="_transport_.transportinclientstate.html#stack" class="tsd-kind-icon">stack</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="_transport_.transportinclientstate.html#error" class="tsd-kind-icon">Error</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_clientrequest_.clientrequest.html#respond" class="tsd-kind-icon">respond</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_transport_.transportinserverstate.html" class="tsd-kind-icon">Transport<wbr>InServer<wbr>State</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

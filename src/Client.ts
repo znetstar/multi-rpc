@@ -1,36 +1,68 @@
 import { EventEmitter2 } from "eventemitter2";
 import Transport from "./Transport";
+import PersistantTransport, { TransportIsNotPersistant } from "./PersistentTransport";
 import Request from "./Request";
 import Notification from "./Notification";
 import ClientRequest from "./ClientRequest";
 import Response from "./Response";
 
-export class TransportIsNotPersistant extends Error {
-    constructor() {
-        super("This transport does not use a persistant connection to the server so \"connect\" is not valid");
-    }
-}
-
+/**
+ * Represents a client that will connect to an RPC server.
+ */
 export default class Client extends EventEmitter2 {
+    /**
+     * Keeps track of Request IDs. Will be incremented after each request.
+     */
     protected method_id: number = 1;
 
+    /**
+     * Creates a client.
+     * @param transport - The transport that should be used to communicate with the server.
+     */
     constructor(protected transport: Transport) {
         super();
 
+        /**
+         * Receives a "Notification" object from the transport and emits it on the event emitter.
+         * To listen for notifications.
+         * The example below will log "bar" to the console.
+         * @example
+         * // notification: { "jsonrpc": "2.0", "method": "foo", "params": ["bar"] }
+         * Client.on("foo", (string) => {
+         *  console.log(string)
+         * });
+         * @listens Transport#notification 
+         */
         transport.on('notification', (notification: Notification, clientRequest: ClientRequest) => {
             this.emit.apply(this, [ notification.method ].concat(<any>notification.params));
         }); 
     }
 
-    public async listen(): Promise<void> { return await this.transport.listen(); }
-
+    /**
+     * Connects to the server using the transport.
+     * 
+     * @async
+     * @throws {TransportIsNotPersistant} - If the transport is not persistent. 
+     */
     public async connect(): Promise<void> {
-        if (!this.transport.connect)
+        if (!(this.transport instanceof PersistantTransport))
             throw new TransportIsNotPersistant();
         
-        return await this.transport.connect();
+        return await (<PersistantTransport>this.transport).connect();
     }
 
+    /**
+     * Invokes a method on the RPC server.
+     * @param method - Method to invoke.
+     * @param params - Arguments for the method.
+     * @async
+     * 
+     * The example below will log "baz, flob"
+     * @example
+     * Server.methods["foo"] = { bar: (a,b) => { console.log(a,b);  } };
+     * 
+     * let result = await Client.invoke("foo.bar", "baz", "flob");
+     */
     public async invoke(method: string, ...params: any[]) {
         let id = this.method_id++;
         const request = new Request(id, method, params);
@@ -49,6 +81,12 @@ export default class Client extends EventEmitter2 {
         return p;
     }
 
+    /**
+     * Sends a notification to the RPC server.
+     * @param method - Method to invoke (name of the event).
+     * @param params - Arguments for the method.
+     * @async
+     */
     public async notify(method: string, ...params: any[]) {
         const notification = new Notification(method, params);
         

@@ -69,11 +69,28 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Represents a JSON-RPC 2.0 Request object.</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>see</dt>
+						<dd><p><a href="https://www.jsonrpc.org/specification#request_object">https://www.jsonrpc.org/specification#request_object</a></p>
+						</dd>
+					</dl>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Request</span>
+						<a href="_message_.message.html" class="tsd-signature-type">Message</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">Request</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -84,15 +101,16 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_request_.request.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_request_.request.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_request_.request.html#additionaldata" class="tsd-kind-icon">additional<wbr>Data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_request_.request.html#clientid" class="tsd-kind-icon">client<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_request_.request.html#respond" class="tsd-kind-icon">respond</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_request_.request.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_request_.request.html#jsonrpc" class="tsd-kind-icon">jsonrpc</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_request_.request.html#method" class="tsd-kind-icon">method</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_request_.request.html#params" class="tsd-kind-icon">params</a></li>
 							</ul>
 						</section>
 					</div>
@@ -100,29 +118,50 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Request<span class="tsd-signature-symbol">(</span>clientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, respond<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Function</span>, additionalData<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_request_.request.html" class="tsd-signature-type">Request</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Request<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, method<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, params<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_request_.request.html" class="tsd-signature-type">Request</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="_message_.message.html">Message</a>.<a href="_message_.message.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in Request.ts:1</li>
+									<li>Defined in Request.ts:7</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a JSON-RPC Request.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>clientId: <span class="tsd-signature-type">any</span></h5>
+									<h5>id: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>The identifier for the request, the response will have the same identifier.</p>
+										</div>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> respond: <span class="tsd-signature-type">Function</span></h5>
+									<h5>method: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Name of method to execute on the Server.</p>
+										</div>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> additionalData: <span class="tsd-signature-type">any</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Parameters to pass to the method.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_request_.request.html" class="tsd-signature-type">Request</a></h4>
@@ -133,34 +172,60 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="additionaldata" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> additional<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">additional<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Request.ts:2</li>
+							<li>Defined in Request.ts:14</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The identifier for the request, the response will have the same identifier.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="jsonrpc" class="tsd-anchor"></a>
+					<h3>jsonrpc</h3>
+					<div class="tsd-signature tsd-kind-icon">jsonrpc<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_message_.message.html">Message</a>.<a href="_message_.message.html#jsonrpc">jsonrpc</a></p>
+						<ul>
+							<li>Defined in Message.ts:5</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="clientid" class="tsd-anchor"></a>
-					<h3>client<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">client<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="method" class="tsd-anchor"></a>
+					<h3>method</h3>
+					<div class="tsd-signature tsd-kind-icon">method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Request.ts:2</li>
+							<li>Defined in Request.ts:14</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Name of method to execute on the Server.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="respond" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> respond</h3>
-					<div class="tsd-signature tsd-kind-icon">respond<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
+					<a name="params" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> params</h3>
+					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in Request.ts:2</li>
+							<li>Defined in Request.ts:14</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Parameters to pass to the method.</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -174,16 +239,19 @@
 						<a href="../modules/_client_.html">"<wbr>Client"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_errors_.html">"<wbr>Errors"</a>
+						<a href="../modules/_clientrequest_.html">"<wbr>Client<wbr>Request"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_invocation_.html">"<wbr>Invocation"</a>
+						<a href="../modules/_errors_.html">"<wbr>Errors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_message_.html">"<wbr>Message"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_notification_.html">"<wbr>Notification"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_persistenttransport_.html">"<wbr>Persistent<wbr>Transport"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_request_.html">"<wbr>Request"</a>
@@ -224,17 +292,20 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_request_.request.html" class="tsd-kind-icon">Request</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_request_.request.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_request_.request.html#additionaldata" class="tsd-kind-icon">additional<wbr>Data</a>
+								<a href="_request_.request.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_request_.request.html#jsonrpc" class="tsd-kind-icon">jsonrpc</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_request_.request.html#clientid" class="tsd-kind-icon">client<wbr>Id</a>
+								<a href="_request_.request.html#method" class="tsd-kind-icon">method</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_request_.request.html#respond" class="tsd-kind-icon">respond</a>
+								<a href="_request_.request.html#params" class="tsd-kind-icon">params</a>
 							</li>
 						</ul>
 					</li>

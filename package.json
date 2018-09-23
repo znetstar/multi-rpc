@@ -18,6 +18,7 @@
     "@types/text-encoding": "0.0.33",
     "@types/uuid": "^3.4.4",
     "@types/websocket": "0.0.40",
+    "cross-fetch": "^2.2.2",
     "detect-node": "^2.0.4",
     "eventemitter2": "^5.0.1",
     "msgpack-lite": "^0.1.26",

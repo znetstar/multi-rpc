@@ -11,4 +11,4 @@ export { default as ClientRequest } from "./ClientRequest";
 export { default as Response } from "./Response";
 export { default as Serializer } from "./Serializer";
 export { default as Server } from "./Server";
-export { default as Transport, NonExistantClient, TransportInServerState, TransportInClientState } from "./Transport";
+export { default as PersistantTransport, NonExistantClient, TransportIsNotPersistant, TransportInServerState, TransportInClientState } from "./PersistentTransport";

@@ -4,19 +4,45 @@ import Notification from "./Notification";
 import Response from "./Response";
 import { InvalidRequest, RPCError } from "./Errors";
 
-const allowedFields = (fieldsNeeded: string[], fieldsPresent: string[]): boolean => {
+/**
+ * Checks if the fields in the object are valid fields.
+ * @param fieldsNeeded - Valid fields for the object. 
+ * @param fieldsPresent - Fields on the object.
+ * @ignore
+ */
+const allowedFields = (fieldsNeeded: string[], object: Object): boolean => {
+    const fieldsPresent = Object.keys(object);
     return fieldsPresent.every((field) => fieldsNeeded.concat([ "jsonrpc" ]).includes(field));
 };
 
+/**
+ * Base class for a message serializer.
+ */
 export default abstract class Serializer {
-    abstract serialize(object: any): Uint8Array|string;
+    /**
+     * Serializes an object to either binary or a string.
+     * @param object - Object to be serialized.
+     */
+    abstract serialize(object: Message): Uint8Array|string;
 
-    deserialize(object: any): Request|Notification|Response {
+    /**
+     * Deserializes an existing object to a message.
+     * This method verifies that the object conforms to the JSON-RPC 2.0 specification
+     * 
+     * @param object - The object.
+     * @param batch - Indicates if the message may be a batch request.
+     */
+    deserialize(object: any, batch: boolean = true): Request|Notification|Response|Array<Request>|Array<Notification>|Array<Response> {
         let result;
         
+        // Handle batch requests
+        if (batch && typeof(object) === 'object' && Array.isArray(object)) {
+            return object.map<any>((message: Object) => this.deserialize(message, false));
+        }
+
         // Check for invalid requests. Object must be an "object", not be "null" and have the "jsonrpc" field set to "2.0"
         if (
-            !allowedFields([ "id", "method", "params", "error", "result" ], Object.keys(object))
+            !allowedFields([ "id", "method", "params", "error", "result" ], object)
             || (
                 object === null 
                 || typeof(object) !== "object" 
@@ -27,7 +53,7 @@ export default abstract class Serializer {
 
         // Check for "Request"
         if (
-            !allowedFields([ "id", "method", "params" ], Object.keys(object))
+            !allowedFields([ "id", "method", "params" ], object)
             // Method must be a string
             || typeof(object.method) === "string"
             // ID must be a string, number or null.
@@ -40,7 +66,7 @@ export default abstract class Serializer {
             result = new Request(object.id, object.method, object.params);
         // Check for "Notification"
         else if (
-            !allowedFields([ "method", "params" ], Object.keys(object))
+            !allowedFields([ "method", "params" ], object)
             // Method must be a string
             || typeof(object.method) === "string"
             // ID must not exist
@@ -49,7 +75,7 @@ export default abstract class Serializer {
             result = new Notification(object.method, object.params);
         // Check for "Response"
         else if (
-            !allowedFields([ "id", "result" ], Object.keys(object))
+            !allowedFields([ "id", "result" ], object)
             // The ID must be a string, number or null
             || (
                 typeof(object.id) === "string" 
@@ -62,7 +88,7 @@ export default abstract class Serializer {
             result = new Response(object.id, object.result);
         // Check for "Response" with an error
         else if (
-            !allowedFields([ "id", "error" ], Object.keys(object))
+            !allowedFields([ "id", "error" ], object)
             // "error" must exist
             || typeof(object.error) !== "undefined"
         ) {
