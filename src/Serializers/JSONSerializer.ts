@@ -4,7 +4,7 @@ import Response from "../Response";
 import Message from "../Message";
 import * as detectNode from "detect-node";
 
-let TextEncoder, TextDecoder;
+let TextDecoder;
 if (detectNode) {
     TextDecoder = require("util").TextDecoder;
 } else {

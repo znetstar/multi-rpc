@@ -18,7 +18,7 @@ export default class TCPTransport extends PersistentTransport {
     /**
      * A map of clients and their IDs.
      */
-    public connections: Map<any, Socket> = new Map<any, Socket>();
+    public connections: Map<any, Socket>;
     /**
      * The net.Server instance.
      */
@@ -107,11 +107,16 @@ export default class TCPTransport extends PersistentTransport {
             this.receive(new Uint8Array(data));
         });
         
-        let p = new Promise<void>((resolve, reject) => {
-            this.connection.once('error', reject);
-            this.connection.once('connect', () => {
-                resolve();
+        const p = new Promise<Socket>((resolve, reject) => {
+            this.once('error', (err) => {
+                reject(err);
             });
+            const onConnect = () => {
+                this.connection.removeListener("connect", onConnect);
+                resolve(this.connection);
+            };
+
+            this.connection.on('connect', onConnect);
         });
 
         if (typeof(this.path) === 'string')
@@ -119,9 +124,7 @@ export default class TCPTransport extends PersistentTransport {
         else
             this.connection.connect(this.port, this.host);
 
-        await p;
-
-        return this.connection;
+        return p;
     } 
 
     /**
@@ -160,6 +163,7 @@ export default class TCPTransport extends PersistentTransport {
      * @ignore
      */
     protected setupTCPServer() {
+        this.connections = new Map<any, Socket>();
         this.server.on('connection', (connection: Socket) => {
             const clientId = this.addConnection(connection);
 
@@ -211,6 +215,23 @@ export default class TCPTransport extends PersistentTransport {
                 this.server.listen(this.port, this.host, listenSuccess);
             else
                 this.server.listen(this.path, listenSuccess);
+        });
+    }
+
+    /**
+     * Closes the TCP connection.
+     * @async
+     */
+    public async close(): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            if (this.server) {
+                this.server.close(() => {
+                    resolve();
+                });
+            } else if (this.connection) {
+                this.connection.end();
+                resolve();
+            }
         });
     }
 }

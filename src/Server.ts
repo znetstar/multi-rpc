@@ -1,13 +1,61 @@
 
 import { EventEmitter2 } from "eventemitter2";
+const parseFn = require("parse-function");
+import { parse as acornParse } from "acorn";
 import * as _ from "lodash";
 import Transport from "./Transport";
 import PersistentTransport from "./PersistentTransport";
 import Request from "./Request";
 import Notification from "./Notification";
 import Response from "./Response";
-import { MethodNotFound, RPCError, InternalError } from "./Errors";
+import { MethodNotFound, RPCError, InternalError, InvalidParams, InvalidRequest } from "./Errors";
 import ClientRequest from "./ClientRequest";
+import { allowedFields } from "./Serializer";
+
+/**
+ * This error is thrown when a non-function value is set to a property on "methodHost"
+ */
+export class ValueIsNotAFunction extends Error {
+    constructor() {
+        super("The value is not a function");
+    }
+}
+
+/**
+ * Gets the names of all the arguments in a function.
+ * Adapted from https://bit.ly/2psjxwi
+ * @param fn - The function to examine.
+ * @ignore
+ */
+export function getFunctionArguments(fn: Function): string[] {
+    return parseFn()
+    .parse(fn, {
+        parse: acornParse,
+        ecmaVersion: 2017
+    })
+    .args;
+}
+
+/**
+ * Returns an array with arguments in the order from the function signature from a map of arguments to values.
+ * @param args - Map of arguments to values.
+ * @param fn - Function to draw the signature from.
+ * @throws {InvalidParams} - If any fields in the object provided are not arguments in the function provided.
+ * @ignore
+ * @example 
+ * let args = { foo: "bar", baz: "flob" };
+ * let fn = (foo, baz) => {};
+ * 
+ * matchNamedArguments(args, fn) === ["bar", "flob"];
+ */
+export function matchNamedArguments(args: any, fn: Function) {
+    const argNames = getFunctionArguments(fn);
+
+    if (!allowedFields(argNames, args))
+        throw new InvalidParams();
+
+    return argNames.map((argName) => args[argName]);
+}
 
 /**
  * An RPC server that will listen for clients.
@@ -28,25 +76,25 @@ export default class Server extends EventEmitter2 {
      * new Server(transport, { foo: { bar: myFunc } })
      * (Server.methods["foo.bar"] === myFunc) === true
      */
-    public method_handler: Object = {
+    public methodHandler: Object = {
         set: (host: any, prop: any, value: any) =>  {
+            if (typeof(value) !== "function")
+                throw new ValueIsNotAFunction();
+
             if (typeof(prop) === 'string') {
                 let steps = prop.split('.');
                 let target = host;
                 for (let step of steps.slice(0, steps.length - 1)) {
-                    if (step in target) {
-                        target = target[step];
-                    } else {
-                        target = {};
-                    }
+                    target[step] = {};
+                    target = target[step];
                 }
-                let lastStep = steps.slice(steps.length - 1, 1)[0];
+                let lastStep = steps.slice(steps.length - 1)[0];
                 target[lastStep] = value;
             } else {
                 host[prop] = value;
             }
         },
-        get: (host: any, prop: any) => {
+        get: (host: any, prop: any): Function => {
             if (typeof(prop) === 'string') {
                 const steps = prop.split('.');
                 let result = host;
@@ -85,8 +133,45 @@ export default class Server extends EventEmitter2 {
      * 
      * Client.invoke("foo");
      */
-    public get methods() {
-        return new Proxy(this.method_host, this.method_handler)
+    public get methods(): any {
+        return new Proxy(this.methodHost, this.methodHandler)
+    }
+
+    /**
+     * An object containing methods that will be executed upon request from the client.
+     */
+    protected methodHost: Object;
+
+    /**
+     * Creates a RPC server using one or more transports.
+     * Using multiple transports the server can listen for RPC requests on multiple protocols.
+     * @param transports - An array of transports or single transport that the server will listen on.
+     * @param methodHost - An object containing methods that will be executed upon request from the client.
+     * 
+     * @example
+     * let tcpTransport = new TCPTransport(1234);
+     * let methods = {
+     *  foo: (bar) => {
+     *     console.log(bar);
+     *  }
+     * };
+     * new Server(tcpTransport, methods);
+     */
+    constructor(transports: Transport|Array<Transport>, methodHost: any = {}) {
+        super();
+
+        if (!Object.values(methodHost).every((fn) => typeof(fn) === "function"))
+            throw ValueIsNotAFunction;
+
+        this.methodHost = methodHost;
+
+        this.transports = [].concat(transports);
+
+        for (let transport of this.transports) {
+            transport.on("request", this.invoke.bind(this));
+            transport.on("notification", this.notification.bind(this));
+            transport.on("batch", this.batch.bind(this))
+        }
     }
 
     /**
@@ -106,32 +191,6 @@ export default class Server extends EventEmitter2 {
     }
 
     /**
-     * Creates a RPC server using one or more transports.
-     * Using multiple transports the server can listen for RPC requests on multiple protocols.
-     * @param transports - An array of transports or single transport that the server will listen on.
-     * @param method_host - An object containing methods that will be executed upon request from the client.
-     * 
-     * @example
-     * let tcpTransport = new TCPTransport(1234);
-     * let methods = {
-     *  foo: (bar) => {
-     *     console.log(bar);
-     *  }
-     * };
-     * new Server(tcpTransport, methods);
-     */
-    constructor(transports: Transport|Array<Transport>, protected method_host: any = {}) {
-        super();
-        this.transports = [].concat(transports);
-
-        for (let transport of this.transports) {
-            transport.on("request", this.invoke.bind(this));
-            transport.on("notification", this.notification.bind(this));
-            transport.on("batch", this.batch.bind(this))
-        }
-    }
-
-    /**
      * This method is called when the server recieves a batch request (an array with multiple requests).
      * Requests will be executed sequentially and responses will be in the same order as the corresponding requests.
      * Notifications will be executed but of course will generate no response.
@@ -140,8 +199,8 @@ export default class Server extends EventEmitter2 {
      * @param messages - An array of either Request or Notification objects.
      * @param clientRequest - The ClientRequest object that contains information on the request that was made (e.g. client's ID). 
      */
-    protected async batch(messages: Array<Request|Notification>, clientRequest: ClientRequest) {
-        let batchResponses  = messages.map(async (message: Request|Notification) => {
+    protected async batch(messages: Array<Request|Notification>, clientRequest: ClientRequest): Promise<void> {
+        let batchPromises = messages.map(async (message: Request|Notification) => {
             if (message instanceof Request) {
                 try {
                     const result = await this.executeMethod(<Request>message);
@@ -150,12 +209,19 @@ export default class Server extends EventEmitter2 {
                     return new Response(message.id, rpcError);
                 }
             }
-            else {
-                this.notification(message, clientRequest);
+            else if (message instanceof Notification) {
+                this.notification(message);
             }
-        });
+        }).filter(Boolean);
 
-        return await (<any>batchResponses).reduce((promise: Promise<any>, fn: any) => promise.then(fn), Promise.resolve());
+        const batchResponses: Response[] = [];
+
+        for (const promise of batchPromises) {
+            const response = await promise;
+            batchResponses.push(response);
+        }
+
+        clientRequest.respond(batchResponses.filter(Boolean));
     }
 
     /**
@@ -168,7 +234,7 @@ export default class Server extends EventEmitter2 {
      */
     protected async invoke(request: Request, clientRequest?: ClientRequest): Promise<void> {
         try {
-            const result = this.executeMethod(request);
+            const result = await this.executeMethod(request);
             clientRequest.respond(new Response(request.id, result));
         } catch (error) {
             if (error instanceof RPCError)
@@ -182,22 +248,26 @@ export default class Server extends EventEmitter2 {
 
     /**
      * This method is called when the server receives a notification from a client.
-     * The notification will be emitted.
      * 
      * @listens Transport#notification 
-     * @param notification - The notification to emit.
-     * @param clientRequest - The ClientRequest object that contains information on the request (e.g. client's ID). The ClientRequest object will always be the last argument passed to the event listener.
+     * @param notification - The notification.
      * 
-     * @example 
+     * If the notification provides params as an array it will be emitted as an event.
      * 
-     * Server.on("foo", (msg) => {
-     * console.log(msg)
-     * })
-     * 
-     * Client.notify("foo", "bar");
+     * @example
+     * // As an event
+     * // request: { "method": "foo", "params": [ "bar" ], "jsonrpc": "2.0" }
+     * Server.on("foo", (param1) => { param1 === "bar"; });
+     * // With named arguments
+     * // request: { "method": "foo", "params": { "param1": "bar" }, "jsonrpc": "2.0" }
+     * Server.methods["foo"] = (baz, flob, param1) => { param1 === "bar";  };
      */
-    public notification(notification: Notification, clientRequest?: ClientRequest) {
-        this.emit.apply(this.method_host, [notification.method].concat(<any>notification.params));
+    public notification(notification: Notification) {
+        if (typeof(notification.params) === "undefined" || Array.isArray(notification.params)) 
+            this.emit.apply(this, [ notification.method ].concat(<any>notification.params));
+        
+        if (notification.method in this.methods)
+            this.executeMethod(notification);
     }
 
     /**
@@ -208,14 +278,17 @@ export default class Server extends EventEmitter2 {
      * @throws {InternalError} - If the underlying method throws an Error that is not an RPCError. The "data" field of the RPCError will be the error that was thrown by the method.
      * @throws {RPCError} - If the underlying method throws an RPC Error.
      */
-    protected async executeMethod (request: Request) {
-        const method = this.methods[request.method];
-
+    protected async executeMethod (request: Request|Notification) {
         if (!(request.method in this.methods))
             throw new MethodNotFound();
-
+        
+        const method = <Function>this.methods[request.method];
+        
         try {
-            let result = await method.apply(this.method_host, request.params);
+            if (typeof(request.params) !== "undefined" && !Array.isArray(request.params)) 
+                request.params = matchNamedArguments(request.params, method);
+    
+            let result = await method.apply(this.methodHost, request.params);
             if (typeof(result) === 'undefined')
                 result = null;
             
@@ -265,6 +338,16 @@ export default class Server extends EventEmitter2 {
     public async listen(): Promise<void> {
         for (let transport of <Array<Transport>>this.transports) {
             await transport.listen();
+        }
+    }
+
+    /**
+     * Closes all underlying transports.
+     * @async
+     */
+    public async close(): Promise<void> {
+        for (let transport of <Array<Transport>>this.transports) {
+            await transport.close();
         }
     }
 }

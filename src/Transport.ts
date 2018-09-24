@@ -20,7 +20,6 @@ export default abstract class Transport extends EventEmitter2 {
     constructor(protected serializer: Serializer) {
         super({
             delimiter: ':',
-            maxListeners: Infinity,
             wildcard: true
         });
     }
@@ -118,4 +117,10 @@ export default abstract class Transport extends EventEmitter2 {
      * @async 
      */
     public abstract listen(): Promise<void>;
+
+    /**
+     * Closes the connection.
+     * @async
+     */
+    public abstract async close(): Promise<void>;
 }

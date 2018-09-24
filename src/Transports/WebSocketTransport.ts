@@ -21,7 +21,7 @@ export default class WebSocketTransport extends PersistantTransport {
     /**
      * A map of clients and their IDs.
      */
-    public connections: Map<any, WebSocketConnection> = new Map<any, WebSocketConnection>();
+    public connections: Map<any, WebSocketConnection>;
     /**
      * The WebSocket server.
      */
@@ -47,6 +47,8 @@ export default class WebSocketTransport extends PersistantTransport {
      * The host of the server to listen on.
      */
     protected host?: string;
+
+    protected httpServerCreated: boolean = false;
 
     /**
      * Creates a WebSocket transport using an existing HTTP or HTTPS server and will listen on a specified endpoint.
@@ -217,6 +219,7 @@ export default class WebSocketTransport extends PersistantTransport {
      * @ignore
      */
     protected setupHTTPServer(): void {
+        this.connections = new Map<any, WebSocketConnection>();
         this.server = new WebSocketServer({ httpServer: this.httpServer, autoAcceptConnections: false });
         this.server.on("request", (request: WebSocketRequest) => {
             if (!this.authorizeOrigin(request.origin)) {
@@ -257,15 +260,16 @@ export default class WebSocketTransport extends PersistantTransport {
     
     /**
      * If a HTTP(s) server wasn't provided this will be the default handler for requests. 
-     * By default is sends status 200 and ends the request.
+     * By default is sends status 400 and ends the request.
      * @param req - HTTP Request
      * @param res - HTTP Response
      */
     protected httpHandler(req: ServerRequest, res: ServerResponse) {
-        res.writeHead(200);
+        res.writeHead(404);
         res.end();
     }
 
+    
     /**
      * Begins listening for connections using the HTTP(S) Server.
      * If a server was passed in the constructor, this function does nothing.
@@ -275,7 +279,9 @@ export default class WebSocketTransport extends PersistantTransport {
         if (this.httpServer)
             return;
 
+        
         this.httpServer = new HTTPServer(this.httpHandler);
+        this.httpServerCreated = true;
         this.setupHTTPServer();
 
         return new Promise<void>((resolve, reject) => {
@@ -295,5 +301,19 @@ export default class WebSocketTransport extends PersistantTransport {
             else
                 this.httpServer.listen(this.urlOrPath, listenSuccess);
         });
+    }
+
+    /**
+     * Closes the WebSocket connection.
+     * @async
+     */
+    public async close(code?: number, reason?: string): Promise<void> {
+        if (this.server) {
+            this.server.closeAllConnections();
+            if (this.httpServer && this.httpServerCreated)
+                this.httpServer.close();
+        } else if (this.connection) {
+            this.connection.close(code, reason);
+        }
     }
 }

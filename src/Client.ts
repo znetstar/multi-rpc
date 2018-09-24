@@ -60,9 +60,10 @@ export default class Client extends EventEmitter2 {
      * @example
      * Server.methods["foo"] = { bar: (a,b) => { console.log(a,b);  } };
      * 
-     * let result = await Client.invoke("foo.bar", "baz", "flob");
+     * let result = await Client.invoke("foo.bar", ["baz", "flob"]);
+     * let result = await Client.invoke("foo.bar", { a: "baz", b: "flob" })
      */
-    public async invoke(method: string, ...params: any[]) {
+    public async invoke(method: string, params: Object|any[]) {
         let id = this.method_id++;
         const request = new Request(id, method, params);
         
@@ -90,5 +91,13 @@ export default class Client extends EventEmitter2 {
         const notification = new Notification(method, params);
         
         await this.transport.send(notification);
+    }
+
+    /**
+     * Closes the underlying transports.
+     * @async
+     */
+    public async close(): Promise<void> {
+        this.transport.close();
     }
 }

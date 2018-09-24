@@ -79,7 +79,7 @@ export default abstract class PersistentTransport extends Transport {
      * @throws {NonExistantClient} - If client referenced does not exist.
      */
     public async sendTo(id: any, message: Message): Promise<void> {
-        if (!this.connections) {
+        if (!this.connections || this.connection) {
             throw new TransportInClientState();
         }
 
@@ -104,7 +104,7 @@ export default abstract class PersistentTransport extends Transport {
      * @throws {TransportInServerState} - If the transport is already acting as a server.
      */
     public async send(message: Message): Promise<void> {
-        if (!this.connection) {
+        if (!this.connection || this.connections) {
             throw new TransportInServerState();
         }
         await this.sendConnection(this.connection, message);

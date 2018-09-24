@@ -10,9 +10,9 @@ import { InvalidRequest, RPCError } from "./Errors";
  * @param fieldsPresent - Fields on the object.
  * @ignore
  */
-const allowedFields = (fieldsNeeded: string[], object: Object): boolean => {
+export function allowedFields (fieldsNeeded: string[], object: Object): boolean {
     const fieldsPresent = Object.keys(object);
-    return fieldsPresent.every((field) => fieldsNeeded.concat([ "jsonrpc" ]).includes(field));
+    return fieldsPresent.every((field) => fieldsNeeded.includes(field));
 };
 
 /**
@@ -37,12 +37,17 @@ export default abstract class Serializer {
         
         // Handle batch requests
         if (batch && typeof(object) === 'object' && Array.isArray(object)) {
-            return object.map<any>((message: Object) => this.deserialize(message, false));
+            return object.map<any>((incomingMessage: Object) => {
+                const message = deserialize(incomingMessage, false);
+                if (!(message instanceof Notification || message instanceof Request))
+                    throw new InvalidRequest();
+                return message;
+            });
         }
 
         // Check for invalid requests. Object must be an "object", not be "null" and have the "jsonrpc" field set to "2.0"
         if (
-            !allowedFields([ "id", "method", "params", "error", "result" ], object)
+            !allowedFields([ "jsonrpc", "id", "method", "params", "error", "result" ], object)
             || (
                 object === null 
                 || typeof(object) !== "object" 
@@ -53,44 +58,74 @@ export default abstract class Serializer {
 
         // Check for "Request"
         if (
-            !allowedFields([ "id", "method", "params" ], object)
+            allowedFields([ "jsonrpc", "id", "method", "params" ], object)
             // Method must be a string
-            || typeof(object.method) === "string"
+            && typeof(object.method) === "string"
             // ID must be a string, number or null.
             && (
                 typeof(object.id) === "string" 
                 || (typeof(object.id) === "number")
                 || (object.id === null)
             )
+            // If params exists it must be a not-null Object or an Array
+            && (
+                (typeof(object.params) === "undefined")
+                || (
+                    typeof(object.params) === "object"
+                    && (object.params !== null)
+                )
+            )
         )
             result = new Request(object.id, object.method, object.params);
         // Check for "Notification"
         else if (
-            !allowedFields([ "method", "params" ], object)
+            allowedFields([ "jsonrpc", "method", "params" ], object)
             // Method must be a string
-            || typeof(object.method) === "string"
+            && typeof(object.method) === "string"
             // ID must not exist
             && typeof(object.id) === "undefined"
+            // If params exists it must be a not-null Object or an Array
+            && (
+                (typeof(object.params) === "undefined")
+                || (
+                    typeof(object.params) === "object"
+                    && (object.params !== null)
+                )
+            )
         )
             result = new Notification(object.method, object.params);
         // Check for "Response"
         else if (
-            !allowedFields([ "id", "result" ], object)
+            allowedFields([ "jsonrpc", "id", "result" ], object)
             // The ID must be a string, number or null
-            || (
+            && (
                 typeof(object.id) === "string" 
                 || (typeof(object.id) === "number")
                 || (object.id === null)
             )
             // "result" must exist
             && typeof(object.result) !== "undefined"
+            && typeof(object.error) === "undefined"
         ) 
             result = new Response(object.id, object.result);
         // Check for "Response" with an error
         else if (
-            !allowedFields([ "id", "error" ], object)
-            // "error" must exist
-            || typeof(object.error) !== "undefined"
+            allowedFields([ "jsonrpc", "id", "error" ], object)
+            // "error" must exist and be valid
+            && (
+                typeof(object.error) === "object"
+                && object.error !== null
+                // the "error" object must only use the "data", "code" and "mesage" fields
+                && allowedFields(["data", "code", "message"], object.error)
+                && (
+                    // "code" must be a integer
+                    Number.isInteger(object.error.code)
+                    // "message" must be a string
+                    && typeof(object.error.message) === "string"
+                )
+            )
+            // "result must not exist"
+            && typeof(object.result) === "undefined"
         ) {
             const error = new RPCError(object.error.message, object.error.code, object.error.data);
             result = new Response(object.id, error);
@@ -101,3 +136,5 @@ export default abstract class Serializer {
         return <Request|Notification|Response>result;
     }
 }
+
+const deserialize = Serializer.prototype.deserialize;

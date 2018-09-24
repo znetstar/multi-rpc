@@ -65,7 +65,7 @@ export class MethodNotFound extends RPCError {
 
 /**
  * An error that could occur when a method has been called with invalid arguments.
- * Since JavaScript methods that can accept a variable number of arguments, the server will not raise this error. 
+ * This error can only be raised when named paramaters are used.
  */
 export class InvalidParams extends RPCError {
     /**
