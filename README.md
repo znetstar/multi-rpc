@@ -12,5 +12,57 @@ A server can listen on multiple transports which allows for listening using mult
 
 Connections via persistent transports like WebSocket or TCP are kept alive and the server can send notifications to clients (a feature which is not offically in the standard). 
 
-# Example
+## Example
 
+```
+(async () => {
+    const { 
+        Server, 
+        Client,
+        JSONSerializer,
+        TCPTransport
+    } = require('multi-rpc');
+
+    const serializer = new JSONSerializer();
+
+    const serverTransport = new TCPTransport(serializer, 1234);
+    const clientTransport = new TCPTransport(serializer, 1234);
+
+    const server = new Server(serverTransport);
+    const client = new Client(clientTransport);
+
+    server.methods.foo = (arg1, arg2, arg3) => {
+        console.log(arg1, arg2, arg3);
+        return arg1 + arg2 + arg3;
+    };
+
+    server.listen();
+
+    const result = await client.invoke("foo", [1,2,3]);
+    const result = await client.invoke("foo", {
+        arg1: 1,
+        arg2: 2,
+        arg3: 3
+    });
+
+    console.log(result + result);
+
+    process.exit();
+})();
+```
+
+More examples are available [in the wiki](https://github.com/znetstar/multi-rpc/wiki).
+
+## Building
+
+Multi-RPC is written in TypeScript. To compile JavaScript run `npm run build`.
+
+## Documentation
+
+Documentation is available in the `docs/` folder or [online here](https://multi-rpc.docs.zacharyboyd.nyc).
+
+To generate docs run `npm run docs`.
+
+## Tests
+
+Tests are written in Mocha and can be run with `npm test`.

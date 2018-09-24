@@ -4,3 +4,4 @@ docs
 .vscode
 .docs
 src
+Gruntfile.js

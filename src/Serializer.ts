@@ -54,7 +54,7 @@ export default abstract class Serializer {
                 || object.jsonrpc !== "2.0"
             )
         ) 
-            throw new InvalidRequest();
+            throw new InvalidRequest({ id: object.id });
 
         // Check for "Request"
         if (
@@ -131,7 +131,7 @@ export default abstract class Serializer {
             result = new Response(object.id, error);
         }
         else
-            throw new InvalidRequest();
+            throw new InvalidRequest({ id: object.id });
 
         return <Request|Notification|Response>result;
     }

@@ -42,8 +42,13 @@ export default abstract class Transport extends EventEmitter2 {
         try {
             message = this.serializer.deserialize(data);
         } catch (error) {
-            if (clientRequest && clientRequest.respond) 
-                clientRequest.respond(new Response(null, <RPCError>error));
+            if (clientRequest && clientRequest.respond) {
+                const resp = new Response((error.data && error.data.id), <RPCError>error);
+                if (error.data && error.data.id)
+                    delete error.data.id;
+                
+                clientRequest.respond(resp);
+            }
             else
                 throw error;
         }
