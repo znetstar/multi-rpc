@@ -13,4 +13,5 @@ describe("multi-rpc", function () {
     });
     require("./Client");
     require("./Server");
+    require("./Error");
 });

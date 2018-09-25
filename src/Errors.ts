@@ -1,11 +1,23 @@
+import * as _  from "lodash";
 /**
  * A generic RPC Error.
  */
 export class RPCError extends Error {
     /**
      * Ensures that only the fields specified in the standard are returned during serialization.
+     * If an error is passed in as "data" it will be returned as the "innerError" field.
      */
     public toJSON() {
+        if (this.data && this.data instanceof Error) {
+            (<any>this.data).toJSON = function () {
+                const obj = _.cloneDeep(this);
+                obj.message = this.message;
+                obj.name = this.name;
+                return obj;
+            };
+
+            this.data = { innerError: this.data };
+        }
         return {
             message: this.message,
             code: this.code,

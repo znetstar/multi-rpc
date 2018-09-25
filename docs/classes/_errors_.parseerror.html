@@ -131,7 +131,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_errors_.rpcerror.html">RPCError</a>.<a href="_errors_.rpcerror.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc/blob/528efe3/src/Errors.ts#L30">Errors.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc/blob/ba33c35/src/Errors.ts#L42">Errors.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,7 +164,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_errors_.rpcerror.html">RPCError</a>.<a href="_errors_.rpcerror.html#code">code</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc/blob/528efe3/src/Errors.ts#L22">Errors.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc/blob/ba33c35/src/Errors.ts#L34">Errors.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -180,7 +180,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_errors_.rpcerror.html">RPCError</a>.<a href="_errors_.rpcerror.html#data">data</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc/blob/528efe3/src/Errors.ts#L35">Errors.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc/blob/ba33c35/src/Errors.ts#L47">Errors.ts:47</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -237,12 +237,13 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_errors_.rpcerror.html">RPCError</a>.<a href="_errors_.rpcerror.html#tojson">toJSON</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc/blob/528efe3/src/Errors.ts#L8">Errors.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc/blob/ba33c35/src/Errors.ts#L10">Errors.ts:10</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Ensures that only the fields specified in the standard are returned during serialization.</p>
+									<p>Ensures that only the fields specified in the standard are returned during serialization.
+									If an error is passed in as &quot;data&quot; it will be returned as the &quot;innerError&quot; field.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>

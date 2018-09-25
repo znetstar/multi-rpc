@@ -168,7 +168,7 @@ export default class Server extends EventEmitter2 {
 
         this.transports = [];
         
-        for (let transport of [].concat(transports)) {
+        for (let transport of [].concat(transports).filter(Boolean)) {
             this.addTransport(transport);
         }
     }
@@ -260,7 +260,6 @@ export default class Server extends EventEmitter2 {
             if (error instanceof RPCError)
                 clientRequest.respond(new Response(request.id, error));
             else {
-                error.toJSON = RPCError.prototype.toJSON.bind(error);
                 clientRequest.respond(new Response(request.id, new InternalError(error)));
             }
         }
