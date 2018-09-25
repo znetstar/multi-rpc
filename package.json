@@ -1,7 +1,7 @@
 {
   "name": "multi-rpc",
-  "version": "1.0.0",
-  "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind.",
+  "version": "1.0.1",
+  "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha test/index.js --exit",

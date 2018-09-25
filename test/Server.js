@@ -46,6 +46,25 @@ describe("getFunctionArgumentNames", function () {
 });
 
 describe("Server", function () {
+    describe("#addTransport(transport: Transport)", function () {
+       it("Should add the transport to the list of transports", function () {
+            const srv = new Server();
+            const transport = new Transport();
+            srv.addTransport(transport);
+
+            assert.equal(transport, srv.transports[0]);
+       });
+    });
+
+    describe("#removeTransport(transport: Transport)", function () {
+        it("Should remove the transport to the list of transports", function () {
+             const transport = new Transport();
+             const srv = new Server(transport);
+             srv.removeTransport(transport);
+             assert.equal(0, srv.transports.length);
+        });
+     });
+
     describe("#methods", function () {
         describe("#set(host, prop, value)", function () {
             it("Should set a property the target object", function () {
@@ -56,7 +75,7 @@ describe("Server", function () {
                 const srv = new Server(new Transport(new JSONSerializer()));
                 srv.methods[methodName] = methodValue;
 
-                assert.equal(srv.methodHost[methodName], methodValue);
+                assert.equal(methodValue, srv.methodHost[methodName]);
             });
 
             it("Should set a property the target object expanding dot-notation", function () {

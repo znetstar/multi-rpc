@@ -157,7 +157,7 @@ export default class Server extends EventEmitter2 {
      * };
      * new Server(tcpTransport, methods);
      */
-    constructor(transports: Transport|Array<Transport>, methodHost: any = {}) {
+    constructor(transports?: Transport|Array<Transport>, methodHost: any = {}) {
         super();
 
         if (!Object.values(methodHost).every((fn) => typeof(fn) === "function"))
@@ -165,13 +165,35 @@ export default class Server extends EventEmitter2 {
 
         this.methodHost = methodHost;
 
-        this.transports = [].concat(transports);
+        this.transports = [];
+        
+        if (transports)
+            this.transports = [].concat(transports);
 
         for (let transport of this.transports) {
-            transport.on("request", this.invoke.bind(this));
-            transport.on("notification", this.notification.bind(this));
-            transport.on("batch", this.batch.bind(this))
+            this.addTransport(transport);
         }
+    }
+
+    /**
+     * Adds a transport to the transports on the server.
+     * @param transport - Transport to add.
+     */
+    public addTransport(transport: Transport) {
+        transport.on("request", this.invoke.bind(this));
+        transport.on("notification", this.notification.bind(this));
+        transport.on("batch", this.batch.bind(this));
+        if (this.transports.indexOf(transport) === -1)
+            this.transports.push(transport);
+    }
+
+    /**
+     * Removes a transport from the transports on the server.
+     * @param transport - Transport to remove.
+     */
+    public removeTransport(transport: Transport) {
+        const index = this.transports.indexOf(transport);
+        this.transports.splice(index, 1);
     }
 
     /**
