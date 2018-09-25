@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
   "main": "lib/index.js",
   "scripts": {
@@ -28,7 +28,6 @@
     "eventemitter2": "^5.0.1",
     "msgpack-lite": "^0.1.26",
     "parse-function": "^5.2.10",
-    "request-promise-native": "^1.0.5",
     "text-encoding": "^0.6.4",
     "uuid": "^3.3.2",
     "websocket": "^1.0.28"
@@ -52,6 +51,7 @@
     "grunt-typedoc": "^0.2.4",
     "mocha": "^5.2.0",
     "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
     "shelljs": "^0.8.2",
     "typedoc": "^0.12.0",
     "typescript": "^3.0.3"

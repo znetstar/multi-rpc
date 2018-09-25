@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.4] - 2018-09-25
+### Changed
+- Bug fixes.
+
 ## [1.0.3] - 2018-09-25
 ### Changed
 - Bug fixes.
