@@ -1,13 +1,13 @@
 {
   "name": "multi-rpc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha test/index.js --exit",
     "docs": "grunt docs",
     "build": "grunt build",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "repository": {
     "url": "https://github.com/znetstar/multi-rpc",
