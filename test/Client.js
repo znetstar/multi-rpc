@@ -71,7 +71,7 @@ describe("Client", function () {
             const client = new Client(transport);
             const resp = await client.invoke(chance.string(), [chance.string()]);
             
-            assert.equal(resp, result);
+            assert.equal(result, resp);
         });
 
         it("The method ID should increase after each request", async function () {

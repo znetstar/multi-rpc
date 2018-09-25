@@ -238,7 +238,7 @@ describe("Server", function () {
            
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
-                    assert.equal(resp.length, 2);
+                    assert.equal(2, resp.length);
                     resolve();
                 });
 
@@ -261,7 +261,7 @@ describe("Server", function () {
         
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
-                    assert.equal(resp.result, data);
+                    assert.equal(data, resp.result);
                     resolve();
                 });
 
@@ -282,7 +282,7 @@ describe("Server", function () {
         
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
-                    assert.equal(resp.result, data);
+                    assert.equal(data, resp.result);
                     resolve();
                 });
 
@@ -303,7 +303,7 @@ describe("Server", function () {
         
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
-                    assert.equal(resp.result, data);
+                    assert.equal(data, resp.result);
                     resolve();
                 });
 
@@ -341,7 +341,7 @@ describe("Server", function () {
         
             return new Promise((resolve, reject) => {
                 srv.once("foo", (param) => {
-                    assert.equal(param, data);
+                    assert.equal(data, param);
                     resolve();
                 });
 
