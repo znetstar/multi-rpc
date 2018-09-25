@@ -93,6 +93,7 @@ export default class Server extends EventEmitter2 {
             } else {
                 host[prop] = value;
             }
+            return true;
         },
         get: (host: any, prop: any): Function => {
             if (typeof(prop) === 'string') {
@@ -167,10 +168,7 @@ export default class Server extends EventEmitter2 {
 
         this.transports = [];
         
-        if (transports)
-            this.transports = [].concat(transports);
-
-        for (let transport of this.transports) {
+        for (let transport of [].concat(transports)) {
             this.addTransport(transport);
         }
     }
