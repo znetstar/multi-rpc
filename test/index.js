@@ -7,6 +7,7 @@ describe("multi-rpc", function () {
     require("./Transport");
     require("./PersistentTransport");
     describe("Transports", function () {
+        require("./Transports/HTTPTransport");
         require("./Transports/TCPTransport");
         require("./Transports/WebSocketTransport");
     });

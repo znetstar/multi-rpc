@@ -1,5 +1,5 @@
 # Changelog
 
-## [1.0.0] - 2018-09-19
+## [1.0.0] - 2018-09-24
 ### Added
-- Inital release. Includes TCP and WebSocket transports, and JSON and MessagePack serializers.
+- Inital release. Includes TCP, HTTP and WebSocket transports, and JSON and MessagePack serializers.

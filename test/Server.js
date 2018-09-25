@@ -364,9 +364,9 @@ describe("Server", function () {
                 });
                 try {
                     await srv.listen();
-                    setImmediate(async () => {
+                    setTimeout(async () => {
                         await client.connect();
-                        setImmediate(async (srv, client) => {
+                        setTimeout(async (srv, client) => {
                             try {
                                 const clientId = Array.from(srv.clientsByTransport.keys())[0];
                                 const note = new Notification("foo");
@@ -374,8 +374,8 @@ describe("Server", function () {
                             } catch (err) {
                                 reject(err);
                             } 
-                        }, srv, client);
-                    });
+                        }, 500, srv, client);
+                    }, 500);
                 } catch (err) {
                     reject(err);
                 }

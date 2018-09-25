@@ -20,6 +20,11 @@ export function allowedFields (fieldsNeeded: string[], object: Object): boolean 
  */
 export default abstract class Serializer {
     /**
+     * The content type of the serialized object.
+     */
+    public abstract get content_type(): string;
+
+    /**
      * Serializes an object to either binary or a string.
      * @param object - Object to be serialized.
      */

@@ -18,6 +18,11 @@ const textDecoder = new TextDecoder();
  */
 export default class JSONSerializer extends Serializer {
     /**
+     * The content type of the serialized object.
+     */
+    public get content_type(): string { return "application/json"; }
+
+    /**
      * Serializes a message to JSON.
      * @param object - Message to serialize.
      */

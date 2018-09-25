@@ -9,6 +9,11 @@ import { ParseError } from "../Errors";
  */
 export default class MsgPackSerializer extends Serializer {
     /**
+     * The content type of the serialized object.
+     */
+    public get content_type(): string { return "application/msgpack"; }
+
+    /**
      * Serializes a message using MsgPack.
      * @param object - Message to serialize.
      */

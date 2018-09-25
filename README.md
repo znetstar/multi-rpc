@@ -6,7 +6,7 @@
 
 Multi-RPC is a [JSON RPC 2](https://www.jsonrpc.org/specification) client/server implementation designed with multiple transports and serialization methods in mind. It works both in Node and the browser.
 
-Out of the box it supports serialization with JSON and MessagePack over TCP and WebSocket. Writing new serializers and transports is pretty straightforward.
+Out of the box it supports serialization with JSON and MessagePack over TCP, HTTP and WebSocket. Writing new serializers and transports is pretty straightforward.
 
 A server can listen on multiple transports which allows for listening using multiple protcols or on multiple interfaces.
 

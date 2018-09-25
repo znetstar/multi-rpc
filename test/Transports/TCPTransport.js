@@ -8,7 +8,8 @@ const {
     TCPTransport,
     TransportInServerState,
     JSONSerializer,
-    Notification
+    Notification,
+    Request
 } = require("../../lib");
 
 function randomPort() { return chance.integer({ min: 1024, max: 65535 }) }
@@ -173,6 +174,34 @@ describe("TCPTransport", function () {
         });
     });
 
+
+    describe("#receive()", async function () {
+        it("Should parse a valid JSON-RPC request", async function () {
+            const serializer = new JSONSerializer();
+            const port = await getPort();
+            const transport = new TCPTransport(serializer, port);
+
+            const p = new Promise((resolve, reject) => {
+                transport.once("request", (req) => {
+                    assert.ok(req);
+                    assert.instanceOf(req, Request);
+                    transport.close();
+                    resolve();
+                });
+            });
+
+            await transport.listen();
+
+            const sock = new Socket();
+            sock.on("connect", () => {
+                sock.write(JSON.stringify({ id: chance.integer(), method: chance.string(), jsonrpc: "2.0" }));
+            });
+            
+            sock.connect(port);
+
+            return p;
+        });
+    });
     // this test does not work in travis
     // describe("close()", function () {
     //     this.timeout(5000);

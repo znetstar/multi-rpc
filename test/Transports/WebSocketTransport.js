@@ -10,7 +10,8 @@ const {
     WebSocketTransport,
     TransportInServerState,
     JSONSerializer,
-    Notification
+    Notification,
+    Request
 } = require("../../lib");
 
 function randomPort() { return chance.integer({ min: 1024, max: 65535 }) }
@@ -118,6 +119,32 @@ describe("WebSocketTransport", function () {
 
                 await transport.send(new Notification(chance.string()));
             })();
+        });
+    });
+
+    describe("#receive()", async function () {
+        it("Should parse a valid JSON-RPC request", async function () {
+            const serializer = new JSONSerializer();
+            const port = await getPort();
+            const transport = new WebSocketTransport(serializer, port);
+
+            const p = new Promise((resolve, reject) => {
+                transport.once("request", (req) => {
+                    assert.ok(req);
+                    assert.instanceOf(req, Request);
+                    transport.close();
+                    resolve();
+                });
+            });
+
+            await transport.listen();
+
+            const ws = new w3cwebsocket(`ws://127.0.0.1:${port}`);
+            ws.onopen = () => {
+                ws.send(new Buffer(JSON.stringify({ id: chance.integer(), method: chance.string(), jsonrpc: "2.0" }), "utf8"));
+            };
+
+            return p;
         });
     });
 

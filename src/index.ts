@@ -3,6 +3,7 @@ export { default as JSONSerializer } from "./Serializers/JSONSerializer";
 export { default as MsgPackSerializer } from "./Serializers/MsgPackSerializer";
 
 export { default as Transport } from "./Transport";
+export { default as HTTPTransport , HTTPError} from "./Transports/HTTPTransport";
 export { default as PersistantTransport, NonExistantClient, TransportIsNotPersistant, TransportInServerState, TransportInClientState } from "./PersistentTransport";
 export { default as TCPTransport } from "./Transports/TCPTransport";
 export { default as WebSocketTransport } from "./Transports/WebSocketTransport";
