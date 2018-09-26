@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.5] - 2018-09-25
+### Changed
+- Adds missing dependency.
+
 ## [1.0.4] - 2018-09-25
 ### Changed
 - Bug fixes.

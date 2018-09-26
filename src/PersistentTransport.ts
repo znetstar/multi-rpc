@@ -104,9 +104,13 @@ export default abstract class PersistentTransport extends Transport {
      * @throws {TransportInServerState} - If the transport is already acting as a server.
      */
     public async send(message: Message): Promise<void> {
-        if (!this.connection || this.connections) {
+        if (this.connections) {
             throw new TransportInServerState();
         }
+
+        if (!this.connection) 
+            await this.connect();
+
         await this.sendConnection(this.connection, message);
     }
 

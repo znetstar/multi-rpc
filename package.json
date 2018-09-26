@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
   "main": "lib/index.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "cross-fetch": "^2.2.2",
     "detect-node": "^2.0.4",
     "eventemitter2": "^5.0.1",
+    "lodash": "^4.17.11",
     "msgpack-lite": "^0.1.26",
     "parse-function": "^5.2.10",
     "text-encoding": "^0.6.4",
