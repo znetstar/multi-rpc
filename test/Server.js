@@ -4,7 +4,7 @@ const Chance = require('chance');
 const chance = new Chance();
 const getPort = require("get-port");
 
-const { getFunctionArguments, matchNamedArguments } = require("../lib/Server");
+const { getFunctionArguments, matchNamedArguments, checkObjectForFunctionsOnly } = require("../lib/Server");
 
 const { 
     Server,
@@ -18,7 +18,9 @@ const {
     RPCError,
     ClientRequest,
     Client,
-    TCPTransport
+    TCPTransport,
+    ValuesAreNotFunctions,
+    ValueIsNotAnObject
 } = require("../lib");
 
 
@@ -29,7 +31,7 @@ describe("getFunctionArgumentNames(fn: Function)", function () {
     });
 });
 
-describe("getFunctionArgumentNames", function () {
+describe("matchNamedArguments(args, fn: Function)", function () {
     it("Should return an array with arguments matched in the order they occur in the function signature", function() {
         const fn = (foo, bar, baz) => {};
         const namedArgs = { bar: chance.integer(), baz: chance.bool(), foo: chance.string()  };
@@ -42,6 +44,16 @@ describe("getFunctionArgumentNames", function () {
         const namedArgs = { baz: chance.bool(), foo: chance.string()  };
 
         assert.throws(() => { matchNamedArguments(namedArgs, fn); }, InvalidParams);
+    });
+});
+
+describe("checkObjectForFunctionsOnly(object)", function () {
+    it("Should return false if an object has non function values", function () {
+        assert.isFalse(checkObjectForFunctionsOnly({ foo: () => {}, bar: { baz: chance.string()} }));
+    });
+
+    it("Should return true if an object has only function values", function () {
+        assert.isTrue(checkObjectForFunctionsOnly({ foo: () => {}, bar: { baz: () => {}} }));
     });
 });
 
@@ -65,7 +77,7 @@ describe("Server", function () {
         });
      });
 
-    describe("#methods", function () {
+    describe("#get methods", function () {
         describe("#set(host, prop, value)", function () {
             it("Should set a property the target object", function () {
                 const methodHost = {};
@@ -93,10 +105,20 @@ describe("Server", function () {
                 assert.deepEqual(obj, srv.methodHost[methodNameSteps[0]]);
             });
 
-            it("Should throw if the value provided is not a function", function () {
+            it("Should throw if the value provided is not a function or object", function () {
                 const srv = new Server(new Transport(new JSONSerializer()));
                 assert.throws(() => { srv.methods[chance.string()] = chance.string(); }, ValueIsNotAFunction);
             });
+
+            it("Should accept an object with functions", function () {
+                const srv = new Server(new Transport(new JSONSerializer()));
+                assert.doesNotThrow(() => { srv.methods[chance.string()] = { foo: () => {} }; });
+            });
+    
+            it("Should reject an object with non function values", function () {
+                const srv = new Server(new Transport(new JSONSerializer()));
+                assert.throws(() => { srv.methods[chance.string()] = { foo: chance.string() }; }, ValuesAreNotFunctions);
+            }); 
         });
 
         describe("#get(host, prop)", function () {
@@ -136,6 +158,24 @@ describe("Server", function () {
 
                 assert.isOk(( `${objName}.${methodName}` in srv.methods ));            
             });            
+        });
+    });
+
+    describe("#set methods", function () {
+        it("Should accept an object with functions", function () {
+            const srv = new Server(new Transport(new JSONSerializer()));
+            assert.doesNotThrow(() => { srv.methods = { foo: () => {} }; });
+            assert.ok(srv.methodHost.foo);
+        });
+
+        it("Should reject an object with non function values", function () {
+            const srv = new Server(new Transport(new JSONSerializer()));
+            assert.throws(() => { srv.methods = { foo: chance.string()}; }, ValuesAreNotFunctions);
+        });
+
+        it("Should reject setting a value which isn't an object", function () {
+            const srv = new Server(new Transport(new JSONSerializer()));
+            assert.throws(() => { srv.methods = chance.string(); }, ValueIsNotAnObject);
         });
     });
 

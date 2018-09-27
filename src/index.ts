@@ -9,7 +9,7 @@ export { default as TCPTransport } from "./Transports/TCPTransport";
 export { default as WebSocketTransport } from "./Transports/WebSocketTransport";
 
 export { default as Client } from "./Client";
-export { default as Server, ValueIsNotAFunction } from "./Server";
+export { default as Server, ValueIsNotAFunction, ValuesAreNotFunctions, ValueIsNotAnObject } from "./Server";
 
 export { InternalError, InvalidParams, InvalidRequest, MethodNotFound, ParseError, RPCError, ServerError } from "./Errors";
 

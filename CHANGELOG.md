@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0] - 2018-09-26
+### Added
+- Can now set all rpc methods by passing an object with function values to `Server.methods` or any child properties (e.g. `Server.methods.foo = { bar: () => {} };`).
+
 ## [1.0.5] - 2018-09-25
 ### Changed
 - Adds missing dependency.

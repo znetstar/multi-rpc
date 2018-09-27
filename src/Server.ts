@@ -13,11 +13,29 @@ import ClientRequest from "./ClientRequest";
 import { allowedFields } from "./Serializer";
 
 /**
+ * This error is thrown when an object with non-function values is set to a property on "methodHost"
+ */
+export class ValuesAreNotFunctions extends Error {
+    constructor() {
+        super("The value is a object that contains is values that are not functions");
+    }
+}
+
+/**
  * This error is thrown when a non-function value is set to a property on "methodHost"
  */
 export class ValueIsNotAFunction extends Error {
     constructor() {
         super("The value is not a function");
+    }
+}
+
+/**
+ * This error is thrown when "methods" is set to a value that isn't an object.
+ */
+export class ValueIsNotAnObject extends Error {
+    constructor() {
+        super("The methods property must be set to an object");
     }
 }
 
@@ -58,6 +76,23 @@ export function matchNamedArguments(args: any, fn: Function) {
 }
 
 /**
+ * Recursively iterates through all values in an object ensuring that they are functions. 
+ * @param object - Object to check.
+ */
+export function checkObjectForFunctionsOnly(object: any): boolean {
+    for (const key in object) {
+        const value = object[key];
+        if (typeof(value) === 'object') {
+            const val = checkObjectForFunctionsOnly(value);
+            if (!val) return false;
+        }
+        else if (typeof(value) !== 'function')
+            return false;
+    }
+    return true;
+}
+
+/**
  * An RPC server that will listen for clients.
  */
 export default class Server extends EventEmitter2 { 
@@ -69,17 +104,24 @@ export default class Server extends EventEmitter2 {
     /**
      * This Proxy handler details how methods will be looked up when requested.
      * By methods can be referenced by dot-notation.
-     * For a different functionality this handler can be overriden.
      * 
      * @example
      * const myFunc = () => { ... };
      * new Server(transport, { foo: { bar: myFunc } })
      * (Server.methods["foo.bar"] === myFunc) === true
      */
-    public methodHandler: Object = {
+    protected methodHandler: any = {
         set: (host: any, prop: any, value: any) =>  {
-            if (typeof(value) !== "function")
+            if (typeof(value) === 'object') {
+                if (!checkObjectForFunctionsOnly(value))
+                    throw new ValuesAreNotFunctions();
+                
+                (<any>this.methodHost)[prop] = value;
+            }
+
+            else if (typeof(value) !== "function")
                 throw new ValueIsNotAFunction();
+
 
             if (typeof(prop) === 'string') {
                 let steps = prop.split('.');
@@ -139,9 +181,25 @@ export default class Server extends EventEmitter2 {
     }
 
     /**
+     * Can be used to overwrite all methods.
+     * The value must be an object, and values in the object must be functions.
+     */
+    public set methods(value: any) {
+        if (typeof(value) !== 'object') {
+            throw new ValueIsNotAnObject();
+        }
+
+        if (!checkObjectForFunctionsOnly(value))
+            throw new ValuesAreNotFunctions();
+
+        this.methodHost = value;
+    }
+
+
+    /**
      * An object containing methods that will be executed upon request from the client.
      */
-    protected methodHost: Object;
+    protected methodHost: any;
 
     /**
      * Creates a RPC server using one or more transports.
