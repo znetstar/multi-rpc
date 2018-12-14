@@ -5,6 +5,7 @@ import Request from "./Request";
 import Notification from "./Notification";
 import ClientRequest from "./ClientRequest";
 import Response from "./Response";
+import { client } from "websocket";
 
 /**
  * A client that will connect to an RPC server.

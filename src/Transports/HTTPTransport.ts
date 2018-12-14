@@ -138,7 +138,7 @@ export default class HTTPTransport extends Transport {
             },
             body: this.serializer.serialize(message)
         });
-        
+    
         let data: Uint8Array;
         if (resp.body)
             data = new Uint8Array(await resp.arrayBuffer());
@@ -147,7 +147,7 @@ export default class HTTPTransport extends Transport {
             throw new HTTPError(resp.status, data);
         }
 
-        this.receive(data)
+        this.receive(data);
     }
 
     /**
@@ -188,15 +188,22 @@ export default class HTTPTransport extends Transport {
 
             req.on("end", () => {
                 const rawReq = new Uint8Array(Buffer.concat(data));
-                const clientRequest = new ClientRequest(Transport.uniqueId(), (response: Response) => {
-                    const headers: any = { 
-                        "Content-Type": this.serializer.content_type
-                     };
-                     
-                     if (origin)
+                const clientRequest = new ClientRequest(Transport.uniqueId(), (response?: Response) => {
+                    const headers: any = {};
+
+                    if (origin) {
                         headers["Access-Control-Allow-Origin"] = origin;
-                    res.writeHead(200, headers);
-                    res.end(this.serializer.serialize(response))
+                    }
+
+                    if (response) {
+                        headers["Content-Type"] = this.serializer.content_type;
+                        
+                        res.writeHead(200, headers);
+                        res.end(this.serializer.serialize(response));
+                    } else {
+                        res.writeHead(204, headers);
+                        res.end();
+                    }
                 });
 
                 this.receive(rawReq, clientRequest);

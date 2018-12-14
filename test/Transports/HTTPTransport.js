@@ -110,30 +110,5 @@ describe("HTTPTransport", function () {
                 assert.throws(fn);
             }
         });
-
-        it("Should close the underlying HTTP Server but not the HTTP Server if an HTTP Server was provided.", async function () {
-            const serializer = new JSONSerializer();
-            const port = await getPort();
-            const srv = new (http.Server)((req, res) => {
-                res.writeHead(200);
-                res.end();
-            });
-
-            srv.listen(port);
-            const transport = new HTTPTransport(serializer, srv);
-        
-            await transport.listen();
-            
-            let fn = () => {};
-            try {
-                await request({
-                    url: `http://127.0.0.1:${port}`
-                });
-            } catch (err) {
-                fn = () => { throw err; };
-            } finally {
-                assert.doesNotThrow(fn);
-            }
-        });
     });
 });

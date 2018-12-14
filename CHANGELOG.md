@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.1] - 2018-12-14
+### Added
+- Returns HTTP 204 when a notification is sent over HTTP.
+
 ## [1.1.0] - 2018-09-26
 ### Added
 - Can now set all rpc methods by passing an object with function values to `Server.methods` or any child properties (e.g. `Server.methods.foo = { bar: () => {} };`).

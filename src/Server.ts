@@ -339,12 +339,34 @@ export default class Server extends EventEmitter2 {
      * // request: { "method": "foo", "params": { "param1": "bar" }, "jsonrpc": "2.0" }
      * Server.methods["foo"] = (baz, flob, param1) => { param1 === "bar";  };
      */
-    public notification(notification: Notification) {
+    public notification(notification: Notification): void;   
+    /**
+    * This method is called when the server receives a notification from a client.
+    * 
+    * @listens Transport#notification 
+    * @param notification - The notification.
+    * @param clientRequest - The ClientRequest object that contains information on the request (e.g. client's ID).
+    * 
+    * If the notification provides params as an array it will be emitted as an event.
+    * 
+    * @example
+    * // As an event
+    * // request: { "method": "foo", "params": [ "bar" ], "jsonrpc": "2.0" }
+    * Server.on("foo", (param1) => { param1 === "bar"; });
+    * // With named arguments
+    * // request: { "method": "foo", "params": { "param1": "bar" }, "jsonrpc": "2.0" }
+    * Server.methods["foo"] = (baz, flob, param1) => { param1 === "bar";  };
+    */
+    public notification(notification: Notification, clientRequest: ClientRequest): void;
+    public notification(notification: Notification, clientRequest?: ClientRequest) {
         if (typeof(notification.params) === "undefined" || Array.isArray(notification.params)) 
             this.emit.apply(this, [ notification.method ].concat(<any>notification.params));
         
         if (notification.method in this.methods)
             this.executeMethod(notification);
+
+        if (clientRequest) 
+            clientRequest.respond();
     }
 
     /**
