@@ -38,14 +38,14 @@ Connections via persistent transports like WebSocket or TCP are kept alive and t
 
     server.listen();
 
-    const result = await client.invoke("foo", [1,2,3]);
-    const result = await client.invoke("foo", {
+    const result1 = await client.invoke("foo", [1,2,3]);
+    const result2 = await client.invoke("foo", {
         arg1: 1,
         arg2: 2,
         arg3: 3
     });
 
-    console.log(result + result);
+    console.log(result1 + result2);
 
     process.exit();
 })();
