@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.2] - 2018-12-15
+### Changes
+- Non-object errors are passed directly to the consturctor of `InternalError`.
+
 ## [1.1.1] - 2018-12-14
 ### Added
 - Returns HTTP 204 when a notification is sent over HTTP.
