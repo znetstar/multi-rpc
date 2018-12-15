@@ -29,4 +29,14 @@ export default class Response extends Message {
             this.result = resultOrError;
         }
     }
+    
+    /**
+     * Prepares response for serialization.
+     */
+    public serialize(): any {
+        const res = super.serialize();
+        if (this.error)
+            res.error = this.error.serialize();
+        return res;
+    }
 }

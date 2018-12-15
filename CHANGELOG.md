@@ -1,6 +1,8 @@
 # Changelog
 
-## [1.1.6] - 2018-12-15
+## [1.1.7] - 2018-12-15
+### Added
+- Adds serialization function to messages and errors.
 
 ## [1.1.2] - 2018-12-15
 ### Changes

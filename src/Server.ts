@@ -383,22 +383,14 @@ export default class Server extends EventEmitter2 {
         
         const method = <Function>this.methods[request.method];
         
-        try {
-            if (typeof(request.params) !== "undefined" && !Array.isArray(request.params)) 
-                request.params = matchNamedArguments(request.params, method);
-    
-            let result = await method.apply(this.methodHost, request.params);
-            if (typeof(result) === 'undefined')
-                result = null;
-            
-            return result;
-        } catch (error) {
-            if (error instanceof RPCError) {
-                throw error;
-            } else {
-                throw new InternalError(error);
-            }
-        }
+        if (typeof(request.params) !== "undefined" && !Array.isArray(request.params)) 
+            request.params = matchNamedArguments(request.params, method);
+
+        let result = await method.apply(this.methodHost, request.params);
+        if (typeof(result) === 'undefined')
+            result = null;
+        
+        return result;
     }
 
     /**

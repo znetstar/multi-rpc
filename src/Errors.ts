@@ -1,27 +1,29 @@
 import * as _  from "lodash";
+import * as serializeError from "serialize-error";
+
 /**
  * A generic RPC Error.
  */
 export class RPCError extends Error {
-    public data?: any;
-
     /**
      * Creates a generic RPC Error object.
      * @param message - Message for the error.
      * @param code - The error code, as required by the specification.
      * @param data - Additional data that should be included in the error.
      */
-    constructor(message: string, public code: number, data?: any) {
+    constructor(message: string, public code: number, public data?: any) {
         super(message);
-        this.message = message;
+    }
 
-        if (data instanceof Error) {
-            this.data = {
-                innerError: _.cloneDeep(data)
-            }
-        } else if (data) {
-            this.data = _.cloneDeep(data);
-        }
+    /**
+     * Prepares error for serialization
+     */
+    public serialize(): any {
+        return {
+            message: this.message,
+            code: this.code,
+            data: (this.data instanceof Error) ? serializeError(this.data) : this.data
+        };
     }
 }
 

@@ -18,7 +18,7 @@ export default class MsgPackSerializer extends Serializer {
      * @param object - Message to serialize.
      */
     serialize(object: Message): Uint8Array {
-        return msgpack.encode(object);
+        return msgpack.encode(object.serialize());
     }
 
     /**

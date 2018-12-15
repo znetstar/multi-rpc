@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
   "main": "lib/index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "@types/acorn": "^4.0.3",
     "@types/detect-node": "^2.0.0",
     "@types/msgpack-lite": "^0.1.6",
+    "@types/serialize-error": "^2.1.0",
     "@types/text-encoding": "0.0.33",
     "@types/uuid": "^3.4.4",
     "@types/websocket": "0.0.40",
@@ -29,6 +30,7 @@
     "lodash": "^4.17.11",
     "msgpack-lite": "^0.1.26",
     "parse-function": "^5.2.10",
+    "serialize-error": "^3.0.0",
     "text-encoding": "^0.6.4",
     "uuid": "^3.3.2",
     "websocket": "^1.0.28"
