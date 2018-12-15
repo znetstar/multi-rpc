@@ -14,7 +14,13 @@ export class RPCError extends Error {
     constructor(message: string, public code: number, data?: any) {
         super(message);
 
-        this.data = _.cloneDeep(data);
+        if (data instanceof Error) {
+            this.data = {
+                innerError: _.cloneDeep(data)
+            }
+        } else {
+            this.data = _.cloneDeep(data);
+        }
     }
 }
 
