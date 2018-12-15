@@ -22,6 +22,10 @@ export class RPCError extends Error {
             this.data = _.cloneDeep(data);
         }
     }
+
+    public toJSON() {
+        return _.cloneDeep(this);
+    }
 }
 
 /**
