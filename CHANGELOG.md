@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.3] - 2018-12-15
+## [1.1.4] - 2018-12-15
 ### Changes
 - Unexpected errors are no longer nested in the `innerError` field.
 

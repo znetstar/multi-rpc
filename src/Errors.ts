@@ -3,22 +3,7 @@ import * as _  from "lodash";
  * A generic RPC Error.
  */
 export class RPCError extends Error {
-    /**
-     * Additonal data that should be included in the error.
-     */
     public data?: any;
-
-    /**
-     * Ensures that only the fields specified in the standard are returned during serialization.
-     * If an error is passed in as "data" it will be returned as the "innerError" field.
-     */
-    public toJSON() {
-        return {
-            message: this.message,
-            code: this.code,
-            data: this.data
-        };
-    }
 
     /**
      * Creates a generic RPC Error object.
@@ -28,8 +13,8 @@ export class RPCError extends Error {
      */
     constructor(message: string, public code: number, data?: any) {
         super(message);
-        if (data)
-            this.data = _.cloneDeep(data);
+
+        this.data = _.cloneDeep(data);
     }
 }
 

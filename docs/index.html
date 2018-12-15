@@ -95,14 +95,14 @@
 
     server.listen()<span class="hljs-comment">;</span>
 
-    const result = await client.invoke(<span class="hljs-string">"foo"</span>, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<span class="hljs-comment">;</span>
-    const result = await client.invoke(<span class="hljs-string">"foo"</span>, {
+    const result1 = await client.invoke(<span class="hljs-string">"foo"</span>, [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>])<span class="hljs-comment">;</span>
+    const result2 = await client.invoke(<span class="hljs-string">"foo"</span>, {
         arg1: <span class="hljs-number">1</span>,
         arg2: <span class="hljs-number">2</span>,
         arg3: <span class="hljs-number">3</span>
     })<span class="hljs-comment">;</span>
 
-    console.log(<span class="hljs-name">result</span> + result)<span class="hljs-comment">;</span>
+    console.log(<span class="hljs-name">result1</span> + result2)<span class="hljs-comment">;</span>
 
     process.exit()<span class="hljs-comment">;</span>
 })()<span class="hljs-comment">;</span></code></pre><p>More examples are available <a href="https://github.com/znetstar/multi-rpc/wiki">in the wiki</a>.</p>
