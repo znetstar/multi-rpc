@@ -4,20 +4,15 @@ import * as _  from "lodash";
  */
 export class RPCError extends Error {
     /**
+     * Additonal data that should be included in the error.
+     */
+    public data?: any;
+
+    /**
      * Ensures that only the fields specified in the standard are returned during serialization.
      * If an error is passed in as "data" it will be returned as the "innerError" field.
      */
     public toJSON() {
-        if (this.data && this.data instanceof Error) {
-            (<any>this.data).toJSON = function () {
-                const obj = _.cloneDeep(this);
-                obj.message = this.message;
-                obj.name = this.name;
-                return obj;
-            };
-
-            this.data = { innerError: this.data };
-        }
         return {
             message: this.message,
             code: this.code,
@@ -31,8 +26,10 @@ export class RPCError extends Error {
      * @param code - The error code, as required by the specification.
      * @param data - Additional data that should be included in the error.
      */
-    constructor(message: string, public code: number, public data?: any) {
+    constructor(message: string, public code: number, data?: any) {
         super(message);
+        if (data)
+            this.data = _.cloneDeep(data);
     }
 }
 

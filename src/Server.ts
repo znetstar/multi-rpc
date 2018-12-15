@@ -396,9 +396,6 @@ export default class Server extends EventEmitter2 {
             if (error instanceof RPCError) {
                 throw error;
             } else {
-                if (typeof(error) === 'object')
-                    error.toJSON = RPCError.prototype.toJSON.bind(error);
-                
                 throw new InternalError(error);
             }
         }

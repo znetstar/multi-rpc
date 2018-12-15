@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.3] - 2018-12-15
+### Changes
+- Unexpected errors are no longer nested in the `innerError` field.
+
 ## [1.1.2] - 2018-12-15
 ### Changes
 - Non-object errors are passed directly to the consturctor of `InternalError`.
