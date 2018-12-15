@@ -18,7 +18,7 @@ export class RPCError extends Error {
             this.data = {
                 innerError: _.cloneDeep(data)
             }
-        } else {
+        } else if (data) {
             this.data = _.cloneDeep(data);
         }
     }
