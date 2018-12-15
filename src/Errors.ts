@@ -13,6 +13,7 @@ export class RPCError extends Error {
      */
     constructor(message: string, public code: number, data?: any) {
         super(message);
+        this.message = message;
 
         if (data instanceof Error) {
             this.data = {
@@ -21,10 +22,6 @@ export class RPCError extends Error {
         } else if (data) {
             this.data = _.cloneDeep(data);
         }
-    }
-
-    public toJSON() {
-        return _.cloneDeep(this);
     }
 }
 
