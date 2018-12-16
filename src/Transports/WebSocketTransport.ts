@@ -196,12 +196,7 @@ export default class WebSocketTransport extends PersistantTransport {
      * @throws - If sending the message fails.
      */
     public async sendConnection(connection: any, message: Message): Promise<void> {
-        return await new Promise<void>((resolve, reject) => {
-            connection.send(this.serializer.serialize(message), (err: Error) => {
-                if (err) reject(err);
-                resolve();
-            });
-        });
+        connection.send(this.serializer.serialize(message));
     }
 
     /**

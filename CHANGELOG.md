@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.9] - 2018-12-16
+### Changed
+- Removes callback from the `sendConnection` function on `WebSocketTransport`. 
+
 ## [1.1.8] - 2018-12-16
 ### Added
 - Adds a proper return type to the client-side `invoke` function.
