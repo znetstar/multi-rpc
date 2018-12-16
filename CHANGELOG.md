@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.8] - 2018-12-16
+### Added
+- Adds a proper return type to the client-side `invoke` function.
+
 ## [1.1.7] - 2018-12-15
 ### Added
 - Adds serialization function to messages and errors.

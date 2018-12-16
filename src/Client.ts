@@ -64,7 +64,7 @@ export default class Client extends EventEmitter2 {
      * let result = await Client.invoke("foo.bar", ["baz", "flob"]);
      * let result = await Client.invoke("foo.bar", { a: "baz", b: "flob" })
      */
-    public async invoke(method: string, params: Object|any[]) {
+    public async invoke(method: string, params: Object|any[]): Promise<any> {
         let id = this.method_id++;
         const request = new Request(id, method, params);
         
@@ -88,7 +88,7 @@ export default class Client extends EventEmitter2 {
      * @param params - Arguments for the method.
      * @async
      */
-    public async notify(method: string, ...params: any[]) {
+    public async notify(method: string, ...params: any[]): Promise<void> {
         const notification = new Notification(method, params);
         
         await this.transport.send(notification);
