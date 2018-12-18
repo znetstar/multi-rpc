@@ -2,6 +2,8 @@ const { assert } = require("chai");
 const Chance = require('chance');
 const chance = new Chance();
 
+const { JSONSerializer } = require("./JSONSerializer");
+
 const { 
     Transport, 
     ClientRequest, 
@@ -13,17 +15,6 @@ const {
     Notification,
     Serializer
 } = require("../lib");
-
-class JSONSerializer extends Serializer {
-    serialize(object) { return JSON.stringify(object.serialize()); }
-    deserialize(string) { 
-        try {
-            return super.deserialize(JSON.parse(string)); 
-        } catch (error) {
-            throw new ParseError();
-        }
-    }
-}
 
 describe("Transport", function () {
     describe("#receive(data: Uint8Array|string, clientRequest: ClientRequest)", function () {
