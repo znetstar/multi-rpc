@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-common",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Common classes used in multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -21,8 +21,11 @@
   "dependencies": {
     "@types/lodash": "^4.14.119",
     "@types/serialize-error": "^2.1.0",
+    "@types/uuid": "^3.4.4",
+    "eventemitter2": "^5.0.1",
     "lodash": "^4.17.11",
-    "serialize-error": "^3.0.0"
+    "serialize-error": "^3.0.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "grunt": "^1.0.3",

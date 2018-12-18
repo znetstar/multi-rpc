@@ -1,5 +1,8 @@
 # Changelog
+## [1.0.1] - 2018-12-17
+### Added
+- Add ClientRequest Transport and Serializer
 
-## [1.0.0] - 2018-09-24
+## [1.0.0] - 2018-12-17
 ### Added
 - Inital release.
