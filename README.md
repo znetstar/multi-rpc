@@ -2,6 +2,8 @@
 
 [![NPM](https://nodei.co/npm/multi-rpc-common.png)](https://nodei.co/npm/multi-rpc-common/)
 
+[![Build Status](https://travis-ci.org/znetstar/multi-rpc-common.svg?branch=master)](https://travis-ci.org/znetstar/multi-rpc-common)
+
 Common classes used in [multi-rpc](https://github.com/znetstar/multi-rpc).
 
 ## Building
