@@ -1,4 +1,5 @@
 import { EventEmitter2 } from "eventemitter2";
+import * as uuid from "uuid";
 import Serializer from "./Serializer";
 import Message from "./Message";
 import Request from "./Request";
@@ -6,7 +7,6 @@ import Notification from "./Notification";
 import Response from "./Response";
 import { RPCError } from "./Errors";
 import ClientRequest from "./ClientRequest";
-import * as uuid from "uuid";
 
 /**
  * Transports facilitate the exchange of messages between Server and Client.
@@ -22,6 +22,16 @@ export default abstract class Transport extends EventEmitter2 {
             delimiter: ':',
             wildcard: true
         });
+    }
+
+    /**
+     * Generates a unique id that can be used to distinguish between connected clients.
+     * The unique id will be a UUID v4 returned as a Uint8Array.
+     */
+    static uniqueId(): Uint8Array {
+        const uniqueId = new Uint8Array(16);
+        uuid.v4(null, uniqueId, 0);
+        return uniqueId;
     }
 
     /**
@@ -105,27 +115,4 @@ export default abstract class Transport extends EventEmitter2 {
             this.emit(`response:${response.id}`, response, clientRequest);
         }
     }
-
-    /**
-     * Generates a unique id that can be used to distinguish between connected clients.
-     * The unique id will be a UUID v4 returned as a Uint8Array.
-     */
-    static uniqueId(): Uint8Array {
-        const uniqueId = new Uint8Array(16);
-        uuid.v4(null, uniqueId, 0);
-        return uniqueId;
-    }
-
-    /**
-     * Begin listening for incoming connections.
-     * 
-     * @async 
-     */
-    public abstract listen(): Promise<void>;
-
-    /**
-     * Closes the connection.
-     * @async
-     */
-    public abstract async close(): Promise<void>;
 }

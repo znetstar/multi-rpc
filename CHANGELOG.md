@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.4] - 2018-12-19
+### Changes
+- Moves server-side transport logic to seperate interface.
+
 ## [1.0.3] - 2018-12-19
 ### Added
 - Adds persistant transport
