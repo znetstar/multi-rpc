@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/znetstar/multi-rpc-json-serializer.svg?branch=master)](https://travis-ci.org/znetstar/multi-rpc-json-serializer)
 
-Common classes used in [multi-rpc](https://github.com/znetstar/multi-rpc).
+JSON serializer for [multi-rpc](https://github.com/znetstar/multi-rpc).
 
 ## Building
 

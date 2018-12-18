@@ -1,7 +1,7 @@
 {
   "name": "multi-rpc-json-serializer",
   "version": "1.0.0",
-  "description": "",
+  "description": "JSON Serializer for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha test/index.js",
