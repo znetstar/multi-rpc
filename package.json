@@ -1,0 +1,36 @@
+{
+  "name": "multi-rpc-common",
+  "version": "1.0.0",
+  "description": "Common classes used in multi-rpc",
+  "main": "lib/index.js",
+  "scripts": {
+    "docs": "grunt docs",
+    "build": "grunt build",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/znetstar/multi-rpc-commonn.git"
+  },
+  "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/znetstar/multi-rpc-common/issues"
+  },
+  "homepage": "https://github.com/znetstar/multi-rpc-common#readme",
+  "dependencies": {
+    "@types/lodash": "^4.14.119",
+    "@types/serialize-error": "^2.1.0",
+    "lodash": "^4.17.11",
+    "serialize-error": "^3.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-ts": "^6.0.0-beta.21",
+    "grunt-typedoc": "^0.2.4",
+    "shelljs": "^0.8.2",
+    "typedoc": "^0.12.0",
+    "typescript": "^3.0.3"
+  }
+}

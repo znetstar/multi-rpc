@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "declaration": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "target": "es2018",
+        "rootDir": "src",
+        "outDir": "lib",
+        "lib": [ "es2017", "dom" ]
+    },
+    "files": [ "src/index.ts" ]
+}
