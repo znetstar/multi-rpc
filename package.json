@@ -4,7 +4,7 @@
   "description": "MsgPack Serializer for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha test/index.js",
+    "test": "mocha --exit test/index.js",
     "docs": "grunt docs",
     "build": "grunt build",
     "prepare": "npm run build"
