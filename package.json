@@ -1,12 +1,13 @@
 {
   "name": "multi-rpc-common",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Common classes used in multi-rpc",
   "main": "lib/index.js",
   "scripts": {
     "docs": "grunt docs",
     "build": "grunt build",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "test": "mocha test/index.js --exit"
   },
   "repository": {
     "type": "git",
@@ -28,10 +29,13 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chance": "^1.0.18",
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-ts": "^6.0.0-beta.21",
     "grunt-typedoc": "^0.2.4",
+    "mocha": "^5.2.0",
     "shelljs": "^0.8.2",
     "typedoc": "^0.12.0",
     "typescript": "^3.0.3"
