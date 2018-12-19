@@ -1,0 +1,40 @@
+{
+  "name": "multi-rpc-http-client-transport",
+  "version": "1.0.0",
+  "description": "HTTP client-side transport for multi-rpc",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha --exit test/index.js",
+    "docs": "grunt docs",
+    "build": "grunt build",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/znetstar/multi-rpc-http-client-transport.git"
+  },
+  "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/znetstar/multi-rpc-http-client-transport/issues"
+  },
+  "homepage": "https://github.com/znetstar/multi-rpc-http-client-transport#readme",
+  "dependencies": {
+    "cross-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chance": "^1.0.18",
+    "get-port": "^4.0.0",
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-ts": "^6.0.0-beta.21",
+    "grunt-typedoc": "^0.2.4",
+    "mocha": "^5.2.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5",
+    "shelljs": "^0.8.2",
+    "typedoc": "^0.12.0",
+    "typescript": "^3.0.3"
+  }
+}
