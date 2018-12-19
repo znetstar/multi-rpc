@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.6] - 2018-12-20
+### Changes
+- Adds errors from PersistantTransport.
+
 ## [1.0.5] - 2018-12-20
 ### Changes
 - Fixes a bug in ServerSideTransport.
