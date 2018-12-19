@@ -42,6 +42,12 @@ export class TransportInClientState extends Error {
  */
 export default abstract class PersistentTransport extends Transport {
     /**
+     * A map that contains all current connections to the server using this transport.
+     * The key is the id assigned to the connection and the value is the connection itself.
+     */
+    public abstract connections: Map<any, any>;
+
+    /**
      * The connection to the server.
      */
     public abstract connection: any;

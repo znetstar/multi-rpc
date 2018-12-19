@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.7] - 2018-12-20
+## [1.0.8] - 2018-12-20
 ### Changes
 - Adds errors from PersistantTransport.
 
