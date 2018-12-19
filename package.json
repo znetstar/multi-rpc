@@ -21,7 +21,7 @@
   "homepage": "https://github.com/znetstar/multi-rpc-http-client-transport#readme",
   "dependencies": {
     "cross-fetch": "^3.0.0",
-    "multi-rpc-common": "^1.0.3"
+    "multi-rpc-common": "^1.0.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
