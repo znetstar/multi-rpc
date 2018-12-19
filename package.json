@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/znetstar/multi-rpc-json-serializer#readme",
   "dependencies": {
-    "multi-rpc-common": "^1.0.3",
+    "multi-rpc-common": "^1.0.4",
     "text-encoding": "^0.7.0"
   },
   "devDependencies": {
