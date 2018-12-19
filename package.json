@@ -1,5 +1,5 @@
 {
-  "name": "multi-rpc-http-client-transport",
+  "name": "multi-rpc-http-client-side-transport",
   "version": "1.0.1",
   "description": "HTTP client-side transport for multi-rpc",
   "main": "lib/index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/znetstar/multi-rpc-http-client-transport.git"
+    "url": "git+https://github.com/znetstar/multi-rpc-http-client-side-transport.git"
   },
   "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/znetstar/multi-rpc-http-client-transport/issues"
+    "url": "https://github.com/znetstar/multi-rpc-http-client-side-transport/issues"
   },
-  "homepage": "https://github.com/znetstar/multi-rpc-http-client-transport#readme",
+  "homepage": "https://github.com/znetstar/multi-rpc-http-client-side-transport#readme",
   "dependencies": {
     "cross-fetch": "^3.0.0",
     "multi-rpc-common": "^1.0.4"
