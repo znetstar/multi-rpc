@@ -1,3 +1,3 @@
-describe("multi-rpc-http-client-transport", function () {
+describe("multi-rpc-http-client-side-transport", function () {
     require("./HTTPClientTransport");
 });

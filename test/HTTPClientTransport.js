@@ -3,7 +3,6 @@ const { assert } = require("chai");
 const getPort = require('get-port');
 const Chance = require('chance');
 const chance = new Chance();
-const request = require("request-promise-native");
 const { JSONSerializer } = require('./JSONSerializer');
 const { HTTPClientTransport } = require("../lib");
 const { 

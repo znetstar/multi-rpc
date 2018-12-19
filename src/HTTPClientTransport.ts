@@ -56,14 +56,4 @@ export default class HTTPClientTransport extends Transport {
 
         this.receive(data);
     }
-
-    /**
-     * This method will be used validate the "origin" header in each incoming WebSocket request.
-     * This function can be replaced to implement a custom validation.
-     * By default will return true, allowing all origins.
-     * @param origin - The "origin" header for each request.
-     */
-    public authorizeOrigin(origin: string): boolean {
-        return true;
-    }
 }
