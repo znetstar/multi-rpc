@@ -12,7 +12,6 @@ const {
 } = require("multi-rpc-common");
 
 
-
 describe("HTTPTransport", function () {
     describe("#send(message: Message)", function () {
         it("Should successfully send a message to a HTTP server", function (done) {
