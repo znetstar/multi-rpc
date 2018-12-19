@@ -1,1 +1,1 @@
-export { default as HTTPClientTransport } from "./HTTPClientTransport";
+export { default as HTTPClientTransport, HTTPError } from "./HTTPClientTransport";

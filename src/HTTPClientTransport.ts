@@ -25,7 +25,7 @@ export default class HTTPClientTransport extends Transport {
     /**
      * Creates a HTTP transport that connects to a server at a specified url.
      * @param serializer - The serializer to use for encoding/decoding messages.
-     * @param url - Url of the server to connect to (e.g. "ws://localhost").
+     * @param url - Url of the server to connect to (e.g. "http://localhost").
      */
     constructor(serializer: Serializer, url: string);
     /**
