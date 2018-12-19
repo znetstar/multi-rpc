@@ -7,12 +7,6 @@ import Serializer from "./Serializer";
  */
 export default interface ServerSideTransport {
     /**
-     * Creates a Server-Side Transport object.
-     * @param serializer - The serializer that will be used to serialize and deserialize requests.
-     */
-    new(serializer: Serializer): ServerSideTransport;
-
-    /**
      * Begin listening for incoming connections.
      * 
      * @async 

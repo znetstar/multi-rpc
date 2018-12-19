@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.5] - 2018-12-20
+### Changes
+- Fixes a bug in ServerSideTransport.
+
 ## [1.0.4] - 2018-12-19
 ### Changes
 - Moves server-side transport logic to seperate interface.
