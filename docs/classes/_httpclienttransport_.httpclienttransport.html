@@ -102,10 +102,8 @@
 						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_httpclienttransport_.httpclienttransport.html#endpoint" class="tsd-kind-icon">endpoint</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_httpclienttransport_.httpclienttransport.html#port" class="tsd-kind-icon">port</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="_httpclienttransport_.httpclienttransport.html#serializer" class="tsd-kind-icon">serializer</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_httpclienttransport_.httpclienttransport.html#urlorpath" class="tsd-kind-icon">url<wbr>OrPath</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_httpclienttransport_.httpclienttransport.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -145,14 +143,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new HTTPClient<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Serializer</span>, url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_httpclienttransport_.httpclienttransport.html" class="tsd-signature-type">HTTPClientTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new HTTPClient<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Serializer</span>, url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_httpclienttransport_.httpclienttransport.html" class="tsd-signature-type">HTTPClientTransport</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides Transport.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/151c01f/src/HTTPClientTransport.ts#L23">HTTPClientTransport.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/c34ce30/src/HTTPClientTransport.ts#L19">HTTPClientTransport.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -171,7 +169,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>url: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> url: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>Url of the server to connect to (e.g. &quot;<a href="http://localhost&quot;)">http://localhost&quot;)</a>.</p>
@@ -186,36 +184,6 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="endpoint" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> endpoint</h3>
-					<div class="tsd-signature tsd-kind-icon">endpoint<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/151c01f/src/HTTPClientTransport.ts#L40">HTTPClientTransport.ts:40</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The endpoint the server should listen on.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="port" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> port</h3>
-					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/151c01f/src/HTTPClientTransport.ts#L17">HTTPClientTransport.ts:17</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Port number of the server to listen on.</p>
-						</div>
-					</div>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
 					<a name="serializer" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> serializer</h3>
@@ -223,7 +191,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides Transport.serializer</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/151c01f/src/HTTPClientTransport.ts#L40">HTTPClientTransport.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/c34ce30/src/HTTPClientTransport.ts#L25">HTTPClientTransport.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -233,23 +201,18 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="urlorpath" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> url<wbr>OrPath</h3>
-					<div class="tsd-signature tsd-kind-icon">url<wbr>OrPath<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="url" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> url</h3>
+					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/151c01f/src/HTTPClientTransport.ts#L23">HTTPClientTransport.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/c34ce30/src/HTTPClientTransport.ts#L25">HTTPClientTransport.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The URL of the HTTP server to connect to or the IPC path to listen on.</p>
+							<p>Url of the server to connect to (e.g. &quot;<a href="http://localhost&quot;)">http://localhost&quot;)</a>.</p>
 						</div>
-						<dl class="tsd-comment-tags">
-							<dt>see</dt>
-							<dd><p><a href="https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections">https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections</a></p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 			</section>
@@ -292,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/151c01f/src/HTTPClientTransport.ts#L85">HTTPClientTransport.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/c34ce30/src/HTTPClientTransport.ts#L66">HTTPClientTransport.ts:66</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -796,7 +759,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transport.send</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/151c01f/src/HTTPClientTransport.ts#L57">HTTPClientTransport.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-http-client-side-transport/blob/c34ce30/src/HTTPClientTransport.ts#L36">HTTPClientTransport.ts:36</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -806,6 +769,12 @@
 								<dl class="tsd-comment-tags">
 									<dt>async</dt>
 									<dd></dd>
+									<dt>throws</dt>
+									<dd><p>{NoUrlPresent} - If url is not present.</p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p>{HTTPError} - If an HTTP error occurs.</p>
+									</dd>
 								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -895,17 +864,11 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_httpclienttransport_.httpclienttransport.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="_httpclienttransport_.httpclienttransport.html#endpoint" class="tsd-kind-icon">endpoint</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="_httpclienttransport_.httpclienttransport.html#port" class="tsd-kind-icon">port</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
 								<a href="_httpclienttransport_.httpclienttransport.html#serializer" class="tsd-kind-icon">serializer</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="_httpclienttransport_.httpclienttransport.html#urlorpath" class="tsd-kind-icon">url<wbr>OrPath</a>
+								<a href="_httpclienttransport_.httpclienttransport.html#url" class="tsd-kind-icon">url</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_httpclienttransport_.httpclienttransport.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
@@ -982,6 +945,9 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_httpclienttransport_.httperror.html" class="tsd-kind-icon">HTTPError</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="_httpclienttransport_.nourlpresent.html" class="tsd-kind-icon">No<wbr>Url<wbr>Present</a>
 					</li>
 				</ul>
 			</nav>

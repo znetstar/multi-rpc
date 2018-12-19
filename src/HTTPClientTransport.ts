@@ -7,55 +7,36 @@ export class HTTPError extends Error {
     }
 }
 
+export class NoUrlPresent extends Error {
+    constructor() {
+        super("URL not set");
+    }
+}
+
 /**
  * A client-side transport that uses HTTP as its protocol.
  */
 export default class HTTPClientTransport extends Transport {
     /**
-     * Port number of the server to listen on.
-     */
-    protected port?: number;
-
-    /**
-     * The URL of the HTTP server to connect to or the IPC path to listen on.
-     * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
-     */
-    protected urlOrPath?: string;
-
-    /**
      * Creates a HTTP transport that connects to a server at a specified url.
      * @param serializer - The serializer to use for encoding/decoding messages.
      * @param url - Url of the server to connect to (e.g. "http://localhost").
      */
-    constructor(serializer: Serializer, url: string);
-    /**
-     * Creates a HTTP transport as a server using an existing HTTP(S) server, path or port and host, or as a client using a URL.
-     * @param serializer - The serializer to use for encoding/decoding messages.
-     * @param portPathServerOrUrl - The port, path or HTTP(S) server the transport should listen on, or the URL the client should connect to.
-     * @param hostOrEndpoint - The host the transport should listen or endpoint the server should listen on. If omitted defaults to all interfaces.
-     * @param endpoint - The endpoint the server should listen on.
-     * 
-     * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
-     */
-    constructor(protected serializer: Serializer,  portPathOrUrl: string|number, hostOrEndpoint?: string, protected endpoint?: string) {
+    constructor(protected serializer: Serializer,  protected url?: string) {
         super(serializer);
-
-        if (typeof(portPathOrUrl) === 'number')
-            this.port = portPathOrUrl;
-        else if (typeof(portPathOrUrl) === 'string') 
-            this.urlOrPath = portPathOrUrl;
-
-        if (typeof(portPathOrUrl) === 'string' &&  typeof(hostOrEndpoint) === 'string')
-            this.endpoint = hostOrEndpoint;
     }
 
     /**
      * Sends a message to the server, connecting to the server if a connection has not been made.
      * @param message - Message to send.
      * @async
+     * @throws {NoUrlPresent} - If url is not present.
+     * @throws {HTTPError} - If an HTTP error occurs.
      */
     public async send(message: Message): Promise<void> {
-        let resp = await fetch(this.urlOrPath, {
+        if (!this.url) throw new NoUrlPresent();
+
+        let resp = await fetch(this.url, {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
