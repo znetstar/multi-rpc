@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/znetstar/multi-rpc-websocket-transport.svg?branch=master)](https://travis-ci.org/znetstar/multi-rpc-websocket-transport)
 
-Server-side WebSocket transport for [multi-rpc](https://github.com/znetstar/multi-rpc).
+WebSocket transport for [multi-rpc](https://github.com/znetstar/multi-rpc).
 
 ## Building
 
