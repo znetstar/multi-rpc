@@ -120,5 +120,4 @@ describe("WebSocketClientTransport", function () {
             })();
         });
     });
-
 });

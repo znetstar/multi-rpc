@@ -1,4 +1,4 @@
-import { Serializer, Message, PersistantTransport, TransportInServerState } from "multi-rpc-common";
+import { Serializer, Message, PersistentTransport, TransportInServerState } from "multi-rpc-common";
 import { w3cwebsocket as WebSocket } from "websocket";
 
 export class NoUrlPresent extends Error {
@@ -10,7 +10,7 @@ export class NoUrlPresent extends Error {
 /**
  * A client-side transport that uses HTTP as its protocol.
  */
-export default class WebSocketClientTransport extends PersistantTransport {
+export default class WebSocketClientTransport extends PersistentTransport {
     /**
      * The connection to the server.
      */
@@ -81,5 +81,13 @@ export default class WebSocketClientTransport extends PersistantTransport {
      */
     public async sendConnection(connection: WebSocket, message: Message): Promise<void> {
         connection.send(this.serializer.serialize(message));
+    }
+
+    /**
+     * Closes the websocket connection
+     * @async
+     */
+    public async close(): Promise<void> {
+        this.connection.close();
     }
 }
