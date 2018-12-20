@@ -13,7 +13,7 @@ export class NonExistantClient extends Error {
 /**
  * An error that occurs when a non-persistent transport is used as a persistent transport. 
  */
-export class TransportIsNotPersistant extends Error {
+export class TransportIsNotPersistent extends Error {
     constructor() {
         super("This transport does not use a persistent connection to the server");
     }
@@ -38,7 +38,7 @@ export class TransportInClientState extends Error {
 }
 
 /**
- * A transport that maintains a persistant connection to the server.
+ * A transport that maintains a Persistent connection to the server.
  */
 export default abstract class PersistentTransport extends Transport {
     /**

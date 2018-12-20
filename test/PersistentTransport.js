@@ -5,9 +5,9 @@ const chance = new Chance();
 const { JSONSerializer } = require("./JSONSerializer");
 
 const { 
-    PersistantTransport,
+    PersistentTransport,
     NonExistantClient,
-    TransportIsNotPersistant,
+    TransportIsNotPersistent,
     TransportInServerState,
     TransportInClientState,
     Message
@@ -17,7 +17,7 @@ describe("PersistentTransport", function () {
     describe("#addConnection(connection, id)", function () {
         it("Should add connection to the map of connections with a generated ID, and return that ID", function () {
             const serializer = new JSONSerializer();
-            const transport = new PersistantTransport(serializer);
+            const transport = new PersistentTransport(serializer);
             transport.connections = new Map();
             const connection = chance.string();
             const clientId = transport.addConnection(connection);
@@ -29,7 +29,7 @@ describe("PersistentTransport", function () {
 
         it("Should add connection to the map of connections with a provided ID, and return that ID", function () {
             const serializer = new JSONSerializer();
-            const transport = new PersistantTransport(serializer);
+            const transport = new PersistentTransport(serializer);
             transport.connections = new Map();
             const connection = chance.string();
             const clientId = chance.guid();
@@ -44,7 +44,7 @@ describe("PersistentTransport", function () {
     describe("#removeConnection", function () {
         it("Should remove a connection from the table of connections by ID", function () {
             const serializer = new JSONSerializer();
-            const transport = new PersistantTransport(serializer);
+            const transport = new PersistentTransport(serializer);
             transport.connections = new Map();
             const id = chance.guid();
             transport.connections.set(id, chance.string());
@@ -58,7 +58,7 @@ describe("PersistentTransport", function () {
             return new Promise((resolve, reject) => {
                 this.timeout(500);
                 const serializer = new JSONSerializer();
-                const transport = new PersistantTransport(serializer);
+                const transport = new PersistentTransport(serializer);
                 transport.connections = new Map();
 
                 const connection = chance.string();
@@ -78,7 +78,7 @@ describe("PersistentTransport", function () {
         
         it("Should throw TransportInClientState if the transport has a connection set", async function () {
             const serializer = new JSONSerializer();
-            const transport = new PersistantTransport(serializer);
+            const transport = new PersistentTransport(serializer);
             transport.connection = chance.string();
             const id = chance.guid();
             transport.connections = new Map([
@@ -99,7 +99,7 @@ describe("PersistentTransport", function () {
 
         it("Should throw NonExistantClient if the connection referenced does not exist in the connection table", async function () {
             const serializer = new JSONSerializer();
-            const transport = new PersistantTransport(serializer);
+            const transport = new PersistentTransport(serializer);
             transport.connections = new Map();
 
             let fn = () => {};
@@ -118,7 +118,7 @@ describe("PersistentTransport", function () {
             return new Promise((resolve, reject) => {
                 this.timeout(500);
                 const serializer = new JSONSerializer();
-                const transport = new PersistantTransport(serializer);
+                const transport = new PersistentTransport(serializer);
 
                 const connection = chance.string();
                 const msg = new Message();
@@ -136,7 +136,7 @@ describe("PersistentTransport", function () {
         
         it("Should throw TransportInServerState if the transport has a connection table", async function () {
             const serializer = new JSONSerializer();
-            const transport = new PersistantTransport(serializer);
+            const transport = new PersistentTransport(serializer);
             transport.connection = chance.string();
             transport.connections = new Map([
                 [ chance.guid(), chance.string() ]
