@@ -120,4 +120,10 @@ export default abstract class PersistentTransport extends Transport {
      * @async
      */
     public abstract connect(): Promise<any>;
+
+    /**
+     * Closes the connection.
+     * @async
+     */
+    public abstract close(): Promise<void>;
 }

@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.1] - 2018-12-20
+### Added
+- Adds close function to PersistentTransport.
+
 ## [2.0.0] - 2018-12-20
 ### Changes
 - Corrects spelling.

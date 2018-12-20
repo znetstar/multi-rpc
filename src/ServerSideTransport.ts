@@ -10,7 +10,7 @@ export default interface ServerSideTransport {
     listen(): Promise<void>;
 
     /**
-     * Closes the connection.
+     * Shut down the server.
      * @async
      */
     close(): Promise<void>;
