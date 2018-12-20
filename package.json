@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-msgpack-serializer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "MsgPack Serializer for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "dependencies": {
     "@types/msgpack-lite": "^0.1.6",
     "msgpack-lite": "^0.1.26",
-    "multi-rpc-common": "^1.0.4"
+    "multi-rpc-common": "^2.0.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
