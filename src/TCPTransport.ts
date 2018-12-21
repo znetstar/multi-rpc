@@ -164,6 +164,8 @@ export default class TCPTransport extends PersistentTransport implements ServerS
 
             connection.on('data', (data) => {
                 const respond = (response: Response) => {
+                    if (!response) return;
+                    
                     connection.write(this.serializer.serialize(response));
                 };
 
