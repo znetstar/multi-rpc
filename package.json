@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-msgpack-serializer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "MsgPack Serializer for multi-rpc",
   "main": "lib/index.js",
   "scripts": {

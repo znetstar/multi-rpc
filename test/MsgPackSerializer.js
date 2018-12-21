@@ -17,6 +17,12 @@ describe("MsgPackSerializer", function () {
           
             assert.deepEqual(message, obj, "To deserialized object does not have the same values as the one serialized");
         });
+
+        it('Should serialize an undefined object without error', function () {
+            const serializer = new MsgPackSerializer();
+            
+            assert.doesNotThrow(() => { serializer.serialize(void(0)); }, "Serializer threw an error attempting to serialize undefined");
+        });
     });
 
     describe("#deserialize(data: Uint8Array): Message", function () {
