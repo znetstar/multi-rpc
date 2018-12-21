@@ -16,6 +16,11 @@ describe("JSONSerializer", function () {
 
             assert.deepEqual(message, obj, "To deserialized object does not have the same values as the one serialized");
         });
+
+        it("Should serialize undefined without an error", function () {
+            const serializer = new JSONSerializer();
+            assert.doesNotThrow(() => { serializer.serialize(void(0)); }, "Threw an error attempting to serialize undefined");
+        });
     });
 
     describe("#deserialize(data: Uint8Array|String): Message", function () {

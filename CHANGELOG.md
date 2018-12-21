@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.3] - 2018-12-20
+### Changes
+- Fixes a bug that occurs when serializing an object without a `.serialize()` method.
+
 ## [1.0.2] - 2018-12-20
 ### Changes
 - Updates multi-rpc-common

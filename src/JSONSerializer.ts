@@ -16,7 +16,7 @@ export default class JSONSerializer extends Serializer {
      * @param object - Message to serialize.
      */
     serialize(object: Message): string {
-        return JSON.stringify(object.serialize());
+        return JSON.stringify(object.serialize ? object.serialize() : object);
     }
 
     /**
