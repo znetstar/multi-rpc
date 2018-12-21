@@ -223,13 +223,13 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
      * Closes the WebSocket connection.
      * @async
      */
-    public async close(code?: number, reason?: string): Promise<void> {
+    public async close(): Promise<void> {
         if (this.server) {
             this.server.closeAllConnections();
             if (this.httpServer && this.httpServerCreated)
                 this.httpServer.close();
         } else if (this.connection) {
-            this.connection.close(code, reason);
+            await super.close();
         }
     }
 }

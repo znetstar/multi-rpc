@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-websocket-transport",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "WebSocket transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -21,8 +21,8 @@
   "homepage": "https://github.com/znetstar/multi-rpc-websocket-transport#readme",
   "dependencies": {
     "@types/websocket": "0.0.40",
-    "multi-rpc-common": "^2.0.0",
-    "multi-rpc-websocket-client-side-transport": "^1.0.1",
+    "multi-rpc-common": "^2.0.1",
+    "multi-rpc-websocket-client-side-transport": "^1.0.2",
     "websocket": "^1.0.28"
   },
   "devDependencies": {
