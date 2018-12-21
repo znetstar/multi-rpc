@@ -1,0 +1,45 @@
+{
+  "name": "multi-rpc-core",
+  "version": "1.0.0",
+  "description": "Client/Server classes used in multi-rpc",
+  "main": "lib/index.js",
+  "scripts": {
+    "docs": "grunt docs",
+    "build": "grunt build",
+    "prepare": "npm run build",
+    "test": "mocha test/index.js --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/znetstar/multi-rpc-core.git"
+  },
+  "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/znetstar/multi-rpc-core/issues"
+  },
+  "homepage": "https://github.com/znetstar/multi-rpc-core#readme",
+  "dependencies": {
+    "@types/lodash": "^4.14.119",
+    "acorn": "^6.0.4",
+    "eventemitter2": "^5.0.1",
+    "lodash": "^4.17.11",
+    "multi-rpc-common": "^2.0.1",
+    "parse-function": "^5.2.11"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chance": "^1.0.18",
+    "get-port": "^4.0.0",
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-ts": "^6.0.0-beta.21",
+    "grunt-typedoc": "^0.2.4",
+    "mocha": "^5.2.0",
+    "multi-rpc-json-serializer": "^1.0.1",
+    "multi-rpc-tcp-transport": "^1.0.1",
+    "shelljs": "^0.8.2",
+    "typedoc": "^0.12.0",
+    "typescript": "^3.0.3"
+  }
+}
