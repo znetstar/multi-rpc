@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.3] - 2018-12-21
+### Changed
+- Fixes serveral bugs that occur when the message response is undefined.
+
 ## [1.2.2] - 2018-12-21
 ### Changed
 - Adds `ServerSideTransport` interface.
