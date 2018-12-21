@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.3] - 2018-12-20
+### Changes
+- Does not send a response to client if the response message is undefined.
+
 ## [1.0.2] - 2018-12-20
 ### Changes
 - Updates multi-rpc-common

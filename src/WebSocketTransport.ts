@@ -158,6 +158,8 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
                 let data: Uint8Array|string = (message.type === 'utf8') ? message.utf8Data : new Uint8Array(message.binaryData);
     
                 const req = new ClientRequest(clientId, (res: Response) => {
+                    if (!res) return;
+                     
                     let data = this.serializer.serialize(res);
                     data = (typeof(data) === 'string') ? data : Buffer.from(data);
                     let sendFunc: Function = ((typeof(data) === 'string') ? connection.sendUTF : connection.sendBytes);
