@@ -1,10 +1,9 @@
 {
   "name": "multi-rpc",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
   "main": "lib/index.js",
   "scripts": {
-    "docs": "grunt docs",
     "build": "grunt build",
     "prepare": "npm run build"
   },

@@ -26,3 +26,4 @@ export { HTTPError, HTTPClientTransport } from "multi-rpc-http-client-side-trans
 export { TCPTransport } from "multi-rpc-tcp-transport";
 export { WebSocketTransport } from "multi-rpc-websocket-transport";
 export { Client, Server, ValueIsNotAFunction, ValueIsNotAnObject, ValuesAreNotFunctions } from "multi-rpc-core";
+export { WebSocketClientTransport } from "multi-rpc-websocket-client-side-transport";

@@ -62,7 +62,7 @@ The Multi-RPC package is comprised of several modules which can be installed ind
 | [multi-browser](https://github.com/znetstar/multi-rpc-browser)                                                     | Excludes server-side transports                        | ✓                  |
 | [multi-rpc-common](https://github.com/znetstar/multi-rpc-common)                                                   | Common classes used throughout the project.            | ✓                  |
 | [multi-rpc-core](https://github.com/znetstar/multi-rpc-core)                                                       | Server/Client implementation                           | ✓                  |
-| [multi-rpc-http-client-side-transport](https://github.com/znetstar/multi-rpc-http-client-side)                     | A HTTP client-side transport                           | ✓                  |
+| [multi-rpc-http-client-side-transport](https://github.com/znetstar/multi-rpc-http-client-side-transport)                     | A HTTP client-side transport                           | ✓                  |
 | [multi-rpc-http-transport](https://github.com/znetstar/multi-rpc-http-transport)                                   | A HTTP transport with client/server functionality      |                    |
 | [multi-rpc-json-serializer](https://github.com/znetstar/multi-rpc-json-serializer)                                 | A JSON serializer                                      | ✓                  |
 | [multi-rpc-msgpack-serializer](https://github.com/znetstar/multi-rpc-msgpack-serializer)                           | A MSGPack Serializer                                   | ✓                  |

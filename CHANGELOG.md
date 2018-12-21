@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.2.0] - 2018-12-21
+## [1.2.1] - 2018-12-21
 ### Changed
 - Breaks the project up into separate modules.
 
