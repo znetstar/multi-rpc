@@ -17,7 +17,8 @@ export {
     Request,
     Response,
     Notification,
-    ClientRequest
+    ClientRequest,
+    ServerSideTransport
 } from "multi-rpc-common";
 export { JSONSerializer } from "multi-rpc-json-serializer";
 export { MsgPackSerializer } from "multi-rpc-msgpack-serializer";
