@@ -53,16 +53,27 @@ Connections via persistent transports like WebSocket or TCP are kept alive and t
 
 More examples are available [in the wiki](https://github.com/znetstar/multi-rpc/wiki).
 
+## Projects layout
+
+The Multi-RPC package is comprised of several modules which can be installed individually.
+
+| Name                                                                                                               | Description                                            | Browser compatible |
+|--------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|--------------------|
+| [multi-browser](https://github.com/znetstar/multi-rpc-browser)                                                     | Excludes server-side transports                        | ✓                  |
+| [multi-rpc-common](https://github.com/znetstar/multi-rpc-common)                                                   | Common classes used throughout the project.            | ✓                  |
+| [multi-rpc-core](https://github.com/znetstar/multi-rpc-core)                                                       | Server/Client implementation                           | ✓                  |
+| [multi-rpc-http-client-side-transport](https://github.com/znetstar/multi-rpc-http-client-side)                     | A HTTP client-side transport                           | ✓                  |
+| [multi-rpc-http-transport](https://github.com/znetstar/multi-rpc-http-transport)                                   | A HTTP transport with client/server functionality      |                    |
+| [multi-rpc-json-serializer](https://github.com/znetstar/multi-rpc-json-serializer)                                 | A JSON serializer                                      | ✓                  |
+| [multi-rpc-msgpack-serializer](https://github.com/znetstar/multi-rpc-msgpack-serializer)                           | A MSGPack Serializer                                   | ✓                  |
+| [multi-rpc-tcp-transport](https://github.com/znetstar/multi-rpc-tcp-transport)                                     | A TCP transport with client/server functionality       |                    |
+| [multi-rpc-websocket-client-side-transport](https://github.com/znetstar/multi-rpc-websocket-client-side-transport) | A WebSocket client-side transport                      | ✓                  |
+| [multi-rpc-websocket-transport](https://github.com/znetstar/multi-rpc-websocket-transport)                         | A WebSocket transport with client/server functionality |                    |
+
+## Tests & Documentation
+
+For mocha tests and documention refer to the individual package (e.g. multi-rpc-common).
+
 ## Building
 
 Multi-RPC is written in TypeScript. To compile JavaScript run `npm run build`.
-
-## Documentation
-
-Documentation is available in the `docs/` folder or [online here](https://multi-rpc.docs.zacharyboyd.nyc).
-
-To generate docs run `npm run docs`.
-
-## Tests
-
-Tests are written in Mocha and can be run with `npm test`.

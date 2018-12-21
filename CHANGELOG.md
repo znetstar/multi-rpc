@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.0] - 2018-12-21
+### Changed
+- Breaks the project up into separate modules.
+
 ## [1.1.9] - 2018-12-16
 ### Changed
 - Removes callback from the `sendConnection` function on `WebSocketTransport`. 

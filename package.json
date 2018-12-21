@@ -1,10 +1,9 @@
 {
   "name": "multi-rpc",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha test/index.js --exit",
     "docs": "grunt docs",
     "build": "grunt build",
     "prepare": "npm run build"
@@ -16,24 +15,15 @@
   "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
   "license": "Apache-2.0",
   "dependencies": {
-    "@types/acorn": "^4.0.3",
-    "@types/detect-node": "^2.0.0",
-    "@types/msgpack-lite": "^0.1.6",
-    "@types/serialize-error": "^2.1.0",
-    "@types/text-encoding": "0.0.33",
-    "@types/uuid": "^3.4.4",
-    "@types/websocket": "0.0.40",
-    "acorn": "^6.0.1",
-    "cross-fetch": "^2.2.2",
-    "detect-node": "^2.0.4",
-    "eventemitter2": "^5.0.1",
-    "lodash": "^4.17.11",
-    "msgpack-lite": "^0.1.26",
-    "parse-function": "^5.2.10",
-    "serialize-error": "^3.0.0",
-    "text-encoding": "^0.6.4",
-    "uuid": "^3.3.2",
-    "websocket": "^1.0.28"
+    "multi-rpc-common": "^2.0.1",
+    "multi-rpc-core": "^1.0.0",
+    "multi-rpc-http-client-side-transport": "^1.0.2",
+    "multi-rpc-http-transport": "^1.0.2",
+    "multi-rpc-json-serializer": "^1.0.1",
+    "multi-rpc-msgpack-serializer": "^1.0.2",
+    "multi-rpc-tcp-transport": "^1.0.1",
+    "multi-rpc-websocket-client-side-transport": "^1.0.2",
+    "multi-rpc-websocket-transport": "^1.0.2"
   },
   "keywords": [
     "rpc",
@@ -45,18 +35,9 @@
     "http"
   ],
   "devDependencies": {
-    "chai": "^4.1.2",
-    "chance": "^1.0.16",
-    "get-port": "^4.0.0",
     "grunt": "^1.0.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-ts": "^6.0.0-beta.21",
-    "grunt-typedoc": "^0.2.4",
-    "mocha": "^5.2.0",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.5",
-    "shelljs": "^0.8.2",
-    "typedoc": "^0.12.0",
     "typescript": "^3.0.3"
   }
 }
