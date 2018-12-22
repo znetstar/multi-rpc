@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-websocket-transport",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "WebSocket transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
