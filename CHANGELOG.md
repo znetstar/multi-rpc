@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.4] - 2018-12-22
+### Changes
+- Updates multi-rpc-common
+
 ## [1.0.3] - 2018-12-21
 ### Changes
 - Fixes error that occurs when parsing binary in the browser.
