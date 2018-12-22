@@ -56,8 +56,19 @@ export default class WebSocketClientTransport extends PersistentTransport {
         };
 
         this.connection.onmessage = (message: any) => {
-            let data = typeof(message.data) === "string" ? message.data : new Uint8Array(message.data);
-            this.receive(data);
+            let data: any = message.data;
+            if ((typeof(Blob) !== 'undefined') && (data instanceof Blob) && typeof(FileReader) !== 'undefined') {
+                const fileReader = new FileReader();
+                fileReader.onload = (event) => {
+                    this.receive(new Uint8Array((<any>event.target).result));
+                };
+
+                fileReader.readAsArrayBuffer(data);
+            } else if (typeof(Buffer) !== 'undefined' && (data instanceof Buffer)) {
+                this.receive(new Uint8Array(data));
+            } else {
+                this.receive(data);
+            }
         };
         
         return await new Promise<WebSocket>((resolve, reject) => {
