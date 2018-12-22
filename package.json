@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-http-transport",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "HTTP transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/znetstar/multi-rpc-http-transport#readme",
   "dependencies": {
-    "multi-rpc-common": "^2.0.1",
-    "multi-rpc-http-client-side-transport": "^1.0.2"
+    "multi-rpc-common": "^2.1.0",
+    "multi-rpc-http-client-side-transport": "^1.0.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -32,7 +32,7 @@
     "grunt-ts": "^6.0.0-beta.21",
     "grunt-typedoc": "^0.2.4",
     "mocha": "^5.2.0",
-    "multi-rpc-json-serializer": "^1.0.1",
+    "multi-rpc-json-serializer": "^1.0.4",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "shelljs": "^0.8.2",
