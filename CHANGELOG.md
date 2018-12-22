@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.1.0] - 2018-12-22
+### Added
+- Errors are now deserialized to the appropriate type (e.g. error with code -32603 becomes an internal error). 
+
 ## [2.0.1] - 2018-12-20
 ### Added
 - Adds close function to PersistentTransport.

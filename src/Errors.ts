@@ -32,11 +32,18 @@ export class RPCError extends Error {
  */
 export class ParseError extends RPCError {
     /**
+     * RPC Error code
+     */
+    public static get code(): number {
+        return -32700;
+    }
+
+    /**
      * Creates a ParseError Object.
      * @param data - Additional data that should be included in the error.
      */
     constructor(public data?: any) {
-        super("Parse error", -32700, data);
+        super("Parse error", ParseError.code, data);
     }
 }
 
@@ -45,11 +52,18 @@ export class ParseError extends RPCError {
  */
 export class InvalidRequest extends RPCError {
     /**
+     * RPC Error code
+     */
+    public static get code(): number {
+        return -32600;
+    }
+
+    /**
      * Creates an InvalidRequest Object.
      * @param data - Additional data that should be included in the error.
      */
     constructor(public data?: any) {
-        super("Invalid Request", -32600, data);
+        super("Invalid Request", InvalidRequest.code, data);
     }
 }
 
@@ -58,11 +72,18 @@ export class InvalidRequest extends RPCError {
  */
 export class MethodNotFound extends RPCError {
     /**
+     * RPC Error code
+     */
+    public static get code(): number {
+        return -32601;
+    }
+
+    /**
      * Creates a MethodNotFound Object.
      * @param data - Additional data that should be included in the error.
      */
     constructor(public data?: any) {
-        super("Method not found", -32601, data);
+        super("Method not found", MethodNotFound.code, data);
     }
 }
 
@@ -72,11 +93,18 @@ export class MethodNotFound extends RPCError {
  */
 export class InvalidParams extends RPCError {
     /**
+     * RPC Error code
+     */
+    public static get code(): number {
+        return -32602;
+    }
+
+    /**
      * Creates an InvalidParams Object.
      * @param data - Additional data that should be included in the error.
      */
     constructor(public data?: any) {
-        super("Invalid method parameter(s)", -32602, data);
+        super("Invalid method parameter(s)", InvalidParams.code, data);
     }
 }
 
@@ -85,11 +113,18 @@ export class InvalidParams extends RPCError {
  */
 export class InternalError extends RPCError {
     /**
+     * RPC Error code
+     */
+    public static get code(): number {
+        return -32603;
+    }
+
+    /**
      * Creates an InternalError Object.
      * @param data - Additional data that should be included in the error.
      */
     constructor(public data?: any) {
-        super("Internal error", -32603, data);
+        super("Internal error", InternalError.code, data);
     }
 }
 
@@ -104,7 +139,35 @@ export class ServerError extends RPCError {
      */
     constructor(code: number, public data?: any) {
         super("Server error", code, data);
-        if (code > -32000 || code < -32099)
+        if (!ServerError.isServerErrorCode(code))
             throw new Error(`Error code for ServerError must be between -32099 and -32000`);
     }
+
+    /**
+     * Checks if the error code is within the "ServerError" range as defined in the specification.
+     * @param code - Error code to check.
+     */
+    public static isServerErrorCode(code: number) {
+        return (code <= -32000 || code >= -32099);
+    }
 }
+
+/**
+ * An interface that represents a predefined RPC error.
+ */
+export default interface PredefinedRPCError<T> {
+    new(data?: any): T;
+}
+
+/**
+ * A map of all predefined RPC errors.
+ */
+export const RPCErrorsByCode: Map<number, PredefinedRPCError<RPCError>> = new Map<number, PredefinedRPCError<RPCError>>([
+    [ ParseError.code, ParseError ],
+    [ InvalidRequest.code, InvalidRequest ],
+    [ MethodNotFound.code, MethodNotFound ],
+    [ InvalidParams.code, InvalidParams ],
+    [ InternalError.code, InternalError ]
+]);
+
+Object.freeze(RPCErrorsByCode);

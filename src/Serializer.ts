@@ -2,7 +2,7 @@ import Message from "./Message";
 import Request from "./Request";
 import Notification from "./Notification";
 import Response from "./Response";
-import { InvalidRequest, RPCError } from "./Errors";
+import { InvalidRequest, ServerError,  RPCError, RPCErrorsByCode } from "./Errors";
 
 /**
  * Checks if the fields in the object are valid fields.
@@ -132,7 +132,16 @@ export default abstract class Serializer {
             // "result must not exist"
             && typeof(object.result) === "undefined"
         ) {
-            const error = new RPCError(object.error.message, object.error.code, object.error.data);
+            const { message, data, code } = object.error;
+            let error: RPCError;
+            // check if the code matches an existing RPC error
+            if (RPCErrorsByCode.has(code)) 
+                error = new (RPCErrorsByCode.get(code))(data);
+            else if (ServerError.isServerErrorCode(code))
+                error = new ServerError(code, data);
+            else
+                error = new RPCError(message, code, data);
+            
             result = new Response(object.id, error);
         }
         else

@@ -5,7 +5,9 @@ const {
     InvalidRequest,
     Request,
     Notification,
-    Response
+    Response,
+    ServerError,
+    InvalidParams
 } = require("../lib");
 
 const chance = new Chance();
@@ -221,6 +223,34 @@ describe("Serializer", function () {
                 };
 
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
+            }); 
+
+            it("Must return an InvalidParams error if the code matches", function () {
+                const serializer = new Serializer();
+                const request = {
+                    jsonrpc: "2.0",
+                    id: chance.integer(),
+                    error: { code: InvalidParams.code, data: chance.bool(), message: chance.string() }
+                };
+
+                const resp = serializer.deserialize.call(serializer, request, false);
+
+                assert.instanceOf(resp, Response, "Did not return a Response");
+                assert.instanceOf(resp.error, InvalidParams, "Error was not InvalidParams");
+            }); 
+
+            it("Must return a ServerError error if the code matches", function () {
+                const serializer = new Serializer();
+                const request = {
+                    jsonrpc: "2.0",
+                    id: chance.integer(),
+                    error: { code: -32055, data: chance.bool(), message: chance.string() }
+                };
+
+                const resp = serializer.deserialize.call(serializer, request, false);
+
+                assert.instanceOf(resp, Response, "Did not return a Response");
+                assert.instanceOf(resp.error, ServerError, "Error was not ServerError");
             }); 
 
             it("Must return a Response object with the error field set", function () {
