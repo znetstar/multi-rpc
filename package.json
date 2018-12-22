@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
   "main": "lib/index.js",
   "scripts": {
@@ -14,15 +14,15 @@
   "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
   "license": "Apache-2.0",
   "dependencies": {
-    "multi-rpc-common": "^2.0.1",
-    "multi-rpc-core": "^1.0.0",
-    "multi-rpc-http-client-side-transport": "^1.0.2",
-    "multi-rpc-http-transport": "^1.0.2",
-    "multi-rpc-json-serializer": "^1.0.3",
-    "multi-rpc-msgpack-serializer": "^1.0.3",
-    "multi-rpc-tcp-transport": "^1.0.2",
-    "multi-rpc-websocket-client-side-transport": "^1.0.3",
-    "multi-rpc-websocket-transport": "^1.0.4"
+    "multi-rpc-common": "^2.1.0",
+    "multi-rpc-core": "^1.0.1",
+    "multi-rpc-http-client-side-transport": "^1.0.4",
+    "multi-rpc-http-transport": "^1.0.3",
+    "multi-rpc-json-serializer": "^1.0.4",
+    "multi-rpc-msgpack-serializer": "^1.0.4",
+    "multi-rpc-tcp-transport": "^1.0.3",
+    "multi-rpc-websocket-client-side-transport": "^1.0.5",
+    "multi-rpc-websocket-transport": "^1.0.5"
   },
   "keywords": [
     "rpc",
