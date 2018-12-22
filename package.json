@@ -22,7 +22,7 @@
   "dependencies": {
     "@types/websocket": "0.0.40",
     "multi-rpc-common": "^2.0.1",
-    "multi-rpc-websocket-client-side-transport": "^1.0.2",
+    "multi-rpc-websocket-client-side-transport": "^1.0.3",
     "websocket": "^1.0.28"
   },
   "devDependencies": {

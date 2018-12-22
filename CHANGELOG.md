@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.4] - 2018-12-22 
+## Changes
+- Update client side transport.
+
 ## [1.0.3] - 2018-12-20
 ### Changes
 - Does not send a response to client if the response message is undefined.
