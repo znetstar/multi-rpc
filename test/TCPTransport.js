@@ -22,6 +22,7 @@ describe("TCPTransport", function () {
             const serializer = new JSONSerializer();
             const port = randomPort();
             const transport = new TCPTransport(serializer, port);
+            transport.disableReconnect();
             transport.connections = new Map();
             let fn = () => {};
             try {
@@ -37,6 +38,7 @@ describe("TCPTransport", function () {
             const serializer = new JSONSerializer();
             const port = randomPort();
             const transport = new TCPTransport(serializer, port);
+            transport.disableReconnect();
 
             let fn = () => {};
             try {
@@ -52,6 +54,7 @@ describe("TCPTransport", function () {
             const serializer = new JSONSerializer();
             const port = await getPort();
             const transport = new TCPTransport(serializer, port);
+            transport.disableReconnect();
 
             const p = new Promise((resolve, reject) => {
                 const server = new Server((socket) => {
@@ -71,6 +74,35 @@ describe("TCPTransport", function () {
             transport.connection.write(chance.string());
 
             return p;
+        });
+
+        it("Should successfully reconnect to the TCP server", async function () {
+            this.timeout(5000);
+            const serializer = new JSONSerializer();
+            const port = await getPort();
+            const transport = new TCPTransport(serializer, port);
+
+            const tcpServer = new Server();
+
+            return new Promise((resolve, reject) => {
+                tcpServer.listen(port, () => {
+                    transport.once("reconnected", () => {
+                        tcpServer.close();
+                        resolve();
+                    });
+
+                    let disconnected = false;
+
+                    tcpServer.on("connection", function (socket) {
+                        if (!disconnected) {
+                            disconnected = true;
+                            socket.end();
+                        }
+                    });
+
+                    transport.connect().catch(reject);
+                });
+            });
         });
     });
 
