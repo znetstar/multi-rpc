@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.0] - 2018-12-23
+### Added
+- WebSocket and TCP clients attempt to reconnect to server upon disconnect.
+
 ## [1.2.5] - 2018-12-22
 ### Changed
 - Updates multi-rpc-common.
