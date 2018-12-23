@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-tcp-transport",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "TCP transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {

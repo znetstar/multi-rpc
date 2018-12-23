@@ -29,6 +29,11 @@ export default class TCPTransport extends PersistentTransport implements ServerS
     protected path?: string;
 
     /**
+     * Amount of time to wait between attempting to reconnect.
+     */
+    public reconnectDelay: number = 500;
+
+    /**
      * Creates a TCP transport that will listen on or connect to a port and host.
      * @param serializer - The serializer to use for encoding/decoding messages.
      * @param port - The port to listen on or connect to.
@@ -75,6 +80,8 @@ export default class TCPTransport extends PersistentTransport implements ServerS
 
         if (typeof(portPathOrServer) === "number") 
             this.port = portPathOrServer;
+
+        this.on("disconnect", this.reconnect);
     }
 
     /**
@@ -94,8 +101,8 @@ export default class TCPTransport extends PersistentTransport implements ServerS
             this.emit('error', error);
         });
 
-        this.connection.on('close', () => {
-            this.emit('close');
+        this.connection.once('close', () => {
+            this.emit('disconnect');
         });
 
         this.connection.on('data', (data) => {;
@@ -106,8 +113,10 @@ export default class TCPTransport extends PersistentTransport implements ServerS
             this.once('error', (err) => {
                 reject(err);
             });
+            
             const onConnect = () => {
                 this.connection.removeListener("connect", onConnect);
+                this.emit("connect");
                 resolve(this.connection);
             };
 
@@ -213,8 +222,33 @@ export default class TCPTransport extends PersistentTransport implements ServerS
             else
                 this.server.listen(this.path, listenSuccess);
         });
+        
     }
 
+    /**
+     * Disables reconnection upon disconnect.
+     */
+    public disableReconnect(): void {
+        this.off("disconnect", this.reconnect);
+    }
+
+    /**
+     * Reconnects to the server.
+     * @async
+     */
+    public async reconnect(): Promise<void> {
+        this.emit("reconnectAttempt");
+        try {
+            await this.connect();
+            if (!this.connection.connecting) {
+                this.emit("reconnected");
+            }
+        } catch (error) {
+            setTimeout(() => {
+                this.reconnect();
+            }, this.reconnectDelay);
+        }
+    }
     /**
      * Closes the TCP connection.
      * @async
@@ -226,6 +260,7 @@ export default class TCPTransport extends PersistentTransport implements ServerS
                     resolve();
                 });
             } else if (this.connection) {
+                this.disableReconnect();
                 this.connection.end();
                 resolve();
             }
