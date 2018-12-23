@@ -106,6 +106,11 @@ export default class WebSocketClientTransport extends PersistentTransport {
      */
     public async reconnect(): Promise<void> {
         this.emit("reconnectAttempt");
+        
+        if (this.connection.readyState === WebSocket.OPEN) {
+            return;
+        }
+
         try {
             await this.connect();
             if (this.connection.readyState === WebSocket.OPEN) {
