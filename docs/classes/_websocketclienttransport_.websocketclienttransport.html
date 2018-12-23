@@ -104,6 +104,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_websocketclienttransport_.websocketclienttransport.html#connection" class="tsd-kind-icon">connection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_websocketclienttransport_.websocketclienttransport.html#connections" class="tsd-kind-icon">connections</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_websocketclienttransport_.websocketclienttransport.html#reconnectdelay" class="tsd-kind-icon">reconnect<wbr>Delay</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="_websocketclienttransport_.websocketclienttransport.html#serializer" class="tsd-kind-icon">serializer</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_websocketclienttransport_.websocketclienttransport.html#url" class="tsd-kind-icon">url</a></li>
 							</ul>
@@ -157,7 +158,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides Transport.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/104e690/src/WebSocketClientTransport.ts#L22">WebSocketClientTransport.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L27">WebSocketClientTransport.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -198,7 +199,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides PersistentTransport.connection</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/104e690/src/WebSocketClientTransport.ts#L17">WebSocketClientTransport.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L17">WebSocketClientTransport.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -214,12 +215,27 @@
 					<aside class="tsd-sources">
 						<p>Overrides PersistentTransport.connections</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/104e690/src/WebSocketClientTransport.ts#L22">WebSocketClientTransport.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L22">WebSocketClientTransport.ts:22</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>A map of clients and their IDs.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="reconnectdelay" class="tsd-anchor"></a>
+					<h3>reconnect<wbr>Delay</h3>
+					<div class="tsd-signature tsd-kind-icon">reconnect<wbr>Delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;500</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L27">WebSocketClientTransport.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Amount of time to wait between reconnects.</p>
 						</div>
 					</div>
 				</section>
@@ -230,7 +246,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides Transport.serializer</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/104e690/src/WebSocketClientTransport.ts#L29">WebSocketClientTransport.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L34">WebSocketClientTransport.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -245,7 +261,7 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/104e690/src/WebSocketClientTransport.ts#L29">WebSocketClientTransport.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L34">WebSocketClientTransport.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -333,7 +349,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides PersistentTransport.close</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/104e690/src/WebSocketClientTransport.ts#L90">WebSocketClientTransport.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L125">WebSocketClientTransport.ts:125</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -360,7 +376,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides PersistentTransport.connect</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/104e690/src/WebSocketClientTransport.ts#L39">WebSocketClientTransport.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L46">WebSocketClientTransport.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -937,7 +953,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides PersistentTransport.sendConnection</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/104e690/src/WebSocketClientTransport.ts#L82">WebSocketClientTransport.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/2ee652a/src/WebSocketClientTransport.ts#L99">WebSocketClientTransport.ts:99</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1103,6 +1119,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#connections" class="tsd-kind-icon">connections</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_websocketclienttransport_.websocketclienttransport.html#reconnectdelay" class="tsd-kind-icon">reconnect<wbr>Delay</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#serializer" class="tsd-kind-icon">serializer</a>

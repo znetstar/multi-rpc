@@ -20,6 +20,11 @@ export default class WebSocketClientTransport extends PersistentTransport {
      * A map of clients and their IDs.
      */
     public connections: Map<any, any>;
+
+    /**
+     * Amount of time to wait between reconnects.
+     */
+    public reconnectDelay: number = 500;
     
     /**
      * Creates a WebSocket transport that connects to a server at a specified url.
@@ -28,6 +33,8 @@ export default class WebSocketClientTransport extends PersistentTransport {
      */
     constructor(protected serializer: Serializer,  protected url?: string) {
         super(serializer);
+
+        this.on("disconnect", this.reconnect);
     }
 
     /**
@@ -45,14 +52,9 @@ export default class WebSocketClientTransport extends PersistentTransport {
 
         this.connection = new WebSocket(this.url);
    
-        const onSuccess = () => {
-            this.connection.onerror = (error: Error) => {
-                this.emit('error', error);
-            };
-
-            this.connection.onclose = () => {
-                this.emit('close');
-            };
+        this.connection.onclose = () => {
+            this.connection.onclose = void(0);
+            this.emit("disconnect");
         };
 
         this.connection.onmessage = (message: any) => {
@@ -75,9 +77,13 @@ export default class WebSocketClientTransport extends PersistentTransport {
             this.connection.onerror = (error: Error) => {
                 reject(error);
             };
-
+            
             this.connection.onopen = () => {
-                onSuccess();
+                this.connection.onerror = (error: Error) => {
+                    this.emit('error', error);
+                };
+
+                this.emit("connect");
                 resolve(this.connection);
             };
         });
@@ -95,10 +101,36 @@ export default class WebSocketClientTransport extends PersistentTransport {
     }
 
     /**
+     * Attempts to reconnect.
+     * @ignore
+     */
+    public async reconnect(): Promise<void> {
+        this.emit("reconnectAttempt");
+        try {
+            await this.connect();
+            if (this.connection.readyState === WebSocket.OPEN) {
+                this.emit("reconnected");
+            }
+        } catch (error) {
+            setTimeout(() => {
+                this.reconnect();
+            }, this.reconnectDelay);
+        }
+    }
+
+    /**
+     * Prevents reconnecting after a disconnect.
+     */
+    public disableReconnect() {
+        this.off("disconnect", this.reconnect);
+    }
+
+    /**
      * Closes the websocket connection
      * @async
      */
     public async close(): Promise<void> {
+        this.disableReconnect();
         this.connection.close();
     }
 }

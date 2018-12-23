@@ -21,6 +21,7 @@ describe("WebSocketClientTransport", function () {
             const serializer = new JSONSerializer();
             const port = randomPort();
             const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
+            transport.disableReconnect();
             transport.connections = new Map();
             let fn = () => {};
             try {
@@ -33,9 +34,11 @@ describe("WebSocketClientTransport", function () {
         });
 
         it("Should throw if the connection details do not exist", async function () {
+            this.timeout(5000);
             const serializer = new JSONSerializer();
             const port = randomPort();
             const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
+            transport.disableReconnect();
 
             let fn = () => {};
             try {
@@ -51,6 +54,7 @@ describe("WebSocketClientTransport", function () {
             const serializer = new JSONSerializer();
             const port = await getPort();
             const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
+            transport.disableReconnect();
 
             const httpServer = http.createServer((req, res) => { 
                 res.writeHead(404); res.end();  
@@ -60,12 +64,46 @@ describe("WebSocketClientTransport", function () {
             return new Promise((resolve, reject) => {
                 httpServer.listen(port, () => {
                     wsServer.on("request", function () {
+                        httpServer.close();
                         resolve();
                     });
 
                     transport.connect().catch((error) => {
                         reject(error);
                     });
+                });
+            });
+        });
+
+        it("Should successfully reconnect to the WebSocket server", async function () {
+            this.timeout(5000);
+            const serializer = new JSONSerializer();
+            const port = await getPort();
+            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
+
+            const httpServer = http.createServer((req, res) => { 
+                res.writeHead(404); res.end();  
+            });
+            const wsServer = new server({ httpServer, autoAcceptConnections: false });
+
+            return new Promise((resolve, reject) => {
+                httpServer.listen(port, () => {
+                    transport.once("reconnected", () => {
+                        httpServer.close();
+                        resolve();
+                    });
+
+                    let disconnected = false;
+
+                    wsServer.on("request", function (req) {
+                        const ws = req.accept();
+                        if (!disconnected) {
+                            disconnected = true;
+                            ws.close();
+                        }
+                    });
+
+                    transport.connect().catch(reject);
                 });
             });
         });
