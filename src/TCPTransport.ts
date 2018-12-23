@@ -32,6 +32,8 @@ export default class TCPTransport extends PersistentTransport implements ServerS
      * Amount of time to wait between attempting to reconnect.
      */
     public reconnectDelay: number = 500;
+    
+    private connected: boolean = false;
 
     /**
      * Creates a TCP transport that will listen on or connect to a port and host.
@@ -82,6 +84,13 @@ export default class TCPTransport extends PersistentTransport implements ServerS
             this.port = portPathOrServer;
 
         this.on("disconnect", this.reconnect);
+        this.on("connect", () => {
+            this.connected = true;
+        });
+
+        this.on("disconnect", () => {
+            this.connected = false;
+        });
     }
 
     /**
@@ -240,7 +249,7 @@ export default class TCPTransport extends PersistentTransport implements ServerS
         this.emit("reconnectAttempt");
         try {
             await this.connect();
-            if (!this.connection.connecting) {
+            if (this.connected) {
                 this.emit("reconnected");
             }
         } catch (error) {
