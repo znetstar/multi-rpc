@@ -29,7 +29,7 @@ export default class WebSocketClientTransport extends PersistentTransport {
     /**
      * Messages that will be sent to the server when a connection has been established.
      */
-    private messageQueue: Message[] = [];
+    private messageQueue: Function[] = [];
 
     /**
      * Is true when the client is connected.
@@ -108,7 +108,7 @@ export default class WebSocketClientTransport extends PersistentTransport {
      */
     public async dispatchQueue(): Promise<void> {
         while (this.messageQueue.length) {
-            await super.send(this.messageQueue.shift());
+            await this.messageQueue.shift();
         }
     }
 
@@ -117,10 +117,20 @@ export default class WebSocketClientTransport extends PersistentTransport {
      * @param message - Message to send.
      */
     public async send(message: Message): Promise<void> {
-        if (!this.connected)
-            this.messageQueue.push(message);
+        if (!this.connected) {
+            return new Promise((resolve, reject) => {
+                this.messageQueue.push(async () => {
+                    try {
+                        await super.send(message);
+                        resolve();
+                    } catch (error) {
+                        reject(error);
+                    }
+                });
+            });
+        }
         else
-            super.send(message);
+            return super.send(message);
     }
 
     /**
