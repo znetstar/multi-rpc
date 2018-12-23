@@ -9,7 +9,6 @@ const { TransportInServerState } = require('multi-rpc-common');
 const { WebSocketClientTransport } = require("../lib");
 
 const { 
-    Request,
     Notification
 } = require("multi-rpc-common");
 

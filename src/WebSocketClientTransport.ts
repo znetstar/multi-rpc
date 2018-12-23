@@ -25,6 +25,19 @@ export default class WebSocketClientTransport extends PersistentTransport {
      * Amount of time to wait between reconnects.
      */
     public reconnectDelay: number = 500;
+
+    /**
+     * Messages that will be sent to the server when a connection has been established.
+     */
+    private messageQueue: Message[] = [];
+
+    /**
+     * Is true when the client is connected.
+     */
+    public get connected(): boolean {
+        return this.connection && (this.connection.readyState === WebSocket.OPEN);
+    }
+    
     
     /**
      * Creates a WebSocket transport that connects to a server at a specified url.
@@ -35,6 +48,7 @@ export default class WebSocketClientTransport extends PersistentTransport {
         super(serializer);
 
         this.on("disconnect", this.reconnect);
+        this.on("connect", this.dispatchQueue);
     }
 
     /**
@@ -90,6 +104,26 @@ export default class WebSocketClientTransport extends PersistentTransport {
     } 
 
     /**
+     * Sends all messages in the message queue.
+     */
+    public async dispatchQueue(): Promise<void> {
+        while (this.messageQueue.length) {
+            await super.send(this.messageQueue.shift());
+        }
+    }
+
+    /**
+     * Sends a message to the server if a connection has been established or adds it to the queue if no connection has been established.
+     * @param message - Message to send.
+     */
+    public async send(message: Message): Promise<void> {
+        if (!this.connected)
+            this.messageQueue.push(message);
+        else
+            super.send(message);
+    }
+
+    /**
      * Sends a message via the provided connection.
      * @param connection - Connection to use to send the message.
      * @param message - Message to send.
@@ -107,13 +141,13 @@ export default class WebSocketClientTransport extends PersistentTransport {
     public async reconnect(): Promise<void> {
         this.emit("reconnectAttempt");
         
-        if (this.connection.readyState === WebSocket.OPEN) {
+        if (this.connected) {
             return;
         }
 
         try {
             await this.connect();
-            if (this.connection.readyState === WebSocket.OPEN) {
+            if (this.connected) {
                 this.emit("reconnected");
             }
         } catch (error) {
