@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0] - 2018-12-23
+## Added
+- Will attempt to reconnect upon disconnect.
+
 ## [1.0.5] - 2018-12-22
 ### Changes
 - Updates multi-rpc-common
