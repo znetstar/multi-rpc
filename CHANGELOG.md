@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.4.0] - 2018-12-23
+### Added
+- WebSocket and TCP clients attempt to reconnect to server upon disconnect.
+
 ## [1.3.0] - 2018-12-23
 ### Added
 - WebSocket and TCP clients attempt to reconnect to server upon disconnect.
