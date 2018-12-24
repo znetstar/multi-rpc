@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.1] - 2018-12-23
+## Added
+- Queues messages until a connection has been established.
+
 ## [1.1.0] - 2018-12-23
 ## Added
 - Will attempt to reconnect upon disconnect.
