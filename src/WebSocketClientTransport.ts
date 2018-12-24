@@ -7,6 +7,12 @@ export class NoUrlPresent extends Error {
     }
 }
 
+export class CouldNotParseData extends Error {
+    constructor(public data: any) {
+        super("The object containing data could not be parsed");
+    }
+}
+
 /**
  * A client-side transport that uses HTTP as its protocol.
  */
@@ -79,10 +85,10 @@ export default class WebSocketClientTransport extends PersistentTransport {
                 };
 
                 fileReader.readAsArrayBuffer(data);
-            } else if (typeof(Buffer) !== 'undefined' && (data instanceof Buffer)) {
+            } else if (data instanceof ArrayBuffer || (typeof(Buffer) !== 'undefined' && data instanceof Buffer)) {
                 this.receive(new Uint8Array(data));
             } else {
-                this.receive(data);
+                this.emit("error", new CouldNotParseData(data));
             }
         };
         

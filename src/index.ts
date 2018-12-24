@@ -1,1 +1,1 @@
-export { default as WebSocketClientTransport, NoUrlPresent } from "./WebSocketClientTransport";
+export { default as WebSocketClientTransport, NoUrlPresent, CouldNotParseData } from "./WebSocketClientTransport";

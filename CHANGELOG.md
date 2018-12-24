@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.3] - 2018-12-24
+### Added
+- Fixes a buffer that occurs when client is used in node.js.
+
 ## [1.2.1] - 2018-12-23
 ### Added
 - Queues messages until a connection has been established.

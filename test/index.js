@@ -1,3 +1,3 @@
-describe("multi-rpc-websocket-transport", function () {
+describe("multi-rpc-websocket-client-side-transport", function () {
     require("./WebSocketClientTransport.js");
 });
