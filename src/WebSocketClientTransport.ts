@@ -48,7 +48,6 @@ export default class WebSocketClientTransport extends PersistentTransport {
         super(serializer);
 
         this.on("disconnect", this.reconnect);
-        this.on("connect", this.dispatchQueue);
     }
 
     /**
@@ -104,31 +103,13 @@ export default class WebSocketClientTransport extends PersistentTransport {
     } 
 
     /**
-     * Sends all messages in the message queue.
-     */
-    public async dispatchQueue(): Promise<void> {
-        while (this.messageQueue.length) {
-            await this.messageQueue.shift()();
-        }
-    }
-
-    /**
      * Sends a message to the server if a connection has been established or adds it to the queue if no connection has been established.
      * @param message - Message to send.
      */
     public async send(message: Message): Promise<void> {
         if (!this.connected) {
-            this.connect();
-            return new Promise((resolve, reject) => {
-                this.messageQueue.push(async () => {
-                    try {
-                        await super.send(message);
-                        resolve();
-                    } catch (error) {
-                        reject(error);
-                    }
-                });
-            });
+            await this.connect();
+            super.send(message);
         }
         else
             return super.send(message);

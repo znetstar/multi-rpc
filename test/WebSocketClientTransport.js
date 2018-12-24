@@ -177,10 +177,6 @@ describe("WebSocketClientTransport", function () {
                     }, 2000);
                 });
 
-                setTimeout(() => {
-                    assert.isAbove(transport.messageQueue.length, 0, "Message queue was empty");
-                }, 500);
-
                 transport.send(new Notification(chance.string()));  
             });     
         });

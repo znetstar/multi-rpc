@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.2.0] - 2018-12-23
+## [1.2.1] - 2018-12-23
 ### Added
 - Queues messages until a connection has been established.
 
