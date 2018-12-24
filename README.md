@@ -59,7 +59,7 @@ The Multi-RPC package is comprised of several modules which can be installed ind
 
 | Name                                                                                                               | Description                                            | Browser compatible |
 |--------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|--------------------|
-| [multi-browser](https://github.com/znetstar/multi-rpc-browser)                                                     | Excludes server-side transports                        | ✓                  |
+| [multi-rpc-browser](https://github.com/znetstar/multi-rpc-browser)                                                     | Excludes server-side transports                        | ✓                  |
 | [multi-rpc-common](https://github.com/znetstar/multi-rpc-common)                                                   | Common classes used throughout the project.            | ✓                  |
 | [multi-rpc-core](https://github.com/znetstar/multi-rpc-core)                                                       | Server/Client implementation                           | ✓                  |
 | [multi-rpc-http-client-side-transport](https://github.com/znetstar/multi-rpc-http-client-side-transport)                     | A HTTP client-side transport                           | ✓                  |
