@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.2] - 2018-12-22 
+## Changes
+- Update client side transport.
+
 ## [1.2.1] - 2018-12-23
 ## Added
 - Queues messages until a connection has been established.
