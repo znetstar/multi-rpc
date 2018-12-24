@@ -108,7 +108,7 @@ export default class WebSocketClientTransport extends PersistentTransport {
      */
     public async dispatchQueue(): Promise<void> {
         while (this.messageQueue.length) {
-            await this.messageQueue.shift();
+            await this.messageQueue.shift()();
         }
     }
 
@@ -118,6 +118,7 @@ export default class WebSocketClientTransport extends PersistentTransport {
      */
     public async send(message: Message): Promise<void> {
         if (!this.connected) {
+            this.connect();
             return new Promise((resolve, reject) => {
                 this.messageQueue.push(async () => {
                     try {

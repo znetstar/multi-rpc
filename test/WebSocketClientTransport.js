@@ -146,15 +146,43 @@ describe("WebSocketClientTransport", function () {
                 const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
 
                 const httpServer = http.createServer((req, res) => { res.writeHead(404); res.end();  });
-                const wsServer = new server({ httpServer, autoAcceptConnections: false  });
+                const wsServer = new server({ httpServer, autoAcceptConnections: false });
                 httpServer.listen(port);
 
-                wsServer.on("request", () => {
+                wsServer.on("request", (req) => {
                     done();
                 });
 
                 await transport.send(new Notification(chance.string()));
             })();
+        });
+
+        it("Should queue messages unitl a connection has been made", async function () {
+            this.timeout(10000);
+            const serializer = new JSONSerializer();
+            const port = await getPort();
+            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
+
+            const httpServer = http.createServer((req, res) => { res.writeHead(404); res.end();  });
+            const wsServer = new server({ httpServer, autoAcceptConnections: false });
+            httpServer.listen(port);
+  
+            return new Promise((resolve, reject) => {
+                wsServer.on("request", (req) => {
+                    setTimeout(() => {
+                        let con = req.accept();
+                        con.once("message", () => {
+                            resolve();
+                        });
+                    }, 2000);
+                });
+
+                setTimeout(() => {
+                    assert.isAbove(transport.messageQueue.length, 0, "Message queue was empty");
+                }, 500);
+
+                transport.send(new Notification(chance.string()));  
+            });     
         });
     });
 });
