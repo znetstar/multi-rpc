@@ -1,4 +1,4 @@
-import { Serializer, Message, PersistentTransport, TransportInServerState } from "multi-rpc-common";
+import { Serializer, Message, PersistentTransport, TransportInServerState, ReconnectingTransport } from "multi-rpc-common";
 import { w3cwebsocket as WebSocket } from "websocket";
 
 export class NoUrlPresent extends Error {
@@ -16,7 +16,7 @@ export class CouldNotParseData extends Error {
 /**
  * A client-side transport that uses HTTP as its protocol.
  */
-export default class WebSocketClientTransport extends PersistentTransport {
+export default class WebSocketClientTransport extends PersistentTransport implements ReconnectingTransport {
     /**
      * The connection to the server.
      */
@@ -138,6 +138,8 @@ export default class WebSocketClientTransport extends PersistentTransport {
      */
     public async reconnect(): Promise<void> {
         this.emit("reconnectAttempt");
+
+        this.connection = null;
         
         if (this.connected) {
             return;
