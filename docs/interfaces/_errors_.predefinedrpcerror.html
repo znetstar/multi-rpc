@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ClientRequest | multi-rpc-common</title>
+	<title>PredefinedRPCError | multi-rpc-common</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_clientrequest_.html">&quot;ClientRequest&quot;</a>
+					<a href="../modules/_errors_.html">&quot;Errors&quot;</a>
 				</li>
 				<li>
-					<a href="_clientrequest_.clientrequest.html">ClientRequest</a>
+					<a href="_errors_.predefinedrpcerror.html">PredefinedRPCError</a>
 				</li>
 			</ul>
-			<h1>Class ClientRequest</h1>
+			<h1>Interface PredefinedRPCError&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -72,15 +72,23 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Contains information on the request that was made by a client.</p>
+						<p>An interface that represents a predefined RPC error.</p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>T</h4>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ClientRequest</span>
+						<span class="target">PredefinedRPCError</span>
 					</li>
 				</ul>
 			</section>
@@ -91,15 +99,7 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_clientrequest_.clientrequest.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_clientrequest_.clientrequest.html#additionaldata" class="tsd-kind-icon">additional<wbr>Data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_clientrequest_.clientrequest.html#clientid" class="tsd-kind-icon">client<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_clientrequest_.clientrequest.html#respond" class="tsd-kind-icon">respond</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-interface"><a href="_errors_.predefinedrpcerror.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,102 +107,28 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-interface">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Client<wbr>Request<span class="tsd-signature-symbol">(</span>clientId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, respond<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Function</span>, additionalData<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>PredefinedRPCError<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/99b339f/src/ClientRequest.ts#L4">ClientRequest.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/99b339f/src/Errors.ts#L158">Errors.ts:158</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates a ClientRequest object.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>clientId: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The unique ID of the client.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> respond: <span class="tsd-signature-type">Function</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>A function that will be called send the response to the client.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> additionalData: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>Any additonal data that will be needed to service the request (IP Address, authentication, etc.).</p>
-										</div>
-									</div>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> data: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_clientrequest_.clientrequest.html" class="tsd-signature-type">ClientRequest</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="additionaldata" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> additional<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">additional<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/99b339f/src/ClientRequest.ts#L11">ClientRequest.ts:11</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Any additonal data that will be needed to service the request (IP Address, authentication, etc.).</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="clientid" class="tsd-anchor"></a>
-					<h3>client<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">client<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/99b339f/src/ClientRequest.ts#L11">ClientRequest.ts:11</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The unique ID of the client.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="respond" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> respond</h3>
-					<div class="tsd-signature tsd-kind-icon">respond<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/99b339f/src/ClientRequest.ts#L11">ClientRequest.ts:11</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A function that will be called send the response to the client.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -212,10 +138,10 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_clientrequest_.html">"<wbr>Client<wbr>Request"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_errors_.html">"<wbr>Errors"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -252,27 +178,42 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_errors_.internalerror.html" class="tsd-kind-icon">Internal<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_errors_.invalidparams.html" class="tsd-kind-icon">Invalid<wbr>Params</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_errors_.invalidrequest.html" class="tsd-kind-icon">Invalid<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_errors_.methodnotfound.html" class="tsd-kind-icon">Method<wbr>Not<wbr>Found</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_errors_.parseerror.html" class="tsd-kind-icon">Parse<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_errors_.rpcerror.html" class="tsd-kind-icon">RPCError</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="../classes/_errors_.servererror.html" class="tsd-kind-icon">Server<wbr>Error</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_clientrequest_.clientrequest.html" class="tsd-kind-icon">Client<wbr>Request</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="_errors_.predefinedrpcerror.html" class="tsd-kind-icon">PredefinedRPCError</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_clientrequest_.clientrequest.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_clientrequest_.clientrequest.html#additionaldata" class="tsd-kind-icon">additional<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_clientrequest_.clientrequest.html#clientid" class="tsd-kind-icon">client<wbr>Id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_clientrequest_.clientrequest.html#respond" class="tsd-kind-icon">respond</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-interface">
+								<a href="_errors_.predefinedrpcerror.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+						<a href="../modules/_errors_.html#rpcerrorsbycode" class="tsd-kind-icon">RPCErrors<wbr>ByCode</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

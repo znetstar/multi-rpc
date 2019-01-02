@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.2.0] - 2019-01-02
+### Added
+- Adds an interface for a transport that reconnects to the server automatically.
+
 ## [2.1.0] - 2018-12-22
 ### Added
 - Errors are now deserialized to the appropriate type (e.g. error with code -32603 becomes an internal error). 

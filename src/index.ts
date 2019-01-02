@@ -8,3 +8,4 @@ export { default as PersistentTransport, NonExistantClient, TransportInClientSta
 export { default as ClientRequest } from "./ClientRequest";
 export { default as Serializer } from "./Serializer";
 export { default as ServerSideTransport } from "./ServerSideTransport";
+export { default as ReconnectingTransport } from "./ReconnectingTransport";
