@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.2.1] - 2019-01-02
+### Added
+- Adds a function to event for reconnect.
+
 ## [2.2.0] - 2019-01-02
 ### Added
 - Adds an interface for a transport that reconnects to the server automatically.

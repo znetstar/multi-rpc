@@ -3,9 +3,16 @@
  */
 export default interface ReconnectingTransport {
     /**
-     * Begin listening for incoming connections.
+     * Attempts to reconnect to the server.
      * 
      * @async 
      */
     reconnect(): Promise<void>;
+
+    /**
+     * Event listener that will reconnect to the server upon disconnect;
+     * 
+     * @async 
+     */
+    reconnectOnDisconnect(): Promise<void>;
 }
