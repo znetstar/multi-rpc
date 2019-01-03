@@ -74,6 +74,7 @@ export default abstract class PersistentTransport extends Transport {
             this.on("connect", this.reconnectOnDisconnectHandler);
         } else {
             this.off("connect", this.reconnectOnDisconnectHandler);
+            this.off("disconnect", this.reconnect);
         }
     }
 
