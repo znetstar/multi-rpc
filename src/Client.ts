@@ -14,7 +14,7 @@ export default class Client extends EventEmitter2 {
      * Creates a client.
      * @param transport - The transport that should be used to communicate with the server.
      */
-    constructor(protected transport: Transport) {
+    constructor(public transport: Transport) {
         super();
 
         /**
