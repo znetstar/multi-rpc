@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-http-client-side-transport",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "HTTP client-side transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/znetstar/multi-rpc-http-client-side-transport#readme",
   "dependencies": {
     "cross-fetch": "^3.0.0",
-    "multi-rpc-common": "^2.1.0"
+    "multi-rpc-common": "^2.2.6"
   },
   "devDependencies": {
     "chai": "^4.2.0",
