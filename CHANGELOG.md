@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.5.2] - 2018-01-02
+## [1.5.3] - 2019-01-02
 ### Changed
 - Updates multi-rpc-common.
 
