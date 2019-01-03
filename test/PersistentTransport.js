@@ -243,7 +243,7 @@ describe("PersistentTransport", function () {
             transport.reconnect = async function () {
                 transport.reconnect = () => {
                     d2 = new Date();
-                    assert.isAbove((d2 - d1), delayTime)
+                    assert.isAbove((d2 - d1), (delayTime - 1));
                     done();
                 };
                 origRecon();

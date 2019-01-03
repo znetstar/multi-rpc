@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.2.4] - 2019-01-02
+## [2.2.5] - 2019-01-02
 ### Added
 - Merges ReconnectInterface into PersistentTransport.
 
