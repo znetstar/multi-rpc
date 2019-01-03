@@ -89,12 +89,36 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_reconnectingtransport_.reconnectingtransport.html#reconnectondisconnect" class="tsd-kind-icon">reconnect<wbr>OnDisconnect</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_reconnectingtransport_.reconnectingtransport.html#reconnect" class="tsd-kind-icon">reconnect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_reconnectingtransport_.reconnectingtransport.html#reconnectondisconnect" class="tsd-kind-icon">reconnect<wbr>OnDisconnect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="_reconnectingtransport_.reconnectingtransport.html#reconnectondisconnecthandler" class="tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler</a></li>
 							</ul>
 						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="reconnectondisconnect" class="tsd-anchor"></a>
+					<h3>reconnect<wbr>OnDisconnect</h3>
+					<div class="tsd-signature tsd-kind-icon">reconnect<wbr>OnDisconnect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/ReconnectingTransport.ts#L21">ReconnectingTransport.ts:21</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates wheather the transport will attempt to automatically reconnect.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -110,7 +134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/519ee86/src/ReconnectingTransport.ts#L10">ReconnectingTransport.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/ReconnectingTransport.ts#L10">ReconnectingTransport.ts:10</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -127,28 +151,24 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="reconnectondisconnect" class="tsd-anchor"></a>
-					<h3>reconnect<wbr>OnDisconnect</h3>
+					<a name="reconnectondisconnecthandler" class="tsd-anchor"></a>
+					<h3>reconnect<wbr>OnDisconnect<wbr>Handler</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">reconnect<wbr>OnDisconnect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/519ee86/src/ReconnectingTransport.ts#L17">ReconnectingTransport.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/ReconnectingTransport.ts#L16">ReconnectingTransport.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Event listener that will reconnect to the server upon disconnect;</p>
 								</div>
-								<dl class="tsd-comment-tags">
-									<dt>async</dt>
-									<dd></dd>
-								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -205,11 +225,14 @@
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="_reconnectingtransport_.reconnectingtransport.html" class="tsd-kind-icon">Reconnecting<wbr>Transport</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_reconnectingtransport_.reconnectingtransport.html#reconnectondisconnect" class="tsd-kind-icon">reconnect<wbr>OnDisconnect</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="_reconnectingtransport_.reconnectingtransport.html#reconnect" class="tsd-kind-icon">reconnect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="_reconnectingtransport_.reconnectingtransport.html#reconnectondisconnect" class="tsd-kind-icon">reconnect<wbr>OnDisconnect</a>
+								<a href="_reconnectingtransport_.reconnectingtransport.html#reconnectondisconnecthandler" class="tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler</a>
 							</li>
 						</ul>
 					</li>

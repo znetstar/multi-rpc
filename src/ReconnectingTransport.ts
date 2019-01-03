@@ -12,7 +12,11 @@ export default interface ReconnectingTransport {
     /**
      * Event listener that will reconnect to the server upon disconnect;
      * 
-     * @async 
      */
-    reconnectOnDisconnect(): Promise<void>;
+    reconnectOnDisconnectHandler(): void;
+
+    /**
+     * Indicates wheather the transport will attempt to automatically reconnect.
+     */
+    reconnectOnDisconnect: boolean;
 }

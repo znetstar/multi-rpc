@@ -1,8 +1,8 @@
 # Changelog
 
-## [2.2.1] - 2019-01-02
+## [2.2.2] - 2019-01-02
 ### Added
-- Adds a function to event for reconnect.
+- Reconnect interface now has a property which can be used to turn off/on reconnection.
 
 ## [2.2.0] - 2019-01-02
 ### Added
