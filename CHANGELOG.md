@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.1] - 2018-12-23
+### Added
+- Updates multi-rpc-common.
+
 ## [1.1.0] - 2018-12-23
 ### Added
 - Attempts to reconnect to server upon disconnect.

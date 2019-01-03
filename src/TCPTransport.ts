@@ -1,5 +1,5 @@
 import { Socket, Server } from "net";
-import { PersistentTransport, TransportInServerState, Serializer, Message, Response, ClientRequest, ServerSideTransport} from "multi-rpc-common";
+import { PersistentTransport, TransportInServerState, Serializer, Message, Response, ClientRequest, ServerSideTransport } from "multi-rpc-common";
 
 /**
  * A transport uses TCP as its protocol.
@@ -33,7 +33,10 @@ export default class TCPTransport extends PersistentTransport implements ServerS
      */
     public reconnectDelay: number = 500;
     
-    private connected: boolean = false;
+    /**
+     * Indicates wheather the transport is connected to the server.
+     */
+    public connected: boolean = false;
 
     /**
      * Creates a TCP transport that will listen on or connect to a port and host.
@@ -70,8 +73,8 @@ export default class TCPTransport extends PersistentTransport implements ServerS
      * 
      * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
-    constructor(serializer: Serializer,  portPathOrServer: string|number|Server, protected host?: string) {
-        super(serializer);
+    constructor(serializer: Serializer,  portPathOrServer: string|number|Server, protected host?: string, reconnect: boolean = true) {
+        super(serializer, reconnect);
         if (portPathOrServer instanceof Server){
             this.server = portPathOrServer;
             this.setupTCPServer();
@@ -83,7 +86,6 @@ export default class TCPTransport extends PersistentTransport implements ServerS
         if (typeof(portPathOrServer) === "number") 
             this.port = portPathOrServer;
 
-        this.on("disconnect", this.reconnect);
         this.on("connect", () => {
             this.connected = true;
         });
@@ -93,7 +95,7 @@ export default class TCPTransport extends PersistentTransport implements ServerS
         });
     }
 
-    /**
+    /*
      * Connects to the server using the provided details.
      * @async
      * @throws {TransportInServerState} - If the transport is already acting as a server.
@@ -235,30 +237,6 @@ export default class TCPTransport extends PersistentTransport implements ServerS
     }
 
     /**
-     * Disables reconnection upon disconnect.
-     */
-    public disableReconnect(): void {
-        this.off("disconnect", this.reconnect);
-    }
-
-    /**
-     * Reconnects to the server.
-     * @async
-     */
-    public async reconnect(): Promise<void> {
-        this.emit("reconnectAttempt");
-        try {
-            await this.connect();
-            if (this.connected) {
-                this.emit("reconnected");
-            }
-        } catch (error) {
-            setTimeout(() => {
-                this.reconnect();
-            }, this.reconnectDelay);
-        }
-    }
-    /**
      * Closes the TCP connection.
      * @async
      */
@@ -269,7 +247,7 @@ export default class TCPTransport extends PersistentTransport implements ServerS
                     resolve();
                 });
             } else if (this.connection) {
-                this.disableReconnect();
+                this.reconnectOnDisconnect = false;
                 this.connection.end();
                 resolve();
             }

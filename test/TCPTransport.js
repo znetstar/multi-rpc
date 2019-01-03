@@ -22,7 +22,7 @@ describe("TCPTransport", function () {
             const serializer = new JSONSerializer();
             const port = randomPort();
             const transport = new TCPTransport(serializer, port);
-            transport.disableReconnect();
+            transport.reconnectOnDisconnect = false;
             transport.connections = new Map();
             let fn = () => {};
             try {
@@ -38,7 +38,7 @@ describe("TCPTransport", function () {
             const serializer = new JSONSerializer();
             const port = randomPort();
             const transport = new TCPTransport(serializer, port);
-            transport.disableReconnect();
+            transport.reconnectOnDisconnect = false;
 
             let fn = () => {};
             try {
@@ -54,7 +54,7 @@ describe("TCPTransport", function () {
             const serializer = new JSONSerializer();
             const port = await getPort();
             const transport = new TCPTransport(serializer, port);
-            transport.disableReconnect();
+            transport.reconnectOnDisconnect = false;
 
             const p = new Promise((resolve, reject) => {
                 const server = new Server((socket) => {
@@ -111,7 +111,6 @@ describe("TCPTransport", function () {
             const serializer = new JSONSerializer();
             const port = await getPort();
             const transport = new TCPTransport(serializer, randomPort());
-
 
             let socket = new Socket();
 
