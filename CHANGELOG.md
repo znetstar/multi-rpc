@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.3] - 2018-01-02 
+## Changes
+- Update client side transport.
+
 ## [1.2.2] - 2018-12-22 
 ## Changes
 - Update client side transport.
