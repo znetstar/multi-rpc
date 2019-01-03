@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.5.0] - 2018-12-24
+## [1.5.1] - 2018-12-24
 ### Changed
 - Fixes a bug with reconnection.
 
