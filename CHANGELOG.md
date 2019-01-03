@@ -1,4 +1,9 @@
+
 # Changelog
+
+## [2.2.6] - 2019-01-02
+### Added
+- Adds missing event listener.
 
 ## [2.2.5] - 2019-01-02
 ### Added

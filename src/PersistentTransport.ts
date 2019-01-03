@@ -81,8 +81,10 @@ export default abstract class PersistentTransport extends Transport {
     constructor(serializer: Serializer, reconnect: boolean = true) {
         super(serializer);
 
-        if (reconnect)
+        if (reconnect) {
             this.on("connect", this.reconnectOnDisconnectHandler);
+            this.reconnectOnDisconnectHandler();
+        }
     }
 
     /**
