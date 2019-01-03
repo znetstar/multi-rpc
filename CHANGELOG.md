@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.2] - 2018-01-02
+### Changed
+- Updates multi-rpc-common.
+
 ## [1.5.1] - 2018-12-24
 ### Changed
 - Fixes a bug with reconnection.
