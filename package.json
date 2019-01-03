@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-websocket-client-side-transport",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "WebSocket client-side transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   "dependencies": {
     "@types/websocket": "0.0.40",
     "lodash": "^4.17.11",
-    "multi-rpc-common": "^2.2.5",
+    "multi-rpc-common": "^2.2.6",
     "websocket": "^1.0.28"
   },
   "devDependencies": {
