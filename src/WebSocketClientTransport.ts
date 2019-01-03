@@ -1,4 +1,4 @@
-import { Serializer, Message, PersistentTransport, TransportInServerState, ReconnectingTransport } from "multi-rpc-common";
+import { Serializer, Message, PersistentTransport, TransportInServerState } from "multi-rpc-common";
 import { w3cwebsocket as WebSocket } from "websocket";
 
 export class NoUrlPresent extends Error {
@@ -16,7 +16,7 @@ export class CouldNotParseData extends Error {
 /**
  * A client-side transport that uses HTTP as its protocol.
  */
-export default class WebSocketClientTransport extends PersistentTransport implements ReconnectingTransport {
+export default class WebSocketClientTransport extends PersistentTransport {
     /**
      * The connection to the server.
      */
@@ -42,30 +42,10 @@ export default class WebSocketClientTransport extends PersistentTransport implem
      * @param reconnect - Reconnects to the server upon disconnect.
      * @param reconnectDelay - Amount of time to wait between reconnects.
      */
-    constructor(protected serializer: Serializer,  protected url?: string, reconnect: boolean = true, public reconnectDelay: number = 1000) {
-        super(serializer);
-
-        this.once("disconnect", this.reconnect);
-        
-        if (reconnect)
-            this.on("connect", this.reconnectOnDisconnectHandler);
+    constructor(protected serializer: Serializer,  protected url?: string, reconnect: boolean = true, public reconnectDelay: number = 500) {
+        super(serializer, reconnect);
     }
 
-    public reconnectOnDisconnectHandler() {
-        this.once("disconnect", this.reconnect);
-    }
-
-    public get reconnectOnDisconnect(): boolean {
-        return Boolean((<any>this)._events['connect'].filter((func: Function) => func === this.reconnectOnDisconnectHandler).length);
-    }
-
-    public set reconnectOnDisconnect(value: boolean) {
-        if (value) {
-            this.on("connect", this.reconnectOnDisconnectHandler);
-        } else {
-            this.off("connect", this.reconnectOnDisconnectHandler);
-        }
-    }
 
     /**
      * Connects to the WebSocket Server using the given URL.
@@ -144,38 +124,11 @@ export default class WebSocketClientTransport extends PersistentTransport implem
     }
 
     /**
-     * Attempts to reconnect.
-     * @ignore
-     */
-    public async reconnect(): Promise<void> {
-        this.emit("reconnectAttempt");
-
-        this.connection = null;
-        
-        if (this.connected) {
-            return;
-        }
-
-        try {
-            await this.connect();
-            if (this.connected) {
-                this.emit("reconnected");
-            }
-        } catch (error) {
-            setTimeout(() => {
-                this.reconnect();
-            }, this.reconnectDelay);
-        }
-    }
-
-
-    /**
      * Closes the websocket connection
      * @async
      */
     public async close(): Promise<void> {
         this.reconnectOnDisconnect = false;
-        this.off("disconnect", this.reconnect);
         this.connection.close();
     }
 }
