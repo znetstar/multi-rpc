@@ -1,6 +1,10 @@
 # Changelog
 
-## [1.0.2] - 2018-01-02
+## [1.0.3] - 2019-01-02
+### Changes
+- Updates multi-rpc-common
+
+## [1.0.2] - 2019-01-02
 ### Changes
 - Makes transport public
 
