@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.6] - 2018-01-02
+### Added
+- Updates multi-rpc-common.
+
 ## [1.2.5] - 2018-01-02
 ### Added
 - Fixes an error that occurs during reconnection.
