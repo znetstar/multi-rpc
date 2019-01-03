@@ -154,4 +154,104 @@ describe("PersistentTransport", function () {
             }
         });
     });
+
+    describe("#reconnectOnDisconnectHandler()", function () {
+        it("Persistent transport should call #reconnect upon ⚡disconnect after ⚡connect has fired", function (done) {
+            const serializer = new JSONSerializer();
+            const transport = new PersistentTransport(serializer);
+            
+            transport.once("reconnectAttempt", done);
+            transport.emit("connect");
+            transport.emit("disconnect");
+        });
+    });
+
+    describe("#reconnectOnDisconnect", function () {
+        it("should be true when the ⚡reconnectOnDisconnectHandler has been assigned to ⚡connect", function () {
+            const serializer = new JSONSerializer();
+            const transport = new PersistentTransport(serializer, true);
+
+            transport.on("connect", transport.reconnectOnDisconnectHandler);
+            assert.isTrue(transport.reconnectOnDisconnect);
+        });
+
+        it("should remove the ⚡reconnectOnDisconnectHandler from ⚡connect", function () {
+            const serializer = new JSONSerializer();
+            const transport = new PersistentTransport(serializer, false);
+
+            transport.removeAllListeners("connect");
+            transport.on("connect", transport.reconnectOnDisconnectHandler);
+            transport.reconnectOnDisconnect = false;
+
+            assert.equal(transport.listeners("connect").length, 0);
+        });
+
+        it("should add the ⚡reconnectOnDisconnectHandler to ⚡connect", function () {
+            const serializer = new JSONSerializer();
+            const transport = new PersistentTransport(serializer, false);
+
+            transport.removeAllListeners("connect");
+            transport.reconnectOnDisconnect = true;
+
+            assert.equal(transport.listeners("connect").length, 1);
+        });
+    });
+
+    describe("#reconnect()", function () {
+        it("should set the connection to null", function () {
+            const serializer = new JSONSerializer();
+            const transport = new PersistentTransport(serializer, true);
+            transport.connection = chance.string();
+            transport.reconnect();
+
+            assert.isNull(transport.connection);
+        });
+        
+        it("should emit reconnectAttempt", function (done) {
+            const serializer = new JSONSerializer();
+            const transport = new PersistentTransport(serializer, true);
+
+            transport.once('reconnectAttempt', done);
+            transport.reconnect();
+        });
+
+        it("should call connect upon reconnect", function (done) {
+            const serializer = new JSONSerializer();
+            const transport = new PersistentTransport(serializer, true);
+
+            transport.once('reconnectAttempt', done);
+            transport.connect = async () => {};
+            transport.reconnect();
+        });
+
+        it("should call connect after a delay if inital connect is unsucessful", function (done) {
+            this.timeout(10000);
+            const serializer = new JSONSerializer();
+            const transport = new PersistentTransport(serializer, true);
+
+            const delayTime = 1000;
+
+            transport.reconnectDelay = delayTime;
+            transport.connected = false;
+            let d1, d2;
+
+            transport.connect = async () => {
+                throw new Error(chance.string());
+            };
+            
+            let origRecon = transport.reconnect.bind(transport);
+            transport.reconnect = async function () {
+                transport.reconnect = () => {
+                    d2 = new Date();
+                    assert.isAbove((d2 - d1), delayTime)
+                    done();
+                };
+                origRecon();
+            }; 
+
+            d1 = new Date();
+
+            transport.reconnect();
+        });
+    });
 });

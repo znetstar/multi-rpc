@@ -93,10 +93,10 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_persistenttransport_.persistenttransport.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -104,7 +104,15 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#connection" class="tsd-kind-icon">connection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#connections" class="tsd-kind-icon">connections</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#reconnectdelay" class="tsd-kind-icon">reconnect<wbr>Delay</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_persistenttransport_.persistenttransport.html#serializer" class="tsd-kind-icon">serializer</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#connected" class="tsd-kind-icon">connected</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#reconnectondisconnect" class="tsd-kind-icon">reconnect<wbr>OnDisconnect</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -130,6 +138,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#prependmany" class="tsd-kind-icon">prepend<wbr>Many</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_persistenttransport_.persistenttransport.html#receive" class="tsd-kind-icon">receive</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#reconnect" class="tsd-kind-icon">reconnect</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#reconnectondisconnecthandler" class="tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_persistenttransport_.persistenttransport.html#removeconnection" class="tsd-kind-icon">remove<wbr>Connection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_persistenttransport_.persistenttransport.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
@@ -143,37 +153,29 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Persistent<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_persistenttransport_.persistenttransport.html" class="tsd-signature-type">PersistentTransport</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Persistent<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a>, reconnect<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_persistenttransport_.persistenttransport.html" class="tsd-signature-type">PersistentTransport</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
-								<p>Overrides EventEmitter2.__constructor</p>
+								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/Transport.ts#L15">Transport.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L78">PersistentTransport.ts:78</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates a Transport object.</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>serializer: <a href="_serializer_.serializer.html" class="tsd-signature-type">Serializer</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The serializer that will be used to serialize and deserialize requests.</p>
-										</div>
-									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> reconnect: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_persistenttransport_.persistenttransport.html" class="tsd-signature-type">PersistentTransport</a></h4>
@@ -189,7 +191,7 @@
 					<div class="tsd-signature tsd-kind-icon">connection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L53">PersistentTransport.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L54">PersistentTransport.ts:54</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -204,13 +206,28 @@
 					<div class="tsd-signature tsd-kind-icon">connections<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L48">PersistentTransport.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L49">PersistentTransport.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>A map that contains all current connections to the server using this transport.
 							The key is the id assigned to the connection and the value is the connection itself.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="reconnectdelay" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> reconnect<wbr>Delay</h3>
+					<div class="tsd-signature tsd-kind-icon">reconnect<wbr>Delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L61">PersistentTransport.ts:61</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Amount of time to wait between reconnects in milliseconds.</p>
 						</div>
 					</div>
 				</section>
@@ -221,7 +238,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#serializer">serializer</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/Transport.ts#L20">Transport.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/Transport.ts#L20">Transport.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -229,6 +246,68 @@
 							<p>The serializer that will be used to serialize and deserialize requests.</p>
 						</div>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="connected" class="tsd-anchor"></a>
+					<h3>connected</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> connected<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L56">PersistentTransport.ts:56</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="reconnectondisconnect" class="tsd-anchor"></a>
+					<h3>reconnect<wbr>OnDisconnect</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> reconnectOnDisconnect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> reconnectOnDisconnect<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L66">PersistentTransport.ts:66</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Can turn toggle reconnecting after disconnection.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L72">PersistentTransport.ts:72</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Can turn toggle reconnecting after disconnection.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -243,7 +322,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L60">PersistentTransport.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L92">PersistentTransport.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -307,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L128">PersistentTransport.ts:128</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L189">PersistentTransport.ts:189</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -333,7 +412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L122">PersistentTransport.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L179">PersistentTransport.ts:179</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -744,7 +823,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#receive">receive</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/Transport.ts#L50">Transport.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/Transport.ts#L50">Transport.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -767,6 +846,49 @@
 									</div>
 								</li>
 							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="reconnect" class="tsd-anchor"></a>
+					<h3>reconnect</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">reconnect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L156">PersistentTransport.ts:156</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Attempts to reconnect to the server.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>async</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="reconnectondisconnecthandler" class="tsd-anchor"></a>
+					<h3>reconnect<wbr>OnDisconnect<wbr>Handler</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L181">PersistentTransport.ts:181</a></li>
+								</ul>
+							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -805,7 +927,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L69">PersistentTransport.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L101">PersistentTransport.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -864,7 +986,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#send">send</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L106">PersistentTransport.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L139">PersistentTransport.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -902,7 +1024,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L98">PersistentTransport.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L131">PersistentTransport.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -943,7 +1065,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/PersistentTransport.ts#L81">PersistentTransport.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/PersistentTransport.ts#L114">PersistentTransport.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1015,7 +1137,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_transport_.transport.html">Transport</a>.<a href="_transport_.transport.html#uniqueid">uniqueId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/9d12b80/src/Transport.ts#L31">Transport.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-common/blob/5b3bd50/src/Transport.ts#L31">Transport.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1052,9 +1174,6 @@
 						<a href="../modules/_persistenttransport_.html">"<wbr>Persistent<wbr>Transport"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_reconnectingtransport_.html">"<wbr>Reconnecting<wbr>Transport"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
 						<a href="../modules/_request_.html">"<wbr>Request"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -1084,7 +1203,7 @@
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
 						<a href="_persistenttransport_.persistenttransport.html" class="tsd-kind-icon">Persistent<wbr>Transport</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_persistenttransport_.persistenttransport.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -1093,8 +1212,17 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_persistenttransport_.persistenttransport.html#connections" class="tsd-kind-icon">connections</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#reconnectdelay" class="tsd-kind-icon">reconnect<wbr>Delay</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_persistenttransport_.persistenttransport.html#serializer" class="tsd-kind-icon">serializer</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#connected" class="tsd-kind-icon">connected</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#reconnectondisconnect" class="tsd-kind-icon">reconnect<wbr>OnDisconnect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_persistenttransport_.persistenttransport.html#addconnection" class="tsd-kind-icon">add<wbr>Connection</a>
@@ -1155,6 +1283,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_persistenttransport_.persistenttransport.html#receive" class="tsd-kind-icon">receive</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#reconnect" class="tsd-kind-icon">reconnect</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_persistenttransport_.persistenttransport.html#reconnectondisconnecthandler" class="tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_persistenttransport_.persistenttransport.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>

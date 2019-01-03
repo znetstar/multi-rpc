@@ -1,5 +1,6 @@
 import Transport from "./Transport";
 import Message from "./Message";
+import Serializer from "./Serializer";
 
 /**
  * An error that occurs when the server attempts to send a notification to a client that doesn't exist.
@@ -52,6 +53,37 @@ export default abstract class PersistentTransport extends Transport {
      */
     public abstract connection: any;
 
+    public abstract get connected(): boolean;
+
+    /**
+     * Amount of time to wait between reconnects in milliseconds.
+     */
+    public abstract reconnectDelay: number;
+
+    /**
+     * Can turn toggle reconnecting after disconnection.
+     */
+    public get reconnectOnDisconnect(): boolean {
+        return Boolean(
+            this.listeners("connect").filter((func: Function) => func === this.reconnectOnDisconnectHandler).length
+        );
+    }
+
+    public set reconnectOnDisconnect(value: boolean) {
+        if (value) {
+            this.on("connect", this.reconnectOnDisconnectHandler);
+        } else {
+            this.off("connect", this.reconnectOnDisconnectHandler);
+        }
+    }
+
+    constructor(serializer: Serializer, reconnect: boolean = true) {
+        super(serializer);
+
+        if (reconnect)
+            this.on("connect", this.reconnectOnDisconnectHandler);
+    }
+
     /**
      * Adds a connection to the map of connections.
      * @param connection - The connection to the server.
@@ -69,6 +101,7 @@ export default abstract class PersistentTransport extends Transport {
     public removeConnection(id: any) {
         this.connections.delete(id);
     }
+
 
     /**
      * Sends a message to a client by its ID.
@@ -114,12 +147,40 @@ export default abstract class PersistentTransport extends Transport {
         await this.sendConnection(this.connection, message);
     }
 
+
+    /**
+     * Attempts to reconnect to the server.
+     * 
+     * @async 
+     */
+    public async reconnect(): Promise<void> {
+        if (this.connected) {
+            return;
+        }
+
+        this.connection = null;
+        this.emit("reconnectAttempt");
+
+        try {
+            await this.connect();
+            this.emit("reconnected");
+        } catch (error) {
+            setTimeout(() => {
+                this.reconnect();
+            }, this.reconnectDelay);
+        }
+    }
+
     /**
      * Initiates a connection to the server.
      * @returns - Promise resolves when connected
      * @async
      */
     public abstract connect(): Promise<any>;
+
+    public reconnectOnDisconnectHandler() {
+        this.once("disconnect", this.reconnect);
+    }
 
     /**
      * Closes the connection.

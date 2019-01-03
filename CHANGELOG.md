@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.2.3] - 2019-01-02
+### Added
+- Merges ReconnectInterface into PersistentTransport.
+
 ## [2.2.2] - 2019-01-02
 ### Added
 - Reconnect interface now has a property which can be used to turn off/on reconnection.
