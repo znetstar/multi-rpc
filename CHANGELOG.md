@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.4] - 2019-01-03
+### Changed
+- Updates websocket transport.
+
 ## [1.5.3] - 2019-01-02
 ### Changed
 - Updates multi-rpc-common.
