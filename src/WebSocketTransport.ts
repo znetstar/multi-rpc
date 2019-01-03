@@ -16,7 +16,7 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
     /**
      * The WebSocket server.
      */
-    protected server: WebSocketServer;
+    public server: WebSocketServer;
 
     /**
      * Port number of the server to listen on.
@@ -26,7 +26,7 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
     /**
      * The HTTP(S) Server underlying the WebSocket Server.
      */
-    protected httpServer?: HTTPServer|HTTPSServer;
+    public httpServer?: HTTPServer|HTTPSServer;
 
     /**
      * The URL of the WebSocket server to connect to or the IPC path to listen on.

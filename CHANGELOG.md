@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.6] - 2018-01-03
+## Changes
+- Make http and websocket servers public.
+
 ## [1.2.5] - 2018-01-02 
 ## Changes
 - Update client side transport.
