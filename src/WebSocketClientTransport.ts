@@ -28,16 +28,6 @@ export default class WebSocketClientTransport extends PersistentTransport implem
     public connections: Map<any, any>;
 
     /**
-     * Amount of time to wait between reconnects.
-     */
-    public reconnectDelay: number = 500;
-
-    /**
-     * Messages that will be sent to the server when a connection has been established.
-     */
-    private messageQueue: Function[] = [];
-
-    /**
      * Is true when the client is connected.
      */
     public get connected(): boolean {
@@ -49,11 +39,32 @@ export default class WebSocketClientTransport extends PersistentTransport implem
      * Creates a WebSocket transport that connects to a server at a specified url.
      * @param serializer - The serializer to use for encoding/decoding messages.
      * @param url - Url of the server to connect to (e.g. "ws://localhost").
+     * @param reconnect - Reconnects to the server upon disconnect.
+     * @param reconnectDelay - Amount of time to wait between reconnects.
      */
-    constructor(protected serializer: Serializer,  protected url?: string) {
+    constructor(protected serializer: Serializer,  protected url?: string, reconnect: boolean = true, public reconnectDelay: number = 1000) {
         super(serializer);
 
-        this.on("disconnect", this.reconnect);
+        this.once("disconnect", this.reconnect);
+        
+        if (reconnect)
+            this.on("connect", this.reconnectOnDisconnectHandler);
+    }
+
+    public reconnectOnDisconnectHandler() {
+        this.once("disconnect", this.reconnect);
+    }
+
+    public get reconnectOnDisconnect(): boolean {
+        return Boolean((<any>this)._events['connect'].filter((func: Function) => func === this.reconnectOnDisconnectHandler).length);
+    }
+
+    public set reconnectOnDisconnect(value: boolean) {
+        if (value) {
+            this.on("connect", this.reconnectOnDisconnectHandler);
+        } else {
+            this.off("connect", this.reconnectOnDisconnectHandler);
+        }
     }
 
     /**
@@ -72,7 +83,7 @@ export default class WebSocketClientTransport extends PersistentTransport implem
         this.connection = new WebSocket(this.url);
    
         this.connection.onclose = () => {
-            this.connection.onclose = void(0);
+            this.connection = null;
             this.emit("disconnect");
         };
 
@@ -157,19 +168,14 @@ export default class WebSocketClientTransport extends PersistentTransport implem
         }
     }
 
-    /**
-     * Prevents reconnecting after a disconnect.
-     */
-    public disableReconnect() {
-        this.off("disconnect", this.reconnect);
-    }
 
     /**
      * Closes the websocket connection
      * @async
      */
     public async close(): Promise<void> {
-        this.disableReconnect();
+        this.reconnectOnDisconnect = false;
+        this.off("disconnect", this.reconnect);
         this.connection.close();
     }
 }

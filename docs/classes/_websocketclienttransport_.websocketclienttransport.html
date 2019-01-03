@@ -89,6 +89,12 @@
 					</li>
 				</ul>
 			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">ReconnectingTransport</span></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -104,7 +110,6 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_websocketclienttransport_.websocketclienttransport.html#connection" class="tsd-kind-icon">connection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_websocketclienttransport_.websocketclienttransport.html#connections" class="tsd-kind-icon">connections</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_websocketclienttransport_.websocketclienttransport.html#messagequeue" class="tsd-kind-icon">message<wbr>Queue</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_websocketclienttransport_.websocketclienttransport.html#reconnectdelay" class="tsd-kind-icon">reconnect<wbr>Delay</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="_websocketclienttransport_.websocketclienttransport.html#serializer" class="tsd-kind-icon">serializer</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="_websocketclienttransport_.websocketclienttransport.html#url" class="tsd-kind-icon">url</a></li>
@@ -114,6 +119,7 @@
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_websocketclienttransport_.websocketclienttransport.html#connected" class="tsd-kind-icon">connected</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_websocketclienttransport_.websocketclienttransport.html#reconnectondisconnect" class="tsd-kind-icon">reconnect<wbr>OnDisconnect</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -123,7 +129,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_websocketclienttransport_.websocketclienttransport.html#close" class="tsd-kind-icon">close</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="_websocketclienttransport_.websocketclienttransport.html#connect" class="tsd-kind-icon">connect</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_websocketclienttransport_.websocketclienttransport.html#disablereconnect" class="tsd-kind-icon">disable<wbr>Reconnect</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#emit" class="tsd-kind-icon">emit</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#emitasync" class="tsd-kind-icon">emit<wbr>Async</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
@@ -140,6 +145,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#prependmany" class="tsd-kind-icon">prepend<wbr>Many</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="_websocketclienttransport_.websocketclienttransport.html#receive" class="tsd-kind-icon">receive</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_websocketclienttransport_.websocketclienttransport.html#reconnectondisconnecthandler" class="tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#removeconnection" class="tsd-kind-icon">remove<wbr>Connection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_websocketclienttransport_.websocketclienttransport.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
@@ -159,14 +165,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Client<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Serializer</span>, url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_websocketclienttransport_.websocketclienttransport.html" class="tsd-signature-type">WebSocketClientTransport</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Web<wbr>Socket<wbr>Client<wbr>Transport<span class="tsd-signature-symbol">(</span>serializer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Serializer</span>, url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, reconnect<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, reconnectDelay<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_websocketclienttransport_.websocketclienttransport.html" class="tsd-signature-type">WebSocketClientTransport</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides Transport.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L45">WebSocketClientTransport.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L35">WebSocketClientTransport.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -192,6 +198,22 @@
 										</div>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> reconnect: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Reconnects to the server upon disconnect.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> reconnectDelay: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1000</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Amount of time to wait between reconnects.</p>
+										</div>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_websocketclienttransport_.websocketclienttransport.html" class="tsd-signature-type">WebSocketClientTransport</a></h4>
 						</li>
@@ -207,7 +229,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides PersistentTransport.connection</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L23">WebSocketClientTransport.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L23">WebSocketClientTransport.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -223,7 +245,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides PersistentTransport.connections</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L28">WebSocketClientTransport.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L28">WebSocketClientTransport.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -232,28 +254,13 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="messagequeue" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> message<wbr>Queue</h3>
-					<div class="tsd-signature tsd-kind-icon">message<wbr>Queue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L38">WebSocketClientTransport.ts:38</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Messages that will be sent to the server when a connection has been established.</p>
-						</div>
-					</div>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="reconnectdelay" class="tsd-anchor"></a>
 					<h3>reconnect<wbr>Delay</h3>
-					<div class="tsd-signature tsd-kind-icon">reconnect<wbr>Delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;500</span></div>
+					<div class="tsd-signature tsd-kind-icon">reconnect<wbr>Delay<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L33">WebSocketClientTransport.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L45">WebSocketClientTransport.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -269,7 +276,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides Transport.serializer</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L53">WebSocketClientTransport.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L45">WebSocketClientTransport.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -284,7 +291,7 @@
 					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L53">WebSocketClientTransport.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L45">WebSocketClientTransport.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -306,7 +313,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L43">WebSocketClientTransport.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L33">WebSocketClientTransport.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -315,6 +322,38 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="reconnectondisconnect" class="tsd-anchor"></a>
+					<h3>reconnect<wbr>OnDisconnect</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> reconnectOnDisconnect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> reconnectOnDisconnect<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L58">WebSocketClientTransport.ts:58</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L62">WebSocketClientTransport.ts:62</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -397,7 +436,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides PersistentTransport.close</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L169">WebSocketClientTransport.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L176">WebSocketClientTransport.ts:176</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -424,7 +463,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides PersistentTransport.connect</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L65">WebSocketClientTransport.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L76">WebSocketClientTransport.ts:76</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -445,28 +484,6 @@
 								</dl>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">WebSocket</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="disablereconnect" class="tsd-anchor"></a>
-					<h3>disable<wbr>Reconnect</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">disable<wbr>Reconnect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L161">WebSocketClientTransport.ts:161</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Prevents reconnecting after a disconnect.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -889,6 +906,23 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="reconnectondisconnecthandler" class="tsd-anchor"></a>
+					<h3>reconnect<wbr>OnDisconnect<wbr>Handler</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L54">WebSocketClientTransport.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="removealllisteners" class="tsd-anchor"></a>
 					<h3>remove<wbr>All<wbr>Listeners</h3>
@@ -983,7 +1017,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides PersistentTransport.send</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L115">WebSocketClientTransport.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L126">WebSocketClientTransport.ts:126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1015,7 +1049,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides PersistentTransport.sendConnection</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/6502881/src/WebSocketClientTransport.ts#L131">WebSocketClientTransport.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/znetstar/multi-rpc-websocket-client-side-transport/blob/8e74d3a/src/WebSocketClientTransport.ts#L142">WebSocketClientTransport.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1185,9 +1219,6 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#connections" class="tsd-kind-icon">connections</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_websocketclienttransport_.websocketclienttransport.html#messagequeue" class="tsd-kind-icon">message<wbr>Queue</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#reconnectdelay" class="tsd-kind-icon">reconnect<wbr>Delay</a>
 							</li>
@@ -1200,6 +1231,9 @@
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#connected" class="tsd-kind-icon">connected</a>
 							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="_websocketclienttransport_.websocketclienttransport.html#reconnectondisconnect" class="tsd-kind-icon">reconnect<wbr>OnDisconnect</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#addconnection" class="tsd-kind-icon">add<wbr>Connection</a>
 							</li>
@@ -1211,9 +1245,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#connect" class="tsd-kind-icon">connect</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_websocketclienttransport_.websocketclienttransport.html#disablereconnect" class="tsd-kind-icon">disable<wbr>Reconnect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#emit" class="tsd-kind-icon">emit</a>
@@ -1262,6 +1293,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#receive" class="tsd-kind-icon">receive</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_websocketclienttransport_.websocketclienttransport.html#reconnectondisconnecthandler" class="tsd-kind-icon">reconnect<wbr>OnDisconnect<wbr>Handler</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_websocketclienttransport_.websocketclienttransport.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>

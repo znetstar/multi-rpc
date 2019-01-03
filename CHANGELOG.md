@@ -1,8 +1,12 @@
 # Changelog
 
+## [1.2.5] - 2018-01-02
+### Added
+- Fixes an error that occurs during reconnection.
+
 ## [1.2.3] - 2018-12-24
 ### Added
-- Fixes a buffer that occurs when client is used in node.js.
+- Fixes a bug that occurs when client is used in node.js.
 
 ## [1.2.1] - 2018-12-23
 ### Added

@@ -19,8 +19,7 @@ describe("WebSocketClientTransport", function () {
         it("Should throw TransportInServerState if the Transport is already in a server state", async function () {
             const serializer = new JSONSerializer();
             const port = randomPort();
-            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
-            transport.disableReconnect();
+            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`, false);
             transport.connections = new Map();
             let fn = () => {};
             try {
@@ -36,8 +35,7 @@ describe("WebSocketClientTransport", function () {
             this.timeout(5000);
             const serializer = new JSONSerializer();
             const port = randomPort();
-            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
-            transport.disableReconnect();
+            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`, false);
 
             let fn = () => {};
             try {
@@ -52,8 +50,7 @@ describe("WebSocketClientTransport", function () {
         it("Should successfully connect to a WebSocket server", async function () {
             const serializer = new JSONSerializer();
             const port = await getPort();
-            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
-            transport.disableReconnect();
+            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`, false);
 
             const httpServer = http.createServer((req, res) => { 
                 res.writeHead(404); res.end();  
@@ -143,7 +140,7 @@ describe("WebSocketClientTransport", function () {
             (async () => {
                 const serializer = new JSONSerializer();
                 const port = await getPort();
-                const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
+                const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`, false);
 
                 const httpServer = http.createServer((req, res) => { res.writeHead(404); res.end();  });
                 const wsServer = new server({ httpServer, autoAcceptConnections: false });
@@ -161,7 +158,7 @@ describe("WebSocketClientTransport", function () {
             this.timeout(10000);
             const serializer = new JSONSerializer();
             const port = await getPort();
-            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`);
+            const transport = new WebSocketClientTransport(serializer, `ws://127.0.0.1:${port}`, false);
 
             const httpServer = http.createServer((req, res) => { res.writeHead(404); res.end();  });
             const wsServer = new server({ httpServer, autoAcceptConnections: false });
