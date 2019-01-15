@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.5] - 2019-01-15
+### Changed
+- Updates tcp transport.
+
 ## [1.5.4] - 2019-01-03
 ### Changed
 - Updates websocket transport.
