@@ -224,7 +224,7 @@ export default class TCPTransport extends PersistentTransport implements ServerS
             this.server.once('error', listenError);
 
             const listenSuccess = () => {
-                this.server.off('error', listenError);
+                this.server.removeListener('error', listenError);
                 resolve();
             };
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.3] - 2019-1-15
+### Changes
+- Fixes bug with eventemitter.
+
 ## [1.1.2] - 2018-12-23
 ### Added
 - Updates multi-rpc-common.
