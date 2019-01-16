@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.6] - 2019-01-16
+### Changed
+- Updates multi-rpc-core.
+
 ## [1.5.5] - 2019-01-15
 ### Changed
 - Updates tcp transport.
