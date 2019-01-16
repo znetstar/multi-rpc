@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.4] - 2019-01-16
+### Changes
+- Removes error thrown if transport isn't persistent.
+
 ## [1.0.3] - 2019-01-02
 ### Changes
 - Updates multi-rpc-common

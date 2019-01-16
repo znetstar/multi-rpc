@@ -307,15 +307,18 @@ export default class Server extends EventEmitter2 {
      * @async
      */
     protected async invoke(request: Request, clientRequest?: ClientRequest): Promise<void> {
+        let response;
+
         try {
             const result = await this.executeMethod(request);
-            clientRequest.respond(new Response(request.id, result));
+            response = new Response(request.id, result);
         } catch (error) {
             if (error instanceof RPCError)
-                clientRequest.respond(new Response(request.id, error));
-            else {
-                clientRequest.respond(new Response(request.id, new InternalError(error)));
-            }
+                response = new Response(request.id, error);
+            else 
+                response = new Response(request.id, new InternalError(error));
+        } finally {
+            clientRequest.respond(response);
         }
     } 
 

@@ -36,12 +36,8 @@ export default class Client extends EventEmitter2 {
      * Connects to the server using the transport.
      * 
      * @async
-     * @throws {TransportIsNotPersistent} - If the transport is not persistent. 
      */
     public async connect(): Promise<void> {
-        if (!(this.transport instanceof PersistentTransport))
-            throw new TransportIsNotPersistent();
-        
         return await (<PersistentTransport>this.transport).connect();
     }
 

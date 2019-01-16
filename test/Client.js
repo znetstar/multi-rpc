@@ -33,20 +33,7 @@ describe("Client", function () {
     });
 
     describe("#connect()", function () {
-        it("Should throw TransportIsNotPersistant if connect is called on a non-persistant Transport", async function () {
-            const serializer = new JSONSerializer();
-            const transport = new Transport(serializer);
-            const client = new Client(transport);
 
-            let fn = () => { };
-            try {
-                await client.connect();
-            } catch (error) {
-                fn = () => { throw error; };
-            } finally {
-                assert.throws(fn, TransportIsNotPersistent);
-            }
-        });
     });
 
 

@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-core",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Client/Server classes used in multi-rpc",
   "main": "lib/index.js",
   "scripts": {
