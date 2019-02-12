@@ -36,7 +36,7 @@ Connections via persistent transports like WebSocket or TCP are kept alive and t
         return arg1 + arg2 + arg3;
     };
 
-    server.listen();
+    await server.listen();
 
     const result1 = await client.invoke("foo", [1,2,3]);
     const result2 = await client.invoke("foo", {
