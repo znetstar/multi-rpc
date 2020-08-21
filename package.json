@@ -2,6 +2,9 @@
   "name": "multi-rpc-http-client-side-transport",
   "version": "1.0.6",
   "description": "HTTP client-side transport for multi-rpc",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha --exit test/index.js",
