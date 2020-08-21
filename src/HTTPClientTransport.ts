@@ -47,7 +47,7 @@ export default class HTTPClientTransport extends Transport {
         });
     
         let data: Uint8Array;
-        if (resp.body)
+        if (resp.status === 200)
             data = new Uint8Array(await resp.arrayBuffer());
 
         if ((Math.trunc(resp.status) / 100 ) !== 2) {
