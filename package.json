@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-http-client-side-transport",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "HTTP client-side transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
