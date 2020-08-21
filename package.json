@@ -27,6 +27,7 @@
     "multi-rpc-common": "^2.2.6"
   },
   "devDependencies": {
+    "@types/node": "^14.6.0",
     "chai": "^4.2.0",
     "chance": "^1.1.6",
     "get-port": "^5.1.1",
