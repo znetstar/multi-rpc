@@ -1,4 +1,4 @@
-const msgpack = require("msgpack-lite");
+const msgpack = require("@msgpack/msgpack");
 const { assert } = require("chai");
 const Chance = require('chance');
 
