@@ -1,4 +1,4 @@
-import * as msgpack from "msgpack-lite";
+import * as msgpack from "@msgpack/msgpack";
 import { Serializer, Message, ParseError } from "multi-rpc-common";
 
 /**

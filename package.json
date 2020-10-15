@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-msgpack-serializer",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "MsgPack Serializer for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -20,20 +20,19 @@
   },
   "homepage": "https://github.com/znetstar/multi-rpc-msgpack-serializer#readme",
   "dependencies": {
-    "@types/msgpack-lite": "^0.1.6",
-    "msgpack-lite": "^0.1.26",
+    "@msgpack/msgpack": "^2.2.1",
     "multi-rpc-common": "^2.2.6"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "chance": "^1.0.18",
-    "grunt": "^1.0.3",
+    "chance": "^1.1.7",
+    "grunt": "^1.3.0",
     "grunt-contrib-clean": "^2.0.0",
-    "grunt-ts": "^6.0.0-beta.21",
+    "grunt-ts": "^6.0.0-beta.22",
     "grunt-typedoc": "^0.2.4",
     "mocha": "^5.2.0",
-    "shelljs": "^0.8.2",
+    "shelljs": "^0.8.4",
     "typedoc": "^0.12.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.9.7"
   }
 }
