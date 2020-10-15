@@ -1,8 +1,12 @@
 {
   "name": "multi-rpc-msgpack-serializer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "MsgPack Serializer for multi-rpc",
   "main": "lib/index.js",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
   "scripts": {
     "test": "mocha --exit test/index.js",
     "docs": "grunt docs",
