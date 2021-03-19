@@ -22,8 +22,11 @@ export default class HTTPClientTransport extends Transport {
      * @param serializer - The serializer to use for encoding/decoding messages.
      * @param url - Url of the server to connect to (e.g. "http://localhost").
      */
-    constructor(protected serializer: Serializer,  protected url?: string) {
+    constructor(protected serializer: Serializer,  protected url?: string, public headers: Map<string,string> = new Map<string, string>()) {
         super(serializer);
+
+        headers.set('Content-Type', serializer.content_type);
+        headers.set('Accept', serializer.content_type);
     }
 
     /**
@@ -36,13 +39,14 @@ export default class HTTPClientTransport extends Transport {
     public async send(message: Message): Promise<void> {
         if (!this.url) throw new NoUrlPresent();
 
+        let headerObj: any = {};
+        for (let [k,v] of this.headers) { headerObj[k] = v; }
+
         let resp = await fetch(this.url, {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
-            headers: {
-                'Content-Type': "application/json"
-            },
+            headers: headerObj,
             body: this.serializer.serialize(message)
         });
     
