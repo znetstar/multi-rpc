@@ -5,6 +5,7 @@ import { parse as acornParse } from "acorn";
 import * as _ from "lodash";
 import { Transport, PersistentTransport, Request, Notification, Response, MethodNotFound, RPCError, InternalError, InvalidParams, ClientRequest, ServerSideTransport as IServerSideTransport } from "multi-rpc-common";
 import { allowedFields } from "multi-rpc-common/lib/Serializer";
+import {MethodExecutionContext, MethodExecutionContextOptions} from "./MethodExecutionContext";
 
 type ServerSideTransport = Transport&IServerSideTransport;
  
@@ -172,15 +173,20 @@ export default class Server extends EventEmitter2 {
      * 
      * Client.invoke("foo");
      */
-    public get methods(): any {
-        return new Proxy(this.methodHost, this.methodHandler)
+    public get methods(): { [name: string]: Function } {
+        return this.createMethodsObject() as any;
     }
+
+    protected createMethodsObject(clientRequest?: ClientRequest): { [name: string]: Function } {
+        return new Proxy(MethodExecutionContext.createProxy({ methods: this.methodHost, clientRequest }), this.methodHandler) as any;
+    }
+
 
     /**
      * Can be used to overwrite all methods.
      * The value must be an object, and values in the object must be functions.
      */
-    public set methods(value: any) {
+    public set methods(value: { [name: string]: Function }) {
         if (typeof(value) !== 'object') {
             throw new ValueIsNotAnObject();
         }
@@ -188,14 +194,14 @@ export default class Server extends EventEmitter2 {
         if (!checkObjectForFunctionsOnly(value))
             throw new ValuesAreNotFunctions();
 
-        this.methodHost = value;
+        this.methodHost = Server.methodHostFromObject(value);
     }
 
 
     /**
-     * An object containing methods that will be executed upon request from the client.
+     * A map containing methods that will be executed upon request from the client.
      */
-    protected methodHost: any;
+    protected methodHost: Map<string, Function>;
 
     /**
      * Creates a RPC server using one or more transports.
@@ -212,19 +218,27 @@ export default class Server extends EventEmitter2 {
      * };
      * new Server(tcpTransport, methods);
      */
-    constructor(transports?: ServerSideTransport|Array<ServerSideTransport>, methodHost: any = {}) {
+    constructor(transports?: ServerSideTransport|Array<ServerSideTransport>, methodHost: { [name: string]: Function } =  {}) {
         super();
 
         if (!Object.values(methodHost).every((fn) => typeof(fn) === "function"))
             throw ValueIsNotAFunction;
 
-        this.methodHost = methodHost;
+        this.methodHost = Server.methodHostFromObject(methodHost);
 
         this.transports = [];
         
         for (let transport of [].concat(transports).filter(Boolean)) {
             this.addTransport(transport);
         }
+    }
+
+    protected static methodHostFromObject(obj: { [name: string]: Function }): Map<string, Function> {
+        let methodHost = new Map<string, Function>();
+        for (let k in obj)
+            methodHost.set(k, obj[k]);
+
+        return methodHost;
     }
 
     /**
@@ -261,7 +275,7 @@ export default class Server extends EventEmitter2 {
                 .map((id: any) => [ id, transport ]);
         });
 
-        return new Map<any, PersistentTransport>(_.flatten(entries));
+        return new Map<any, PersistentTransport>(_.flatten(entries) as any);
     }
 
     /**
@@ -277,7 +291,7 @@ export default class Server extends EventEmitter2 {
         let batchPromises = messages.map(async (message: Request|Notification) => {
             if (message instanceof Request) {
                 try {
-                    const result = await this.executeMethod(<Request>message);
+                    const result = await this.executeMethod(<Request>message, clientRequest);
                     return new Response(message.id, result);
                 } catch (rpcError) {
                     return new Response(message.id, rpcError);
@@ -310,7 +324,7 @@ export default class Server extends EventEmitter2 {
         let response;
 
         try {
-            const result = await this.executeMethod(request);
+            const result = await this.executeMethod(request, clientRequest);
             response = new Response(request.id, result);
         } catch (error) {
             if (error instanceof RPCError)
@@ -361,8 +375,8 @@ export default class Server extends EventEmitter2 {
         if (typeof(notification.params) === "undefined" || Array.isArray(notification.params)) 
             this.emit.apply(this, [ notification.method ].concat(<any>notification.params));
         
-        if (notification.method in this.methods)
-            this.executeMethod(notification);
+        if (this.methodHost.has(notification.method))
+            this.executeMethod(notification, clientRequest);
 
         if (clientRequest) 
             clientRequest.respond();
@@ -376,11 +390,13 @@ export default class Server extends EventEmitter2 {
      * @throws {InternalError} - If the underlying method throws an Error that is not an RPCError. The "data" field of the RPCError will be the error that was thrown by the method.
      * @throws {RPCError} - If the underlying method throws an RPC Error.
      */
-    protected async executeMethod (request: Request|Notification) {
-        if (!(request.method in this.methods))
+    protected async executeMethod (request: Request|Notification, clientRequest?: ClientRequest) {
+        if (!(this.methodHost.has(request.method)))
             throw new MethodNotFound();
+
+        let methods = this.createMethodsObject(clientRequest);
         
-        const method = <Function>this.methods[request.method];
+        const method = <Function>methods[request.method];
         
         if (typeof(request.params) !== "undefined" && !Array.isArray(request.params)) 
             request.params = matchNamedArguments(request.params, method);
