@@ -3,6 +3,17 @@ import { HTTPClientTransport } from "multi-rpc-http-client-side-transport";
 import { Server as HTTPServer, IncomingMessage, ServerResponse } from "http";
 import { Server as HTTPSServer } from "https";
 
+export interface HttpTransportAdditionalData {
+    req: IncomingMessage;
+    res: ServerResponse;
+}
+
+export class HTTPTransportClientResponse extends ClientRequest {
+    constructor(public clientId: string|Uint8Array, public respond: Function, public httpTransportAdditionalData: HttpTransportAdditionalData) {
+        super(clientId, respond, httpTransportAdditionalData);
+    }
+}
+
 /**
  * A transport that uses HTTP as its protocol.
  */
@@ -150,7 +161,7 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
 
             req.on("end", () => {
                 const rawReq = new Uint8Array(Buffer.concat(data));
-                const clientRequest = new ClientRequest(Transport.uniqueId(), (response?: Response) => {
+                const clientRequest = new HTTPTransportClientResponse(Transport.uniqueId(), (response?: Response) => {
                     const headers: any = {};
 
                     if (origin) {
@@ -166,7 +177,9 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
                         res.writeHead(204, headers);
                         res.end();
                     }
-                });
+                }, {
+                    req, res
+                } as HttpTransportAdditionalData);
 
                 this.receive(rawReq, clientRequest);
             });
