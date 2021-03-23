@@ -22,9 +22,9 @@ export {
 } from "multi-rpc-common";
 export { JSONSerializer } from "multi-rpc-json-serializer";
 export { MsgPackSerializer } from "multi-rpc-msgpack-serializer";
-export { HTTPTransport } from "multi-rpc-http-transport";
+export { HTTPTransport, HTTPTransportClientResponse, HttpTransportAdditionalData, } from "multi-rpc-http-transport";
 export { HTTPError, HTTPClientTransport } from "multi-rpc-http-client-side-transport";
 export { TCPTransport } from "multi-rpc-tcp-transport";
 export { WebSocketTransport } from "multi-rpc-websocket-transport";
-export { Client, Server, ValueIsNotAFunction, ValueIsNotAnObject, ValuesAreNotFunctions } from "multi-rpc-core";
+export { Client, Server, ValueIsNotAFunction, ValueIsNotAnObject, ValuesAreNotFunctions, MethodExecutionContextSelf, MethodExecutionContextOptions,MethodExecutionContext } from "multi-rpc-core";
 export { WebSocketClientTransport } from "multi-rpc-websocket-client-side-transport";
