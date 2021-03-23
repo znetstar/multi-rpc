@@ -12,7 +12,6 @@ export const MethodExecutionContextSelf = 'context';
 */
 export class MethodExecutionContext {
     constructor(protected options: MethodExecutionContextOptions = { methods: new Map<string, Function>()}) {
-
     }
 
     public get methods(): { [name: string]: Function } {
@@ -31,17 +30,21 @@ export class MethodExecutionContext {
         let context = new MethodExecutionContext(options);
         return new Proxy(context, {
             get(target: MethodExecutionContext, p: PropertyKey, receiver: any): any {
+                if (p === 'getClientRequest') return () => target.options.clientRequest;
                 if (p === MethodExecutionContextSelf)
                     return context;
-                return ((target as any)[p] || target.options.methods.get(p as string)).bind(target);
+                let v = ((target as any)[p] || target.options.methods.get(p as string));
+                if (typeof(v) === 'function') v = v.bind({ context });
+                return v;
             },
             set(target: MethodExecutionContext, p: PropertyKey, value: any, receiver: any): boolean {
                 if (p === MethodExecutionContextSelf || (p as any) in (target  as any))
                     return false;
-                target.options.methods.set(p as string, value.bind(target));
+                target.options.methods.set(p as string, value);
                 return true;
             },
             has(target: MethodExecutionContext, p: PropertyKey): boolean {
+                if (p === 'getClientRequest') return true;
                 if (p === MethodExecutionContextSelf)
                     return true;
                 return (p as any) in (target as any) || target.options.methods.has(p as string);

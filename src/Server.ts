@@ -396,14 +396,13 @@ export default class Server extends EventEmitter2 {
             throw new MethodNotFound();
 
         let methods = this.createMethodsObject(clientRequest);
-
         
         const method = <Function>methods[request.method];
         
         if (typeof(request.params) !== "undefined" && !Array.isArray(request.params)) 
             request.params = matchNamedArguments(request.params, method);
 
-        let result = await method.apply(methods, request.params);
+        let result = await method.apply({ context: methods }, request.params);
         if (typeof(result) === 'undefined')
             result = null;
         
