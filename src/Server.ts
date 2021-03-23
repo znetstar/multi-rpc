@@ -372,8 +372,9 @@ export default class Server extends EventEmitter2 {
     */
     public async notification(notification: Notification, clientRequest: ClientRequest): Promise<void>;
     public async notification(notification: Notification, clientRequest?: ClientRequest): Promise<void> {
+        let methods = this.createMethodsObject(clientRequest);
         if (typeof(notification.params) === "undefined" || Array.isArray(notification.params)) 
-            this.emit.apply(this, [ notification.method ].concat(<any>notification.params));
+            this.emit.apply(methods, [ notification.method ].concat(<any>notification.params));
         
         if (this.methodHost.has(notification.method))
             await this.executeMethod(notification, clientRequest);
@@ -395,13 +396,14 @@ export default class Server extends EventEmitter2 {
             throw new MethodNotFound();
 
         let methods = this.createMethodsObject(clientRequest);
+
         
         const method = <Function>methods[request.method];
         
         if (typeof(request.params) !== "undefined" && !Array.isArray(request.params)) 
             request.params = matchNamedArguments(request.params, method);
 
-        let result = await method.apply(this.methodHost, request.params);
+        let result = await method.apply(methods, request.params);
         if (typeof(result) === 'undefined')
             result = null;
         
