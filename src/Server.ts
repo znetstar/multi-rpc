@@ -352,7 +352,7 @@ export default class Server extends EventEmitter2 {
      * // request: { "method": "foo", "params": { "param1": "bar" }, "jsonrpc": "2.0" }
      * Server.methods["foo"] = (baz, flob, param1) => { param1 === "bar";  };
      */
-    public notification(notification: Notification): void;   
+    public async notification(notification: Notification): Promise<void>;
     /**
     * This method is called when the server receives a notification from a client.
     * 
@@ -370,13 +370,13 @@ export default class Server extends EventEmitter2 {
     * // request: { "method": "foo", "params": { "param1": "bar" }, "jsonrpc": "2.0" }
     * Server.methods["foo"] = (baz, flob, param1) => { param1 === "bar";  };
     */
-    public notification(notification: Notification, clientRequest: ClientRequest): void;
-    public notification(notification: Notification, clientRequest?: ClientRequest) {
+    public async notification(notification: Notification, clientRequest: ClientRequest): Promise<void>;
+    public async notification(notification: Notification, clientRequest?: ClientRequest): Promise<void> {
         if (typeof(notification.params) === "undefined" || Array.isArray(notification.params)) 
             this.emit.apply(this, [ notification.method ].concat(<any>notification.params));
         
         if (this.methodHost.has(notification.method))
-            this.executeMethod(notification, clientRequest);
+            await this.executeMethod(notification, clientRequest);
 
         if (clientRequest) 
             clientRequest.respond();
