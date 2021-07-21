@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.2.0] - 2021-07-20
+### Changes
+- Makes `multi-rcp-common` a peer-dependency
+
 ## [1.1.3] - 2019-1-15
 ### Changes
 - Fixes bug with eventemitter.
