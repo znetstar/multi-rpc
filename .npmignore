@@ -5,4 +5,4 @@ docs
 .docs
 src
 Gruntfile.js
-.travis.yml
+.travis.yml.idea

@@ -23,8 +23,10 @@
     },
     "homepage": "https://github.com/znetstar/multi-rpc-http-transport#readme",
     "dependencies": {
-        "multi-rpc-common": "^2.2.6",
-        "multi-rpc-http-client-side-transport": "^1.1.0"
+        "multi-rpc-http-client-side-transport": "^1.2.0"
+    },
+    "peerDependencies": {
+      "multi-rpc-common": "^2.x"
     },
     "devDependencies": {
         "@types/node": "^14.6.0",
