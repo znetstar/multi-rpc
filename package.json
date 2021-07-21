@@ -1,6 +1,6 @@
 {
     "name": "multi-rpc-common",
-    "version": "2.3.2",
+    "version": "2.3.3",
     "description": "Common classes used in multi-rpc",
     "main": "lib/index.js",
     "scripts": {
@@ -10,8 +10,8 @@
         "test": "mocha test/index.js --exit"
     },
     "publishConfig": {
-      "registry": "https://registry.npmjs.org",
-      "access": "public"
+        "registry": "https://registry.npmjs.org",
+        "access": "public"
     },
     "repository": {
         "type": "git",
