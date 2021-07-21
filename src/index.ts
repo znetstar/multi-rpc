@@ -1,24 +1,25 @@
-export { 
+export {
     Serializer,
-    InternalError, 
-    InvalidParams, 
-    InvalidRequest, 
-    MethodNotFound, 
+    InternalError,
+    InvalidParams,
+    InvalidRequest,
+    MethodNotFound,
     ParseError,
-    RPCError, 
+    RPCError,
     ServerError,
     Transport,
-    PersistentTransport, 
-    NonExistantClient, 
-    TransportIsNotPersistent, 
-    TransportInServerState, 
+    PersistentTransport,
+    NonExistantClient,
+    TransportIsNotPersistent,
+    TransportInServerState,
     TransportInClientState,
     Message,
     Request,
     Response,
     Notification,
     ClientRequest,
-    ServerSideTransport
+    ServerSideTransport,
+    EncodeToolsSerializer
 } from "multi-rpc-common";
 export { JSONSerializer } from "multi-rpc-json-serializer";
 export { MsgPackSerializer } from "multi-rpc-msgpack-serializer";

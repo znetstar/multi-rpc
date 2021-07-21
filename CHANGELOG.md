@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.7.0] - 2021-07-20
+### Changes
+- Adds a new serializer based on `@etomon/encode-tools`.
+- Upgrades most packages.
+
 ## [1.5.6] - 2019-01-16
 ### Changed
 - Updates multi-rpc-core.
