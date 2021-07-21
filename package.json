@@ -39,7 +39,7 @@
         "grunt-typedoc": "^0.2.4",
         "mocha": "^8.4.0",
         "multi-rpc-common": "^2.3.0",
-        "multi-rpc-json-serializer": "^1.0.5",
+        "multi-rpc-json-serializer": "^1.1.0",
         "request": "^2.88.2",
         "request-promise-native": "^1.0.9",
         "shelljs": "^0.8.4",
