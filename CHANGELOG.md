@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.7.0] - 2021-07-20
+## [1.7.1] - 2021-07-20
 ### Changes
 - Adds a new serializer based on `@etomon/encode-tools`.
 - Upgrades most packages.
