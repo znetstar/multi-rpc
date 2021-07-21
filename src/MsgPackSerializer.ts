@@ -1,37 +1,14 @@
-import * as msgpack from "@msgpack/msgpack";
-import { Serializer, Message, ParseError } from "multi-rpc-common";
+import {EncodeToolsSerializer} from "multi-rpc-common";
+import {SerializationFormat} from "@etomon/encode-tools/lib/EncodeTools";
 
 /**
  * Represents a serializer that can serialize and deserialize MessagePack.
- * 
+ *
  */
-export default class MsgPackSerializer extends Serializer {
-    /**
-     * The content type of the serialized object.
-     */
-    public get content_type(): string { return "application/msgpack"; }
-
-    /**
-     * Serializes a message using MsgPack.
-     * @param object - Message to serialize.
-     */
-    serialize(object: Message): Uint8Array {
-        return msgpack.encode(object.serialize ? object.serialize() : object);
-    }
-
-    /**
-     * Deserializes MsgPack to a message.
-     * @param data - MsgPack to deserialize.
-     */
-    deserialize(data: Uint8Array) {
-        let msgPackObject;
-
-        try {
-            msgPackObject = msgpack.decode(data);
-        } catch (error) {
-            throw new ParseError(error);
-        }
-
-        return super.deserialize(msgPackObject);
+export default class MsgPackSerializer extends EncodeToolsSerializer {
+    constructor() {
+      super({
+        serializationFormat: SerializationFormat.msgpack
+      });
     }
 }

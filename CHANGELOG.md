@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.0] - 2021-07-20
+### Changes
+- Uses `@etomon/encode-tools` for serializing messages, which enables the usage of `cbor` and `bson` serialization formats, in addition to the existing `msgpack` and `json`.
+
 ## [1.0.5] - 2019-01-02
 ### Changes
 - Updates multi-rpc-common
