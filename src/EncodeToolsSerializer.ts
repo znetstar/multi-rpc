@@ -20,7 +20,7 @@ export class EncodeToolsSerializer extends  Serializer{
     super();
   }
   public serialize(object: Message): Uint8Array | string {
-    const bin = this.encoder.serializeObject<Message>(object);
+    const bin = this.encoder.serializeObject<Message>(object.serialize());
     if (typeof(bin) === 'string') {
       return bin;
     } else {

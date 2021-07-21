@@ -1,6 +1,11 @@
 
 # Changelog
 
+## [2.3.2] - 2021-07-20
+### Added
+- Fixes an issue with `Message.serialize` not being called.
+
+
 ## [2.3.0] - 2021-07-20
 ### Added
 - Uses `@etomon/encode-tools` for serializing messages, which enables the usage of `cbor` and `bson` serialization formats, in addition to the existing `msgpack` and `json`.
