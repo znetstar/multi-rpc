@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-tcp-transport",
-  "version": "1.1.3",
+  "version": "1.2.1",
   "description": "TCP transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/znetstar/multi-rpc-tcp-transport#readme",
   "dependencies": {},
+  "peerDependencies": {
+    "multi-rpc-common": "^2.x"
+  },
   "devDependencies": {
     "@types/node": "^16.4.0",
     "chai": "^4.3.4",
@@ -30,8 +33,8 @@
     "grunt-ts": "^6.0.0-beta.22",
     "grunt-typedoc": "^0.2.4",
     "mocha": "^5.2.0",
-    "multi-rpc-common": "^2.3.0",
-    "multi-rpc-json-serializer": "^1.1.0",
+    "multi-rpc-common": "^2.3.1",
+    "multi-rpc-json-serializer": "^1.x",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "shelljs": "^0.8.4",
