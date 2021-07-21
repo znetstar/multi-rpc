@@ -3,7 +3,7 @@ const { assert } = require("chai");
 const Chance = require('chance');
 const chance = new Chance();
 const getPort = require("get-port");
-const {     
+const {
     InvalidParams,
     Transport,
     ValueIsNotAFunction,
@@ -17,17 +17,17 @@ const {
     TransportIsNotPersistent
 } = require("multi-rpc-common");
 
-const { 
+const {
     JSONSerializer
  } = require("multi-rpc-json-serializer");
 
-const { 
+const {
     TCPTransport
 } = require("multi-rpc-tcp-transport");
 
 const { getFunctionArguments, matchNamedArguments, checkObjectForFunctionsOnly } = require("../lib/Server");
 
-const { 
+const {
     Server,
     Client
 } = require("../lib");
@@ -96,7 +96,7 @@ describe("Server", function () {
                 const srv = new Server(new Transport(new JSONSerializer()));
                 srv.methods[methodName] = methodValue;
 
-                assert.equal(methodValue, srv.methodHost[methodName]);
+                assert.equal(methodValue, srv.methodHost.get(methodName));
             });
 
             it("Should set a property the target object expanding dot-notation", function () {
@@ -111,7 +111,7 @@ describe("Server", function () {
                 obj[methodNameSteps[1]] = {};
                 obj[methodNameSteps[1]][methodNameSteps[2]] = methodValue;
 
-                assert.deepEqual(obj, srv.methodHost[methodNameSteps[0]]);
+                assert.deepEqual(obj, srv.methodHost.get(methodNameSteps[0]));
             });
 
             it("Should throw if the value provided is not a function or object", function () {
@@ -123,19 +123,19 @@ describe("Server", function () {
                 const srv = new Server(new Transport(new JSONSerializer()));
                 assert.doesNotThrow(() => { srv.methods[chance.string()] = { foo: () => {} }; });
             });
-    
+
             it("Should reject an object with non function values", function () {
                 const srv = new Server(new Transport(new JSONSerializer()));
                 assert.throws(() => { srv.methods[chance.string()] = { foo: chance.string() }; }, ValuesAreNotFunctions);
-            }); 
+            });
         });
 
         describe("#get(host, prop)", function () {
             it("Should retrieve a method", function () {
                 const srv = new Server(new Transport(new JSONSerializer()));
                 const methodName = chance.string();
-                srv.methodHost[methodName] = () => {};
-                assert.equal("function", typeof(srv.methods[methodName])); 
+                srv.methodHost.set(methodName,  () => {});
+                assert.equal("function", typeof(srv.methods[methodName]));
             });
 
             it("Should expand dot-notation in retrieving", function () {
@@ -144,8 +144,8 @@ describe("Server", function () {
                 const objName = chance.string();
                 const obj = {};
                 obj[methodName] = () => {};
-                srv.methodHost[objName] = obj;
-                assert.equal("function", typeof(srv.methods[`${objName}.${methodName}`]));                
+                srv.methodHost.set(objName,  obj);
+                assert.equal("function", typeof(srv.methods[`${objName}.${methodName}`]));
             });
         });
 
@@ -153,7 +153,7 @@ describe("Server", function () {
             it("Should validate a method exists in the host", function () {
                 const srv = new Server(new Transport(new JSONSerializer()));
                 const methodName = chance.string();
-                srv.methodHost[methodName] = () => {};
+                srv.methodHost.set(methodName,  () => {});
                 assert.isOk(( methodName in srv.methods ));
             });
 
@@ -163,10 +163,10 @@ describe("Server", function () {
                 const objName = chance.string();
                 const obj = {};
                 obj[methodName] = () => {};
-                srv.methodHost[objName] = obj;
+                srv.methodHost.set(objName,  obj);
 
-                assert.isOk(( `${objName}.${methodName}` in srv.methods ));            
-            });            
+                assert.isOk(( `${objName}.${methodName}` in srv.methods ));
+            });
         });
     });
 
@@ -174,7 +174,7 @@ describe("Server", function () {
         it("Should accept an object with functions", function () {
             const srv = new Server(new Transport(new JSONSerializer()));
             assert.doesNotThrow(() => { srv.methods = { foo: () => {} }; });
-            assert.ok(srv.methodHost.foo);
+            assert.ok(srv.methodHost.get('foo'));
         });
 
         it("Should reject an object with non function values", function () {
@@ -189,7 +189,7 @@ describe("Server", function () {
     });
 
     describe("#clientsByTransport", function () {
-         
+
             const transportA = new Transport(new JSONSerializer());
             const transportB = new Transport(new JSONSerializer());
 
@@ -234,7 +234,7 @@ describe("Server", function () {
                 new Request(chance.integer(), "add", [ str3 ]),
             ];
 
-           
+
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
                     assert.isArray(resp);
@@ -261,7 +261,7 @@ describe("Server", function () {
                 new Request(chance.integer(), "foo", [  ]),
             ];
 
-           
+
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
                     assert.instanceOf(resp[1].error, RPCError);
@@ -278,13 +278,13 @@ describe("Server", function () {
             };
             const srv = new Server(new Transport(new JSONSerializer()), methods);
             const note = new Notification("foo");
-            const reqs = [ 
+            const reqs = [
                 new Request(chance.integer(), "foo", [  ]),
                 note,
                 new Request(chance.integer(), "foo", [  ]),
             ];
 
-           
+
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
                     assert.equal(2, resp.length);
@@ -307,7 +307,7 @@ describe("Server", function () {
 
             const srv = new Server(new Transport(new JSONSerializer()), methods);
             const req = new Request(chance.integer(), "foo");
-        
+
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
                     assert.equal(data, resp.result);
@@ -315,8 +315,8 @@ describe("Server", function () {
                 });
 
                 srv.invoke(req, clientReq).catch(reject);
-            });    
-        });  
+            });
+        });
 
         it("Should successfully invoke a function on the server with params", function () {
             const methods = {
@@ -328,7 +328,7 @@ describe("Server", function () {
             const data = chance.string();
             const srv = new Server(new Transport(new JSONSerializer()), methods);
             const req = new Request(chance.integer(), "echo", [ data ]);
-        
+
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
                     assert.equal(data, resp.result);
@@ -336,8 +336,8 @@ describe("Server", function () {
                 });
 
                 srv.invoke(req, clientReq).catch(reject);
-            });    
-        }); 
+            });
+        });
 
         it("Should successfully invoke a function on the server with named params", function () {
             const methods = {
@@ -349,7 +349,7 @@ describe("Server", function () {
             const data = chance.string();
             const srv = new Server(new Transport(new JSONSerializer()), methods);
             const req = new Request(chance.integer(), "echo", { what: data });
-        
+
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
                     assert.equal(data, resp.result);
@@ -357,8 +357,8 @@ describe("Server", function () {
                 });
 
                 srv.invoke(req, clientReq).catch(reject);
-            });    
-        }); 
+            });
+        });
 
 
         it("Should successfully return an error if the request is invalid", function () {
@@ -369,7 +369,7 @@ describe("Server", function () {
 
             const srv = new Server(new Transport(new JSONSerializer()), methods);
             const req = new Request(chance.integer(), "bar");
-        
+
             return new Promise((resolve, reject) => {
                 const clientReq = new ClientRequest(chance.guid(), (resp) => {
                     assert.instanceOf(resp.error, RPCError);
@@ -377,8 +377,8 @@ describe("Server", function () {
                 });
 
                 srv.invoke(req, clientReq).catch(reject);
-            });    
-        }); 
+            });
+        });
     });
 
     describe("notification(notification: Notification)", function () {
@@ -387,7 +387,7 @@ describe("Server", function () {
 
             const srv = new Server(new Transport(new JSONSerializer()), {});
             const req = new Request(chance.integer(), "foo", [ data ]);
-        
+
             return new Promise((resolve, reject) => {
                 srv.once("foo", (param) => {
                     assert.equal(data, param);
@@ -395,7 +395,7 @@ describe("Server", function () {
                 });
 
                 srv.notification(req);
-            });             
+            });
         });
 
         it("Should call the method on named in the notification", function () {
@@ -408,12 +408,12 @@ describe("Server", function () {
                         resolve();
                     }
                 };
-    
+
                 const srv = new Server(new Transport(new JSONSerializer()), methods);
                 const req = new Request(chance.integer(), "foo", { what: data });
-            
+
                 srv.notification(req)
-            });             
+            });
         });
     });
 
@@ -421,7 +421,7 @@ describe("Server", function () {
         it("Should send a notification to the client by its ID", async function () {
             const port = await getPort();
             const srvTcpTransport = new TCPTransport(new JSONSerializer(), port);
-            const clientTcpTransport = new TCPTransport(new JSONSerializer(), port); 
+            const clientTcpTransport = new TCPTransport(new JSONSerializer(), port);
 
             const srv = new Server(srvTcpTransport, {});
             const client = new Client(clientTcpTransport);
@@ -441,7 +441,7 @@ describe("Server", function () {
                                 await srv.sendTo(clientId, note);
                             } catch (err) {
                                 reject(err);
-                            } 
+                            }
                         }, 500, srv, client);
                     }, 500);
                 } catch (err) {
@@ -454,8 +454,8 @@ describe("Server", function () {
             const port = await getPort();
             this.timeout(4000);
             const srvTcpTransport = new TCPTransport(new JSONSerializer(), port);
-            const client1TcpTransport = new TCPTransport(new JSONSerializer(), port); 
-            const client2TcpTransport = new TCPTransport(new JSONSerializer(), port); 
+            const client1TcpTransport = new TCPTransport(new JSONSerializer(), port);
+            const client2TcpTransport = new TCPTransport(new JSONSerializer(), port);
 
             const srv = new Server(srvTcpTransport, {});
             const client1 = new Client(client1TcpTransport);
@@ -475,7 +475,7 @@ describe("Server", function () {
 
                 await srv.listen();
                 await client1.connect();
-                await client2.connect(); 
+                await client2.connect();
 
                 try {
                     setImmediate(async (srv) => {
@@ -512,24 +512,24 @@ describe("Server", function () {
                     sock.on("error", (err) => {
                         reject(err);
                     });
-    
+
                     sock.on("connect", () => {
                         resolve();
                     });
-    
+
                     sock.connect(portA);
                 });
-    
+
                 await new Promise((resolve, reject) => {
                     const sock = new Socket();
                     sock.on("error", (err) => {
                         reject(err);
                     });
-    
+
                     sock.on("connect", () => {
                         resolve();
                     });
-    
+
                     sock.connect(portB);
                 });
             } catch (err) {

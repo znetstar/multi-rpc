@@ -8,7 +8,7 @@ import { allowedFields } from "multi-rpc-common/lib/Serializer";
 import {MethodExecutionContext, MethodExecutionContextOptions} from "./MethodExecutionContext";
 
 type ServerSideTransport = Transport&IServerSideTransport;
- 
+
 /**
  * This error is thrown when an object with non-function values is set to a property on "methodHost"
  */
@@ -57,10 +57,10 @@ export function getFunctionArguments(fn: Function): string[] {
  * @param fn - Function to draw the signature from.
  * @throws {InvalidParams} - If any fields in the object provided are not arguments in the function provided.
  * @ignore
- * @example 
+ * @example
  * let args = { foo: "bar", baz: "flob" };
  * let fn = (foo, baz) => {};
- * 
+ *
  * matchNamedArguments(args, fn) === ["bar", "flob"];
  */
 export function matchNamedArguments(args: any, fn: Function) {
@@ -73,7 +73,7 @@ export function matchNamedArguments(args: any, fn: Function) {
 }
 
 /**
- * Recursively iterates through all values in an object ensuring that they are functions. 
+ * Recursively iterates through all values in an object ensuring that they are functions.
  * @param object - Object to check.
  */
 export function checkObjectForFunctionsOnly(object: any): boolean {
@@ -92,7 +92,7 @@ export function checkObjectForFunctionsOnly(object: any): boolean {
 /**
  * An RPC server that will listen for clients.
  */
-export default class Server extends EventEmitter2 { 
+export default class Server extends EventEmitter2 {
     /**
      * Transports the server is currently listening on.
      */
@@ -101,7 +101,7 @@ export default class Server extends EventEmitter2 {
     /**
      * This Proxy handler details how methods will be looked up when requested.
      * By methods can be referenced by dot-notation.
-     * 
+     *
      * @example
      * const myFunc = () => { ... };
      * new Server(transport, { foo: { bar: myFunc } })
@@ -112,7 +112,7 @@ export default class Server extends EventEmitter2 {
             if (typeof(value) === 'object') {
                 if (!checkObjectForFunctionsOnly(value))
                     throw new ValuesAreNotFunctions();
-                
+
                 (<any>this.methodHost)[prop] = value;
             }
 
@@ -164,13 +164,13 @@ export default class Server extends EventEmitter2 {
 
     /**
      * A Proxy that can be used to set/access the methods that clients can execute.
-     * 
+     *
      * @example
-     * 
+     *
      * Server.methods["foo"] = () => {
      *  ...
      * };
-     * 
+     *
      * Client.invoke("foo");
      */
     public get methods(): { [name: string]: Function } {
@@ -208,7 +208,7 @@ export default class Server extends EventEmitter2 {
      * Using multiple transports the server can listen for RPC requests on multiple protocols.
      * @param transports - An array of transports or single transport that the server will listen on.
      * @param methodHost - An object containing methods that will be executed upon request from the client.
-     * 
+     *
      * @example
      * let tcpTransport = new TCPTransport(1234);
      * let methods = {
@@ -227,7 +227,7 @@ export default class Server extends EventEmitter2 {
         this.methodHost = Server.methodHostFromObject(methodHost);
 
         this.transports = [];
-        
+
         for (let transport of [].concat(transports).filter(Boolean)) {
             this.addTransport(transport);
         }
@@ -269,7 +269,7 @@ export default class Server extends EventEmitter2 {
      */
     protected get clientsByTransport(): Map<any, PersistentTransport> {
         const entries = (<Array<Transport>>this.transports)
-        .filter((transport: Transport) => transport instanceof PersistentTransport)                
+        .filter((transport: Transport) => transport instanceof PersistentTransport)
         .map((transport: PersistentTransport) => {
             return Array.from(transport.connections.keys())
                 .map((id: any) => [ id, transport ]);
@@ -285,7 +285,7 @@ export default class Server extends EventEmitter2 {
      * If a request has an error the error will stand in place of a response, but subsequent requests will still be executed.
      * @listens Transport#batch
      * @param messages - An array of either Request or Notification objects.
-     * @param clientRequest - The ClientRequest object that contains information on the request that was made (e.g. client's ID). 
+     * @param clientRequest - The ClientRequest object that contains information on the request that was made (e.g. client's ID).
      */
     protected async batch(messages: Array<Request|Notification>, clientRequest: ClientRequest): Promise<void> {
         let batchPromises = messages.map(async (message: Request|Notification) => {
@@ -314,7 +314,7 @@ export default class Server extends EventEmitter2 {
 
     /**
      * This method is called when the server recieves a RPC Request. It will execute the method specified and send the response (or an error) to the client.
-     * 
+     *
      * @listens Transport#Request
      * @param request - The Request object containing details (method, params).
      * @param clientRequest - The ClientRequest object that contains information on the request (e.g. client's ID).
@@ -329,21 +329,21 @@ export default class Server extends EventEmitter2 {
         } catch (error) {
             if (error instanceof RPCError)
                 response = new Response(request.id, error);
-            else 
+            else
                 response = new Response(request.id, new InternalError(error));
         } finally {
             clientRequest.respond(response);
         }
-    } 
+    }
 
     /**
      * This method is called when the server receives a notification from a client.
-     * 
-     * @listens Transport#notification 
+     *
+     * @listens Transport#notification
      * @param notification - The notification.
-     * 
+     *
      * If the notification provides params as an array it will be emitted as an event.
-     * 
+     *
      * @example
      * // As an event
      * // request: { "method": "foo", "params": [ "bar" ], "jsonrpc": "2.0" }
@@ -355,13 +355,13 @@ export default class Server extends EventEmitter2 {
     public async notification(notification: Notification): Promise<void>;
     /**
     * This method is called when the server receives a notification from a client.
-    * 
-    * @listens Transport#notification 
+    *
+    * @listens Transport#notification
     * @param notification - The notification.
     * @param clientRequest - The ClientRequest object that contains information on the request (e.g. client's ID).
-    * 
+    *
     * If the notification provides params as an array it will be emitted as an event.
-    * 
+    *
     * @example
     * // As an event
     * // request: { "method": "foo", "params": [ "bar" ], "jsonrpc": "2.0" }
@@ -373,13 +373,13 @@ export default class Server extends EventEmitter2 {
     public async notification(notification: Notification, clientRequest: ClientRequest): Promise<void>;
     public async notification(notification: Notification, clientRequest?: ClientRequest): Promise<void> {
         let methods = this.createMethodsObject(clientRequest);
-        if (typeof(notification.params) === "undefined" || Array.isArray(notification.params)) 
-            this.emit.apply(methods, [ notification.method ].concat(<any>notification.params));
-        
+        if (typeof(notification.params) === "undefined" || Array.isArray(notification.params))
+            this.emit.apply(this, [ notification.method ].concat(<any>notification.params || []));
+
         if (this.methodHost.has(notification.method))
             await this.executeMethod(notification, clientRequest);
 
-        if (clientRequest) 
+        if (clientRequest)
             clientRequest.respond();
     }
 
@@ -396,24 +396,24 @@ export default class Server extends EventEmitter2 {
             throw new MethodNotFound();
 
         let methods = this.createMethodsObject(clientRequest);
-        
+
         const method = <Function>methods[request.method];
-        
-        if (typeof(request.params) !== "undefined" && !Array.isArray(request.params)) 
-            request.params = matchNamedArguments(request.params, method);
+
+        if (typeof(request.params) !== "undefined" && !Array.isArray(request.params))
+            request.params = matchNamedArguments(request.params, this.methodHost.get(request.method));
 
         let result = await method.apply({ context: methods }, request.params);
         if (typeof(result) === 'undefined')
             result = null;
-        
+
         return result;
     }
 
     /**
      * This feature is not offically supported by JSON-RPC 2.0
-     * 
+     *
      * Using this method the server can send a notification to a client connection.
-     * 
+     *
      * @param id - The ID of the client.
      * @param notification - The notification to send.
      * @async
@@ -424,9 +424,9 @@ export default class Server extends EventEmitter2 {
 
     /**
      * This feature is not offically supported by JSON-RPC 2.0
-     * 
+     *
      * Using this method the server can send notifications to all clients connected.
-     * 
+     *
      * @param notification - The notification to send to all clients.
      * @async
      */
@@ -438,7 +438,7 @@ export default class Server extends EventEmitter2 {
 
     /**
      * Begins listening for incoming connections.
-     * 
+     *
      * @async
      */
     public async listen(): Promise<void> {
