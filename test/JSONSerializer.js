@@ -1,13 +1,10 @@
-const { Serializer, ParseError } = require("../lib");
+const { Serializer, ParseError, EncodeToolsSerializer } = require("../lib");
 
-class JSONSerializer extends Serializer {
-    serialize(object) { return JSON.stringify(object.serialize()); }
-    deserialize(string) { 
-        try {
-            return super.deserialize(JSON.parse(string)); 
-        } catch (error) {
-            throw new ParseError();
-        }
+class JSONSerializer extends EncodeToolsSerializer {
+    constructor() {
+      super({
+        serializationFormat: 'json'
+      });
     }
 }
 

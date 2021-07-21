@@ -1,4 +1,5 @@
 import * as _  from "lodash";
+// @ts-ignore
 import * as serializeError from "serialize-error";
 
 /**
@@ -22,13 +23,14 @@ export class RPCError extends Error {
         return {
             message: this.message,
             code: this.code,
+            // @ts-ignore
             data: (this.data instanceof Error) ? serializeError(this.data) : this.data
         };
     }
 }
 
 /**
- * An error that occurs when the message cannot be deserialized. 
+ * An error that occurs when the message cannot be deserialized.
  */
 export class ParseError extends RPCError {
     /**

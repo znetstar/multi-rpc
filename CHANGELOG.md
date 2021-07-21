@@ -1,6 +1,10 @@
 
 # Changelog
 
+## [2.3.0] - 2021-07-20
+### Added
+- Uses `@etomon/encode-tools` for serializing messages, which enables the usage of `cbor` and `bson` serialization formats, in addition to the existing `msgpack` and `json`.
+
 ## [2.2.6] - 2019-01-02
 ### Added
 - Adds missing event listener.
