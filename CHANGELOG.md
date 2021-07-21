@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.3] - 2021-07-20
+### Changes
+- UUpgrades multi-rpc-common
+
 ## [1.7.1] - 2021-07-20
 ### Changes
 - Adds a new serializer based on `@etomon/encode-tools`.
