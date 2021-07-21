@@ -11,14 +11,25 @@ import {ParseError} from "./Errors";
 
 type Encodable =  Request | Notification | Response | Array<Request> | Array<Notification> | Array<Response>;
 
+/**
+ * An implementation of `Serializer` that internally uses `@etomon/encode-tools` for encoding/decoding.
+ * Any serialization methods supported by `@etomon/encode-tools` (today JSON, MessagePack, CBOR, and BSON)
+ * are supported when using this Serializer.
+ */
 export class EncodeToolsSerializer extends  Serializer{
   protected encoder = new EncodeTools({
     ...this.encodingOptions,
     binaryEncoding: BinaryEncoding.nodeBuffer
   });
+
+  /**
+   *
+   * @param encodingOptions Options for the encoder. Change `serializationFormat` to change the serialization format of this serializer.
+   */
   constructor(protected encodingOptions: EncodingOptions) {
     super();
   }
+
   public serialize(object: Message): Uint8Array | string {
     const bin = this.encoder.serializeObject<Message>(object.serialize());
     if (typeof(bin) === 'string') {
