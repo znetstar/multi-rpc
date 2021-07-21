@@ -1,45 +1,45 @@
 {
-  "name": "multi-rpc-common",
-  "version": "2.3.0",
-  "description": "Common classes used in multi-rpc",
-  "main": "lib/index.js",
-  "scripts": {
-    "docs": "grunt docs",
-    "build": "grunt build",
-    "prepare": "npm run build",
-    "test": "mocha test/index.js --exit"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/znetstar/multi-rpc-commonn.git"
-  },
-  "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/znetstar/multi-rpc-common/issues"
-  },
-  "homepage": "https://github.com/znetstar/multi-rpc-common#readme",
-  "dependencies": {
-    "@etomon/encode-tools": "^2.2.0",
-    "eventemitter2": "^6.4.4",
-    "lodash": "^4.17.21",
-    "serialize-error": "^8.1.0",
-    "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.171",
-    "@types/node": "^16.4.0",
-    "@types/serialize-error": "^4.0.1",
-    "@types/uuid": "^8.3.1",
-    "chai": "^4.3.4",
-    "chance": "^1.1.7",
-    "grunt": "^1.4.1",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-ts": "^6.0.0-beta.22",
-    "grunt-typedoc": "^0.2.4",
-    "mocha": "^9.0.2",
-    "shelljs": "^0.8.4",
-    "typedoc": "^0.21.4",
-    "typescript": "^4.3.5"
-  }
+    "name": "multi-rpc-common",
+    "version": "2.3.1",
+    "description": "Common classes used in multi-rpc",
+    "main": "lib/index.js",
+    "scripts": {
+        "docs": "grunt docs",
+        "build": "grunt build",
+        "prepare": "npm run build",
+        "test": "mocha test/index.js --exit"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/znetstar/multi-rpc-commonn.git"
+    },
+    "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/znetstar/multi-rpc-common/issues"
+    },
+    "homepage": "https://github.com/znetstar/multi-rpc-common#readme",
+    "dependencies": {
+        "@etomon/encode-tools": "^2.2.0",
+        "eventemitter2": "^6.4.4",
+        "lodash": "^4.17.21",
+        "serialize-error": "^8.1.0",
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "@types/lodash": "^4.14.171",
+        "@types/node": "^16.4.0",
+        "@types/serialize-error": "^4.0.1",
+        "@types/uuid": "^8.3.1",
+        "chai": "^4.3.4",
+        "chance": "^1.1.7",
+        "grunt": "^1.4.1",
+        "grunt-contrib-clean": "^2.0.0",
+        "grunt-ts": "^6.0.0-beta.22",
+        "grunt-typedoc": "^0.2.4",
+        "mocha": "^9.0.2",
+        "shelljs": "^0.8.4",
+        "typedoc": "^0.21.4",
+        "typescript": "^4.3.5"
+    }
 }

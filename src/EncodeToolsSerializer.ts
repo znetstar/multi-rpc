@@ -29,7 +29,7 @@ export class EncodeToolsSerializer extends  Serializer{
   }
   public deserialize(bin: Uint8Array|string, batch: boolean = true) {
     try {
-      const object = this.encoder.deserializeObject<any>(bin);
+      const object = this.encoder.deserializeObject<any>(Buffer.from(bin));
       return super.deserialize(object, batch);
     } catch (error) {
       throw new ParseError();
