@@ -26,7 +26,7 @@
     "cross-fetch": "^3.0.5"
   },
   "peerDependencies": {
-    "multi-rpc-common": "^2.3.0"
+    "multi-rpc-common": "^2.x"
   },
   "devDependencies": {
     "@types/node": "^14.17.5",
