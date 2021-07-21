@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-websocket-transport",
-  "version": "1.2.6",
+  "version": "1.4.0",
   "description": "WebSocket transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -21,24 +21,28 @@
   "homepage": "https://github.com/znetstar/multi-rpc-websocket-transport#readme",
   "dependencies": {
     "@types/websocket": "0.0.40",
-    "multi-rpc-common": "^2.2.6",
-    "multi-rpc-websocket-client-side-transport": "^1.2.7",
+    "multi-rpc-websocket-client-side-transport": "^1.x",
     "websocket": "^1.0.28"
   },
+  "peerDependencies": {
+    "multi-rpc-common": "^2.x"
+  },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chance": "^1.0.18",
+    "@types/node": "^16.4.0",
+    "chai": "^4.3.4",
+    "chance": "^1.1.7",
     "get-port": "^4.0.0",
-    "grunt": "^1.0.3",
+    "grunt": "^1.4.1",
     "grunt-contrib-clean": "^2.0.0",
-    "grunt-ts": "^6.0.0-beta.21",
+    "grunt-ts": "^6.0.0-beta.22",
     "grunt-typedoc": "^0.2.4",
     "mocha": "^5.2.0",
-    "multi-rpc-json-serializer": "^1.0.4",
+    "multi-rpc-common": "^2.x",
+    "multi-rpc-json-serializer": "^1.x",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
-    "shelljs": "^0.8.2",
+    "shelljs": "^0.8.4",
     "typedoc": "^0.12.0",
-    "typescript": "^3.0.3"
+    "typescript": "^3.9.10"
   }
 }
