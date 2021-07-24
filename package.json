@@ -1,6 +1,6 @@
 {
     "name": "multi-rpc-common",
-    "version": "2.3.4",
+    "version": "2.3.5",
     "description": "Common classes used in multi-rpc",
     "main": "lib/index.js",
     "scripts": {
@@ -24,7 +24,7 @@
     },
     "homepage": "https://github.com/znetstar/multi-rpc-common#readme",
     "dependencies": {
-        "@etomon/encode-tools": "^2.2.0",
+        "@etomon/encode-tools": "^2.3.2",
         "eventemitter2": "^6.4.4",
         "lodash": "^4.17.21",
         "serialize-error": "^8.1.0",

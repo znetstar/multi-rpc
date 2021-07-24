@@ -1,11 +1,11 @@
 import Serializer from "./Serializer";
 import Message from "./Message";
 import {
-  EncodeTools,
+  EncodeToolsAuto as EncodeTools,
   EncodingOptions,
   BinaryEncoding,
   SerializationFormat, SerializationFormatMimeTypes
-} from '@etomon/encode-tools/lib/EncodeTools';
+} from '@etomon/encode-tools/lib/EncodeToolsAuto';
 import {Buffer} from 'buffer';
 import {ParseError} from "./Errors";
 
