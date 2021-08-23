@@ -1,0 +1,1 @@
+src/index.ts --sourcemap --declaration --noImplicitAny --preserveConstEnums --rootDir src --lib es2017,dom --target ES2018 --module commonjs --outDir lib
