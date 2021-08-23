@@ -1,10 +1,16 @@
 import * as _  from "lodash";
 import { serializeError } from "serialize-error";
+import {InstanceComparable} from "./InstanceComparable";
 
 /**
  * A generic RPC Error.
  */
-export class RPCError extends Error {
+export class RPCError extends Error  implements InstanceComparable<RPCError> {
+  public static get comparableSymbol() { return Symbol.for('RPCError'); }
+  public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+  public isSibling(instance: RPCError): boolean {
+    return instance.comparableSymbol === this.comparableSymbol;
+  }
     /**
      * Creates a generic RPC Error object.
      * @param message - Message for the error.
@@ -30,7 +36,12 @@ export class RPCError extends Error {
 /**
  * An error that occurs when the message cannot be deserialized.
  */
-export class ParseError extends RPCError {
+export class ParseError extends RPCError implements InstanceComparable<ParseError> {
+  public static get comparableSymbol() { return Symbol.for('ParseError'); }
+  public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+  public isSibling(instance: ParseError): boolean {
+    return instance.comparableSymbol === this.comparableSymbol;
+  }
     /**
      * RPC Error code
      */
@@ -50,7 +61,12 @@ export class ParseError extends RPCError {
 /**
  * An error that occurs when the request is not formatted correctly.
  */
-export class InvalidRequest extends RPCError {
+export class InvalidRequest extends RPCError implements InstanceComparable<InvalidRequest> {
+  public static get comparableSymbol() { return Symbol.for('InvalidRequest'); }
+  public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+  public isSibling(instance: InvalidRequest): boolean {
+    return instance.comparableSymbol === this.comparableSymbol;
+  }
     /**
      * RPC Error code
      */
@@ -70,7 +86,12 @@ export class InvalidRequest extends RPCError {
 /**
  * An error that occurs when a method has been called that does not exist.
  */
-export class MethodNotFound extends RPCError {
+export class MethodNotFound extends RPCError implements InstanceComparable<MethodNotFound> {
+  public static get comparableSymbol() { return Symbol.for('MethodNotFound'); }
+  public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+  public isSibling(instance: MethodNotFound): boolean {
+    return instance.comparableSymbol === this.comparableSymbol;
+  }
     /**
      * RPC Error code
      */
@@ -91,7 +112,12 @@ export class MethodNotFound extends RPCError {
  * An error that could occur when a method has been called with invalid arguments.
  * This error can only be raised when named paramaters are used.
  */
-export class InvalidParams extends RPCError {
+export class InvalidParams extends RPCError  implements InstanceComparable<InvalidParams> {
+  public static get comparableSymbol() { return Symbol.for('InvalidParams'); }
+  public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+  public isSibling(instance: InvalidParams): boolean {
+    return instance.comparableSymbol === this.comparableSymbol;
+  }
     /**
      * RPC Error code
      */
@@ -111,7 +137,12 @@ export class InvalidParams extends RPCError {
 /**
  * An unknown internal error.
  */
-export class InternalError extends RPCError {
+export class InternalError extends RPCError implements InstanceComparable<InternalError> {
+  public static get comparableSymbol() { return Symbol.for('InternalError'); }
+  public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+  public isSibling(instance: InternalError): boolean {
+    return instance.comparableSymbol === this.comparableSymbol;
+  }
     /**
      * RPC Error code
      */
@@ -131,7 +162,12 @@ export class InternalError extends RPCError {
 /**
  * A server error.
  */
-export class ServerError extends RPCError {
+export class ServerError extends RPCError implements InstanceComparable<ServerError> {
+  public static get comparableSymbol() { return Symbol.for('ServerError'); }
+  public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+  public isSibling(instance: ServerError): boolean {
+    return instance.comparableSymbol === this.comparableSymbol;
+  }
     /**
      * Creates a ServerError object.
      * @param code - The error code. Must be above -32099 but below -32000.

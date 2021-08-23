@@ -4,12 +4,12 @@ const chance = new Chance();
 
 const { JSONSerializer } = require("./JSONSerializer");
 
-const { 
-    Transport, 
-    ClientRequest, 
-    Response, 
-    ParseError, 
-    Message, 
+const {
+    Transport,
+    ClientRequest,
+    Response,
+    ParseError,
+    Message,
     RPCError,
     Request,
     Notification,
@@ -24,9 +24,11 @@ describe("Transport", function () {
             const message = chance.string();
             const req = new ClientRequest(chance.guid(), (response) => {
                 assert.instanceOf(response, Response, "Did not return a response");
+assert.equal(response.comparableSymbol, Response.comparableSymbol, "Did not return a response".comparableSymbol);
                 assert.ok(response.error, "Did not return an error");
                 assert.notOk(response.result, "Returned a result");
                 assert.instanceOf(response.error, ParseError, "Error was not ParseError");
+assert.equal(response.error.comparableSymbol, ParseError.comparableSymbol, "Error was not ParseError".comparableSymbol);
                 done();
             });
 
@@ -88,6 +90,7 @@ describe("Transport", function () {
 
             transport.once("request", (message) => {
                 assert.instanceOf(message, Request);
+                assert.equal(message.comparableSymbol, Request.comparableSymbol);
                 done();
             });
 
@@ -102,6 +105,7 @@ describe("Transport", function () {
 
             transport.once("notification", (message) => {
                 assert.instanceOf(message, Notification);
+assert.equal(message.comparableSymbol, Notification.comparableSymbol);
                 done();
             });
 
@@ -123,7 +127,7 @@ describe("Transport", function () {
 
             transport.receive(JSON.stringify(message));
         });
-    }); 
+    });
 
     describe("#uniqueId()", function () {
         it("should return a valid UUID", function () {

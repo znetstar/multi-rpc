@@ -1,7 +1,7 @@
 const Chance = require('chance');
 const { assert } = require('chai');
-const { 
-    Serializer, 
+const {
+    Serializer,
     InvalidRequest,
     Request,
     Notification,
@@ -25,7 +25,9 @@ describe("Serializer", function () {
                 const resp = serializer.deserialize(req, true);
                 assert.isArray(resp);
                 assert.equal(req.length, resp.length);
+                assert.equal(resp[0].comparableSymbol, Request.comparableSymbol, 'Symbol should match class symbol');
                 assert.instanceOf(resp[0], Request, "The first element in the response was not a Request");
+                assert.equal(resp[1].comparableSymbol, Notification.comparableSymbol, 'Symbol should match class symbol');
                 assert.instanceOf(resp[1], Notification, "The second element in the response was not a Notification");
             });
 
@@ -35,7 +37,7 @@ describe("Serializer", function () {
                     { id: chance.integer(), method: chance.string(), jsonrpc: "2.0" }, // Request
                     { id: chance.integer(), result: chance.string(), "jsonrpc": "2.0" } // Notification
                 ];
-                
+
                 assert.throws(() => { serializer.deserialize(req, true); }, InvalidRequest);
             });
         });
@@ -47,10 +49,10 @@ describe("Serializer", function () {
                     id: chance.string(),
                     method: chance.string()
                 };
-    
+
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
-    
+
             it(`A Request object must only contain the "id", "method", "params" and "jsonrpc" fields`, function () {
                 const serializer = new Serializer();
                 const request = {
@@ -58,7 +60,7 @@ describe("Serializer", function () {
                     id: chance.string(),
                     method: chance.string(),
                     foo: "bar"
-                }; 
+                };
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
 
@@ -68,7 +70,7 @@ describe("Serializer", function () {
                     jsonrpc: "2.0",
                     id: chance.bool(),
                     method: chance.string()
-                }; 
+                };
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
 
@@ -78,7 +80,7 @@ describe("Serializer", function () {
                     jsonrpc: "2.0",
                     id: chance.bool(),
                     method: chance.integer()
-                }; 
+                };
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
 
@@ -89,7 +91,7 @@ describe("Serializer", function () {
                     method: chance.string(),
                     id: chance.integer(),
                     params: chance.bool()
-                }; 
+                };
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
 
@@ -99,9 +101,11 @@ describe("Serializer", function () {
                     jsonrpc: "2.0",
                     id: chance.integer(),
                     method: chance.string()
-                }; 
+                };
 
-                assert.instanceOf(serializer.deserialize(request, false), Request);
+                const req = serializer.deserialize(request, false);
+                assert.equal(req.comparableSymbol, Request.comparableSymbol, 'Symbol should match class symbol');
+                assert.instanceOf(req, Request);
             });
         });
 
@@ -112,7 +116,7 @@ describe("Serializer", function () {
                     id: chance.string(),
                     method: chance.string()
                 };
-    
+
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
 
@@ -121,7 +125,7 @@ describe("Serializer", function () {
                 const request = {
                     jsonrpc: "2.0",
                     method: chance.integer()
-                }; 
+                };
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
 
@@ -131,7 +135,7 @@ describe("Serializer", function () {
                     jsonrpc: "2.0",
                     method: chance.string(),
                     params: chance.bool()
-                }; 
+                };
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
 
@@ -140,9 +144,12 @@ describe("Serializer", function () {
                 const request = {
                     jsonrpc: "2.0",
                     method: chance.string()
-                }; 
+                };
 
-                assert.instanceOf(serializer.deserialize(request, false), Notification);
+
+                const req = serializer.deserialize(request, false);
+                assert.equal(req.comparableSymbol, Notification.comparableSymbol, 'Symbol should match class symbol');
+                assert.instanceOf(req, Notification);
             });
         });
 
@@ -153,7 +160,7 @@ describe("Serializer", function () {
                     id: chance.string(),
                     method: chance.string()
                 };
-    
+
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
             });
 
@@ -167,7 +174,7 @@ describe("Serializer", function () {
                 };
 
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
-            });   
+            });
 
             it("Must throw if error contains invalid fields", function () {
                 const serializer = new Serializer();
@@ -178,7 +185,7 @@ describe("Serializer", function () {
                 };
 
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
-            }); 
+            });
 
             it("Must throw if error does not contain code", function () {
                 const serializer = new Serializer();
@@ -189,8 +196,8 @@ describe("Serializer", function () {
                 };
 
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
-            }); 
-    
+            });
+
 
             it("Must throw if the code field on an error is not an integer", function () {
                 const serializer = new Serializer();
@@ -201,7 +208,7 @@ describe("Serializer", function () {
                 };
 
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
-            }); 
+            });
 
             it("Must throw if the message field on an error is not a string", function () {
                 const serializer = new Serializer();
@@ -212,7 +219,7 @@ describe("Serializer", function () {
                 };
 
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
-            }); 
+            });
 
             it("Must throw if the error does not contain a message field", function () {
                 const serializer = new Serializer();
@@ -223,7 +230,7 @@ describe("Serializer", function () {
                 };
 
                 assert.throws(serializer.deserialize.bind(serializer, request, false), InvalidRequest);
-            }); 
+            });
 
             it("Must return an InvalidParams error if the code matches", function () {
                 const serializer = new Serializer();
@@ -235,9 +242,12 @@ describe("Serializer", function () {
 
                 const resp = serializer.deserialize.call(serializer, request, false);
 
+                assert.equal(resp.comparableSymbol, Response.comparableSymbol, 'Symbol should match class symbol');
                 assert.instanceOf(resp, Response, "Did not return a Response");
+
+                assert.equal(resp.error.comparableSymbol, InvalidParams.comparableSymbol, 'Symbol should match class symbol');
                 assert.instanceOf(resp.error, InvalidParams, "Error was not InvalidParams");
-            }); 
+            });
 
             it("Must return a ServerError error if the code matches", function () {
                 const serializer = new Serializer();
@@ -249,9 +259,13 @@ describe("Serializer", function () {
 
                 const resp = serializer.deserialize.call(serializer, request, false);
 
+
+                assert.equal(resp.comparableSymbol, Response.comparableSymbol, 'Symbol should match class symbol');
                 assert.instanceOf(resp, Response, "Did not return a Response");
+
+                assert.equal(resp.error.comparableSymbol, ServerError.comparableSymbol, 'Symbol should match class symbol');
                 assert.instanceOf(resp.error, ServerError, "Error was not ServerError");
-            }); 
+            });
 
             it("Must return a Response object with the error field set", function () {
                 const serializer = new Serializer();
@@ -259,13 +273,15 @@ describe("Serializer", function () {
                     jsonrpc: "2.0",
                     id: chance.integer(),
                     error: { code: chance.integer(), data: chance.bool(), message: chance.string() }
-                }; 
-                
+                };
+
                 const response = serializer.deserialize(request, false);
+
+                assert.equal(response.comparableSymbol, Response.comparableSymbol, 'Symbol should match class symbol');
                 assert.instanceOf(response, Response);
                 assert.ok(response.error);
                 assert.notOk(response.result);
-            });     
+            });
 
             it("Must return a Response object with the result field set", function () {
                 const serializer = new Serializer();
@@ -273,13 +289,14 @@ describe("Serializer", function () {
                     jsonrpc: "2.0",
                     id: chance.integer(),
                     result: [ chance.integer() ]
-                }; 
-                
+                };
+
                 const response = serializer.deserialize(request, false);
+                assert.equal(response.comparableSymbol, Response.comparableSymbol, 'Symbol should match class symbol');
                 assert.instanceOf(response, Response);
                 assert.ok(response.result);
                 assert.notOk(response.error);
-            });          
+            });
         });
     });
 });

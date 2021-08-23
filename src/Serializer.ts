@@ -6,7 +6,7 @@ import { InvalidRequest, ServerError,  RPCError, RPCErrorsByCode } from "./Error
 
 /**
  * Checks if the fields in the object are valid fields.
- * @param fieldsNeeded - Valid fields for the object. 
+ * @param fieldsNeeded - Valid fields for the object.
  * @param fieldsPresent - Fields on the object.
  * @ignore
  */
@@ -33,18 +33,18 @@ export default abstract class Serializer {
     /**
      * Deserializes an existing object to a message.
      * This method verifies that the object conforms to the JSON-RPC 2.0 specification
-     * 
+     *
      * @param object - The object.
      * @param batch - Indicates if the message may be a batch request (array of messages).
      */
     deserialize(object: any, batch: boolean = true): Request|Notification|Response|Array<Request>|Array<Notification>|Array<Response> {
         let result;
-        
+
         // Handle batch requests
         if (batch && typeof(object) === 'object' && Array.isArray(object)) {
             return object.map<any>((incomingMessage: Object) => {
                 const message = deserialize(incomingMessage, false);
-                if (!(message instanceof Notification || message instanceof Request))
+                if (!((message as Message).comparableSymbol === Notification.comparableSymbol || (message as Message).comparableSymbol === Request.comparableSymbol))
                     throw new InvalidRequest();
                 return message;
             });
@@ -54,11 +54,11 @@ export default abstract class Serializer {
         if (
             !allowedFields([ "jsonrpc", "id", "method", "params", "error", "result" ], object)
             || (
-                object === null 
-                || typeof(object) !== "object" 
+                object === null
+                || typeof(object) !== "object"
                 || object.jsonrpc !== "2.0"
             )
-        ) 
+        )
             throw new InvalidRequest({ id: object.id });
 
         // Check for "Request"
@@ -68,7 +68,7 @@ export default abstract class Serializer {
             && typeof(object.method) === "string"
             // ID must be a string, number or null.
             && (
-                typeof(object.id) === "string" 
+                typeof(object.id) === "string"
                 || (typeof(object.id) === "number")
                 || (object.id === null)
             )
@@ -104,14 +104,14 @@ export default abstract class Serializer {
             allowedFields([ "jsonrpc", "id", "result" ], object)
             // The ID must be a string, number or null
             && (
-                typeof(object.id) === "string" 
+                typeof(object.id) === "string"
                 || (typeof(object.id) === "number")
                 || (object.id === null)
             )
             // "result" must exist
             && typeof(object.result) !== "undefined"
             && typeof(object.error) === "undefined"
-        ) 
+        )
             result = new Response(object.id, object.result);
         // Check for "Response" with an error
         else if (
@@ -135,13 +135,13 @@ export default abstract class Serializer {
             const { message, data, code } = object.error;
             let error: RPCError;
             // check if the code matches an existing RPC error
-            if (RPCErrorsByCode.has(code)) 
+            if (RPCErrorsByCode.has(code))
                 error = new (RPCErrorsByCode.get(code))(data);
             else if (ServerError.isServerErrorCode(code))
                 error = new ServerError(code, data);
             else
                 error = new RPCError(message, code, data);
-            
+
             result = new Response(object.id, error);
         }
         else

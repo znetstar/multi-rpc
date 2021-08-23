@@ -23,13 +23,16 @@ export default class Response extends Message {
      */
     constructor(public id: number|string|null, resultOrError: any) {
         super();
-        if (resultOrError instanceof RPCError) {
+        if ((
+          resultOrError instanceof RPCError ||
+          resultOrError.comparableSymbol === RPCError.comparableSymbol
+        )) {
             this.error = resultOrError;
         } else {
             this.result = resultOrError;
         }
     }
-    
+
     /**
      * Prepares response for serialization.
      */

@@ -7,12 +7,18 @@ import Notification from "./Notification";
 import Response from "./Response";
 import { RPCError } from "./Errors";
 import ClientRequest from "./ClientRequest";
+import {InstanceComparable} from "./InstanceComparable";
 
 /**
  * Transports facilitate the exchange of messages between Server and Client.
  * The transport can be used either as a server (listening for connections) or as a client (maintaining a single connection to a server).
  */
-export default abstract class Transport extends EventEmitter2 {
+export default abstract class Transport extends EventEmitter2  implements InstanceComparable<Transport> {
+    public static get comparableSymbol() { return Symbol.for('Transport'); }
+public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+    public isSibling(instance: Transport): boolean {
+      return instance.comparableSymbol === this.comparableSymbol;
+    }
     /**
      * Creates a Transport object.
      * @param serializer - The serializer that will be used to serialize and deserialize requests.
@@ -44,7 +50,7 @@ export default abstract class Transport extends EventEmitter2 {
 
     /**
      * This method is called when the server has sent a message to a client and vice versa.
-     * @param data - The serialized message as either binary or text. 
+     * @param data - The serialized message as either binary or text.
      * @param clientRequest - Contains data on the inbound request, including the client's ID.
      */
     protected receive(data: Uint8Array|string, clientRequest?: ClientRequest) {
@@ -56,7 +62,7 @@ export default abstract class Transport extends EventEmitter2 {
                 const resp = new Response((error.data && error.data.id), <RPCError>error);
                 if (error.data && error.data.id)
                     delete error.data.id;
-                
+
                 clientRequest.respond(resp);
             }
             else
@@ -65,7 +71,7 @@ export default abstract class Transport extends EventEmitter2 {
 
         if (Array.isArray(message))
             /**
-             * Emitted when a batch (an array of messages) has been received. 
+             * Emitted when a batch (an array of messages) has been received.
              * @event Transport#batch
              * @fires Transport#batch
              * @param {Array<Message>} message - An array of messages to be processed sequentially.
@@ -73,7 +79,7 @@ export default abstract class Transport extends EventEmitter2 {
              */
             this.emit("batch", message, clientRequest);
 
-        else if (message instanceof Request)
+        else if (message.comparableSymbol === Request.comparableSymbol)
             /**
              * Emitted when a request (method call) has been received by the server.
              * @event Transport#request
@@ -83,7 +89,7 @@ export default abstract class Transport extends EventEmitter2 {
              */
             this.emit("request", <Request>message, clientRequest);
 
-        else if (message instanceof Notification) 
+        else if (message.comparableSymbol === Notification.comparableSymbol)
             /**
              * Emitted when a notification (event) has been received by either the server or the client.
              * @event Transport#notification
@@ -93,19 +99,19 @@ export default abstract class Transport extends EventEmitter2 {
              */
             this.emit("notification", <Notification>message, clientRequest);
 
-        else if (message instanceof Response) {
+        else if (message.comparableSymbol === Response.comparableSymbol) {
             const response = <Response>message;
             /**
              * Emitted when the client has received a response from the server.
-             * 
+             *
              * The name of the event will contain the ID of the request that was made.
              * To listen for all requests listen to "response:*".
-             * 
+             *
              * @event Transport#response:*
              * @fires Transport#response:*
              * @param {Response} message - The response from the request that was made.
              * @param {ClientRequest} clientRequest - Contains data on the inbound request, including the client's ID.
-             * 
+             *
              * @example
              * // response: { "id": 1, "result": { "foo": "bar" } }
              * Transport.on("response:1", (msg) => {

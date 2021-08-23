@@ -1,6 +1,7 @@
 import Transport from "./Transport";
 import Message from "./Message";
 import Serializer from "./Serializer";
+import {InstanceComparable} from "./InstanceComparable";
 
 /**
  * An error that occurs when the server attempts to send a notification to a client that doesn't exist.
@@ -12,7 +13,7 @@ export class NonExistantClient extends Error {
 }
 
 /**
- * An error that occurs when a non-persistent transport is used as a persistent transport. 
+ * An error that occurs when a non-persistent transport is used as a persistent transport.
  */
 export class TransportIsNotPersistent extends Error {
     constructor() {
@@ -41,8 +42,14 @@ export class TransportInClientState extends Error {
 /**
  * A transport that maintains a Persistent connection to the server.
  */
-export default abstract class PersistentTransport extends Transport {
-    /**
+export default abstract class PersistentTransport extends Transport implements InstanceComparable<PersistentTransport> {
+    public static get comparableSymbol() { return Symbol.for('PersistentTransport'); }
+  public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+    public isSibling(instance: PersistentTransport): boolean {
+      return instance.comparableSymbol === this.comparableSymbol;
+    }
+
+  /**
      * A map that contains all current connections to the server using this transport.
      * The key is the id assigned to the connection and the value is the connection itself.
      */
@@ -121,7 +128,7 @@ export default abstract class PersistentTransport extends Transport {
 
         if (!this.connections.has(id))
             throw new NonExistantClient(id);
-        
+
         await this.sendConnection(this.connections.get(id), message);
     }
 
@@ -132,7 +139,7 @@ export default abstract class PersistentTransport extends Transport {
      * @async
      */
     protected abstract sendConnection(connection: any, message: Message): Promise<void>;
-    
+
     /**
      * Sends a message to the server.
      * @param message - Message to send.
@@ -144,7 +151,7 @@ export default abstract class PersistentTransport extends Transport {
             throw new TransportInServerState();
         }
 
-        if (!this.connection) 
+        if (!this.connection)
             await this.connect();
 
         await this.sendConnection(this.connection, message);
@@ -153,8 +160,8 @@ export default abstract class PersistentTransport extends Transport {
 
     /**
      * Attempts to reconnect to the server.
-     * 
-     * @async 
+     *
+     * @async
      */
     public async reconnect(): Promise<void> {
         if (this.connected) {
