@@ -1,6 +1,6 @@
 {
     "name": "multi-rpc-common",
-    "version": "2.4.1",
+    "version": "2.4.2",
     "description": "Common classes used in multi-rpc",
     "main": "lib/index.js",
     "scripts": {
