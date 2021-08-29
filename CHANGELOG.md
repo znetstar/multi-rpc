@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.7.7] - 2021-08-29
+### Changes
+- Upgrades multi-rpc-common
+
 ## [1.7.6] - 2021-08-23
 ### Changes
 - UUpgrades multi-rpc-common
