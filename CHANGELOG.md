@@ -5,6 +5,11 @@
 ### Added
 - Uses a `Symbol` to determine the constructor for the various `Message` and `Transport` classes,  because `instanceof` often fails if there are differing `multi-rpc-common` packages in the module path.
 
+
+## [2.4.0] - 2021-08-23
+### Added
+- Uses a `Symbol` to determine the constructor for the various `Message` and `Transport` classes,  because `instanceof` often fails if there are differing `multi-rpc-common` packages in the module path.
+
 ## [2.3.2] - 2021-07-20
 ### Added
 - Fixes an issue with `Message.serialize` not being called.

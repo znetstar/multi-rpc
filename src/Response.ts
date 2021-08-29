@@ -25,7 +25,7 @@ export default class Response extends Message {
         super();
         if ((
           resultOrError instanceof RPCError ||
-          resultOrError.comparableSymbol === RPCError.comparableSymbol
+          (resultOrError?.comparableSymbol === RPCError.comparableSymbol)
         )) {
             this.error = resultOrError;
         } else {
