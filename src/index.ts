@@ -5,3 +5,6 @@ export {
     MethodExecutionContextOptions,
     MethodExecutionContextSelf
 } from './MethodExecutionContext';
+export {
+  RPCProxyManager
+} from './RPCProxyManager';

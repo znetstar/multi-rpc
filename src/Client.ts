@@ -1,5 +1,6 @@
 import { EventEmitter2 } from "eventemitter2";
 import { Transport, PersistentTransport, TransportIsNotPersistent, Request, Notification, ClientRequest, Response } from "multi-rpc-common";
+import RPCProxyManager from "./RPCProxyManager";
 
 /**
  * A client that will connect to an RPC server.
@@ -25,16 +26,16 @@ export default class Client extends EventEmitter2 {
          * Client.on("foo", (string) => {
          *  console.log(string)
          * });
-         * @listens Transport#notification 
+         * @listens Transport#notification
          */
         transport.on('notification', (notification: Notification, clientRequest: ClientRequest) => {
             this.emit.apply(this, [ notification.method ].concat(<any>notification.params));
-        }); 
+        });
     }
 
     /**
      * Connects to the server using the transport.
-     * 
+     *
      * @async
      */
     public async connect(): Promise<void> {
@@ -46,29 +47,29 @@ export default class Client extends EventEmitter2 {
      * @param method - Method to invoke.
      * @param params - Arguments for the method.
      * @async
-     * 
+     *
      * The example below will log "baz, flob"
      * @example
      * Server.methods["foo"] = { bar: (a,b) => { console.log(a,b);  } };
-     * 
+     *
      * let result = await Client.invoke("foo.bar", ["baz", "flob"]);
      * let result = await Client.invoke("foo.bar", { a: "baz", b: "flob" })
      */
     public async invoke(method: string, params: Object|any[]): Promise<any> {
         let id = this.method_id++;
         const request = new Request(id, method, params);
-        
+
         let p = new Promise((resolve, reject) => {
             this.transport.once(`response:${id}`, (response: Response) => {
-                if (response.error) 
+                if (response.error)
                     return reject(response.error);
-                
+
                 resolve(response.result);
             });
         });
 
         await this.transport.send(request);
-        
+
         return p;
     }
 
@@ -80,7 +81,7 @@ export default class Client extends EventEmitter2 {
      */
     public async notify(method: string, ...params: any[]): Promise<void> {
         const notification = new Notification(method, params);
-        
+
         await this.transport.send(notification);
     }
 
@@ -89,7 +90,14 @@ export default class Client extends EventEmitter2 {
      * @async
      */
     public async close(): Promise<void> {
-        if (this.transport instanceof PersistentTransport) 
-            (this.transport as PersistentTransport).close();
+        if (this.transport.comparableSymbol == PersistentTransport.comparableSymbol)
+          return (this.transport as PersistentTransport).close();
+    }
+
+  /**
+   * Creates an `RPCProxyManager` using the client as a backend.
+   */
+  public createProxyManager<T>(): RPCProxyManager<T> {
+      return new RPCProxyManager<T>(this);
     }
 }
