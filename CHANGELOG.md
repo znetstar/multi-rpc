@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.8.0] - 2021-09-13
+### Changes
+- Upgrades multi-rpc-core
+
 ## [1.7.7] - 2021-08-29
 ### Changes
 - Upgrades multi-rpc-common
