@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.1] - 2021-10-25
+### Added
+- Fixes an issue with the `invoke` promise resolving before the event fires in `Client`
+
 ## [1.3.0] - 2021-09-13
 ### Added 
 - Adds a `RPCProxyManager` object, which wraps `Client.invoke` as a ES6 `Proxy` so `client.invoke('foo', 1234)` can become `proxy.foo(1234)`.

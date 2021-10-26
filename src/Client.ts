@@ -59,18 +59,17 @@ export default class Client extends EventEmitter2 {
         let id = this.method_id++;
         const request = new Request(id, method, params);
 
-        let p = new Promise((resolve, reject) => {
+        return Promise.all([
+          new Promise((resolve, reject) => {
             this.transport.once(`response:${id}`, (response: Response) => {
-                if (response.error)
-                    return reject(response.error);
+              if (response.error)
+                return reject(response.error);
 
-                resolve(response.result);
+              resolve(response.result);
             });
-        });
-
-        await this.transport.send(request);
-
-        return p;
+          }),
+          this.transport.send(request)
+        ]).then(([a]) => a);
     }
 
     /**
