@@ -68,7 +68,7 @@ export class RPCProxyManager<T extends Object> extends EventEmitter {
   protected async onRpcInvoke(method: string, args: unknown[]): Promise<unknown> {
     try {
       await this.emitAsync('invoke', method, args);
-      return this.rpcClient.invoke(method, args);
+      return await this.rpcClient.invoke(method, args);
     } catch (err) {
       if (this.listeners('error').length) {
         await this.emitAsync('error', err);
