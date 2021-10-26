@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.3.3] - 2021-10-25
+### Changed
+- `method_id` in `client` is now a uuidv1, to avoid conflicts.
+
 ## [1.3.1] - 2021-10-25
 ### Added
 - Fixes an issue with the `invoke` promise resolving before the event fires in `Client`

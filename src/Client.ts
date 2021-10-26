@@ -1,6 +1,8 @@
-import { EventEmitter2 } from "eventemitter2";
-import { Transport, PersistentTransport, TransportIsNotPersistent, Request, Notification, ClientRequest, Response } from "multi-rpc-common";
+import {EventEmitter2} from "eventemitter2";
+import {ClientRequest, Notification, PersistentTransport, Request, Response, Transport} from "multi-rpc-common";
 import RPCProxyManager from "./RPCProxyManager";
+import {EncodeToolsAuto} from '@etomon/encode-tools';
+import {IDFormat} from "@etomon/encode-tools/lib/EncodeTools";
 
 /**
  * A client that will connect to an RPC server.
@@ -9,7 +11,7 @@ export default class Client extends EventEmitter2 {
     /**
      * Keeps track of Request IDs. Will be incremented after each request.
      */
-    protected method_id: number = 1;
+    protected method_id: string = EncodeToolsAuto.WithDefaults.uniqueId(IDFormat.uuidv1String);
 
     /**
      * Creates a client.
@@ -55,21 +57,24 @@ export default class Client extends EventEmitter2 {
      * let result = await Client.invoke("foo.bar", ["baz", "flob"]);
      * let result = await Client.invoke("foo.bar", { a: "baz", b: "flob" })
      */
-    public async invoke(method: string, params: Object|any[]): Promise<any> {
-        let id = this.method_id++;
+    public invoke(method: string, params: Object|any[]): Promise<any> {
+        let id = this.method_id = EncodeToolsAuto.WithDefaults.uniqueId(IDFormat.uuidv1String);
         const request = new Request(id, method, params);
 
-        return Promise.all([
-          new Promise((resolve, reject) => {
-            this.transport.once(`response:${id}`, (response: Response) => {
-              if (response.error)
-                return reject(response.error);
 
-              resolve(response.result);
-            });
-          }),
-          this.transport.send(request)
-        ]).then(([a]) => a);
+        return new Promise((resolve, reject) => {
+          const onResponse = (response: Response) => {
+            if (response.error)
+              return reject(response.error);
+
+            resolve(response.result);
+          };
+          this.transport.once(`response:${id}`, onResponse);
+          this.transport.send(request).catch((err: Error) => {
+            this.transport.off(`response:${id}`, onResponse);
+            reject(err);
+          })
+        });
     }
 
     /**
