@@ -1,6 +1,10 @@
 
 # Changelog
 
+## [2.5.0] - 2021-11-12
+### Added
+- A `Serializer` instance can be passed in the `ClientRequest` to override the `Transport`'s `Serializer`.
+
 ## [2.4.0] - 2021-08-23
 ### Added
 - Uses a `Symbol` to determine the constructor for the various `Message` and `Transport` classes,  because `instanceof` often fails if there are differing `multi-rpc-common` packages in the module path.

@@ -1,13 +1,14 @@
-import { EventEmitter2 } from "eventemitter2";
-import * as uuid from "uuid";
+import {EventEmitter2} from "eventemitter2";
 import Serializer from "./Serializer";
 import Message from "./Message";
 import Request from "./Request";
 import Notification from "./Notification";
 import Response from "./Response";
-import { RPCError } from "./Errors";
+import {RPCError} from "./Errors";
 import ClientRequest from "./ClientRequest";
 import {InstanceComparable} from "./InstanceComparable";
+import {EncodeTools} from '@etomon/encode-tools';
+import {IDFormat} from "@etomon/encode-tools/lib/EncodeTools";
 
 /**
  * Transports facilitate the exchange of messages between Server and Client.
@@ -15,7 +16,7 @@ import {InstanceComparable} from "./InstanceComparable";
  */
 export default abstract class Transport extends EventEmitter2  implements InstanceComparable<Transport> {
     public static get comparableSymbol() { return Symbol.for('Transport'); }
-public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
+    public get comparableSymbol() { return ((this as any).__proto__.constructor.comparableSymbol); }
     public isSibling(instance: Transport): boolean {
       return instance.comparableSymbol === this.comparableSymbol;
     }
@@ -35,9 +36,7 @@ public get comparableSymbol() { return ((this as any).__proto__.constructor.comp
      * The unique id will be a UUID v4 returned as a Uint8Array.
      */
     static uniqueId(): Uint8Array {
-        const uniqueId = new Uint8Array(16);
-        uuid.v4(null, uniqueId, 0);
-        return uniqueId;
+        return EncodeTools.WithDefaults.uniqueId(IDFormat.uuidv4);
     }
 
     /**
@@ -56,7 +55,8 @@ public get comparableSymbol() { return ((this as any).__proto__.constructor.comp
     protected receive(data: Uint8Array|string, clientRequest?: ClientRequest) {
         let message;
         try {
-            message = this.serializer.deserialize(data);
+            const serializer = clientRequest?.serializer || this.serializer;
+            message = serializer.deserialize(data);
         } catch (error) {
             if (clientRequest && clientRequest.respond) {
                 const resp = new Response((error.data && error.data.id), <RPCError>error);
