@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.0] - 2021-12-12
+### Added
+- Upgrade multi-rpc-common
+
 ## [1.3.3] - 2021-10-25
 ### Changed
 - `method_id` in `client` is now a uuidv1, to avoid conflicts.
