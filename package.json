@@ -1,6 +1,6 @@
 {
     "name": "multi-rpc-core",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Client/Server classes used in multi-rpc",
     "main": "lib/index.js",
     "scripts": {
@@ -41,9 +41,9 @@
         "grunt-ts": "^6.0.0-beta.22",
         "grunt-typedoc": "^0.2.4",
         "mocha": "^5.2.0",
-        "multi-rpc-common": "^2.4.3",
-        "multi-rpc-json-serializer": "^1.x",
-        "multi-rpc-tcp-transport": "^1.x",
+        "multi-rpc-common": "^3.x",
+        "multi-rpc-json-serializer": "^2.x",
+        "multi-rpc-tcp-transport": "^2.x",
         "shelljs": "^0.8.4",
         "typedoc": "^0.22.3",
         "typescript": "^3.9.10"
