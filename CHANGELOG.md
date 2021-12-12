@@ -1,6 +1,12 @@
 
 # Changelog
 
+
+## [3.0.0] - 2021-12-12
+### Added
+- Upgrades `@etomon/enoode-tools`
+
+
 ## [2.5.0] - 2021-11-12
 ### Added
 - A `Serializer` instance can be passed in the `ClientRequest` to override the `Transport`'s `Serializer`.
