@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-websocket-transport",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "WebSocket transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "homepage": "https://github.com/znetstar/multi-rpc-websocket-transport#readme",
   "dependencies": {
     "@types/websocket": "0.0.40",
-    "multi-rpc-websocket-client-side-transport": "^1.x",
+    "multi-rpc-websocket-client-side-transport": "^2.x",
     "websocket": "^1.0.28"
   },
   "peerDependencies": {
@@ -38,7 +38,7 @@
     "grunt-typedoc": "^0.2.4",
     "mocha": "^5.2.0",
     "multi-rpc-common": "^2.x",
-    "multi-rpc-json-serializer": "^1.x",
+    "multi-rpc-json-serializer": "^2.x",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "shelljs": "^0.8.4",
