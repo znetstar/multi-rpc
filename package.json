@@ -1,6 +1,6 @@
 {
   "name": "multi-rpc-websocket-transport",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "WebSocket transport for multi-rpc",
   "main": "lib/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "websocket": "^1.0.28"
   },
   "peerDependencies": {
-    "multi-rpc-common": "^2.x"
+    "multi-rpc-common": "^3.x"
   },
   "devDependencies": {
     "@types/node": "^16.4.0",
