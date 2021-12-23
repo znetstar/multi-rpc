@@ -1,6 +1,10 @@
 
 # Changelog
 
+## [3.1.0] - 2021-12-12
+### Changes
+- Replaces `@eto
+- mon/encode-tools` with `@znetstar/encode-tools` for better browser support.
 
 ## [3.0.0] - 2021-12-12
 ### Added

@@ -7,8 +7,8 @@ import Response from "./Response";
 import {RPCError} from "./Errors";
 import ClientRequest from "./ClientRequest";
 import {InstanceComparable} from "./InstanceComparable";
-import {EncodeTools} from '@etomon/encode-tools';
-import {IDFormat} from "@etomon/encode-tools/lib/EncodeTools";
+import {EncodeTools} from '@znetstar/encode-tools';
+import {IDFormat} from "@znetstar/encode-tools/lib/EncodeTools";
 
 /**
  * Transports facilitate the exchange of messages between Server and Client.

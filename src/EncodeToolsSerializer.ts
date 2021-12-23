@@ -1,19 +1,19 @@
 import Serializer from "./Serializer";
 import Message from "./Message";
 import {
-  EncodeToolsAuto as EncodeTools,
+  EncodeTools,
   EncodingOptions,
   BinaryEncoding,
   SerializationFormat, SerializationFormatMimeTypes
-} from '@etomon/encode-tools/lib/EncodeToolsAuto';
+} from '@znetstar/encode-tools/lib/EncodeTools';
 import {Buffer} from 'buffer';
 import {ParseError} from "./Errors";
 
 type Encodable =  Request | Notification | Response | Array<Request> | Array<Notification> | Array<Response>;
 
 /**
- * An implementation of `Serializer` that internally uses `@etomon/encode-tools` for encoding/decoding.
- * Any serialization methods supported by `@etomon/encode-tools` (today JSON, MessagePack, CBOR, and BSON)
+ * An implementation of `Serializer` that internally uses `@znetstar/encode-tools` for encoding/decoding.
+ * Any serialization methods supported by `@znetstar/encode-tools` (today JSON, MessagePack, CBOR, and BSON)
  * are supported when using this Serializer.
  */
 export class EncodeToolsSerializer extends  Serializer{
