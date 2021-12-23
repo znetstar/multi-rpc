@@ -6,10 +6,8 @@ module.exports = function(grunt) {
         typedoc: {
             build: {
                 options: {
-                    module: 'commonjs',
                     out: './docs',
                     name: pkg.name,
-                    target: 'es2018'
                 },
                 src: ['./src/**/*']
             }
@@ -30,7 +28,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-typedoc');
     grunt.loadNpmTasks("grunt-ts");
     grunt.loadNpmTasks('grunt-contrib-clean');
-    
+
     grunt.registerTask('build', ['clean', 'ts']);
     grunt.registerTask('default', ['build']);
 

@@ -1,6 +1,6 @@
 # multi-rpc
 
-[![NPM](https://nodei.co/npm/multi-rpc-common.png)](https://nodei.co/npm/multi-rpc-common/)
+[![npm version](https://badge.fury.io/js/multi-rpc-common.svg)](https://badge.fury.io/js/multi-rpc-common)
 
 [![Build Status](https://travis-ci.org/znetstar/multi-rpc-common.svg?branch=master)](https://travis-ci.org/znetstar/multi-rpc-common)
 
