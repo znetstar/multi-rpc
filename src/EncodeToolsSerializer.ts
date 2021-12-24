@@ -18,7 +18,8 @@ type Encodable =  Request | Notification | Response | Array<Request> | Array<Not
  */
 export class EncodeToolsSerializer extends  Serializer{
   protected encoder = new EncodeTools({
-    ...this.encodingOptions,
+     useToPojoBeforeSerializing: true,
+    ...(this.encodingOptions || {}),
     binaryEncoding: BinaryEncoding.nodeBuffer
   });
 
@@ -26,7 +27,7 @@ export class EncodeToolsSerializer extends  Serializer{
    *
    * @param encodingOptions Options for the encoder. Change `serializationFormat` to change the serialization format of this serializer.
    */
-  constructor(protected encodingOptions: EncodingOptions) {
+  constructor(protected encodingOptions?: Partial<EncodingOptions>) {
     super();
   }
 
