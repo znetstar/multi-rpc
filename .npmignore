@@ -7,3 +7,4 @@ docs
 src
 Gruntfile.js
 .travis.yml
+tscommand*

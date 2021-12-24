@@ -1,8 +1,8 @@
 import {EventEmitter2} from "eventemitter2";
 import {ClientRequest, Notification, PersistentTransport, Request, Response, Transport} from "multi-rpc-common";
 import RPCProxyManager from "./RPCProxyManager";
-import {EncodeToolsAuto} from '@etomon/encode-tools';
-import {IDFormat} from "@etomon/encode-tools/lib/EncodeTools";
+import {EncodeTools} from '@znetstar/encode-tools';
+import {IDFormat} from "@znetstar/encode-tools/lib/EncodeTools";
 
 /**
  * A client that will connect to an RPC server.
@@ -11,7 +11,7 @@ export default class Client extends EventEmitter2 {
     /**
      * Keeps track of Request IDs. Will be incremented after each request.
      */
-    protected method_id: string = EncodeToolsAuto.WithDefaults.uniqueId(IDFormat.uuidv1String);
+    protected method_id: string = EncodeTools.WithDefaults.uniqueId(IDFormat.uuidv1String);
 
     /**
      * Creates a client.
@@ -58,7 +58,7 @@ export default class Client extends EventEmitter2 {
      * let result = await Client.invoke("foo.bar", { a: "baz", b: "flob" })
      */
     public invoke(method: string, params: Object|any[]): Promise<any> {
-        let id = this.method_id = EncodeToolsAuto.WithDefaults.uniqueId(IDFormat.uuidv1String);
+        let id = this.method_id = EncodeTools.WithDefaults.uniqueId(IDFormat.uuidv1String);
         const request = new Request(id, method, params);
 
 

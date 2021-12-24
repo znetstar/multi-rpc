@@ -27,12 +27,12 @@
         "parse-function": "^5.2.11"
     },
     "peerDependencies": {
-        "@etomon/encode-tools": "^3.x",
+        "@znetstar/encode-tools": "^1.x",
         "multi-rpc-common": "^3.x"
     },
     "devDependencies": {
-        "@etomon/encode-tools": "^3.x",
         "@types/node": "^16.4.0",
+        "@znetstar/encode-tools": "^1.1.0",
         "chai": "^4.3.4",
         "chance": "^1.1.7",
         "get-port": "^4.0.0",
@@ -41,7 +41,7 @@
         "grunt-ts": "^6.0.0-beta.22",
         "grunt-typedoc": "^0.2.4",
         "mocha": "^5.2.0",
-        "multi-rpc-common": "^3.x",
+        "multi-rpc-common": "^3.2.0",
         "multi-rpc-json-serializer": "^2.x",
         "multi-rpc-tcp-transport": "^2.x",
         "shelljs": "^0.8.4",
