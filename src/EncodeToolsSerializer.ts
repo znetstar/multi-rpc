@@ -18,7 +18,6 @@ type Encodable =  Request | Notification | Response | Array<Request> | Array<Not
  */
 export class EncodeToolsSerializer extends  Serializer{
   protected encoder = new EncodeTools({
-     useToPojoBeforeSerializing: true,
     ...(this.encodingOptions || {}),
     binaryEncoding: BinaryEncoding.nodeBuffer
   });
