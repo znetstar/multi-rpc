@@ -1,6 +1,6 @@
 {
     "name": "multi-rpc",
-    "version": "2.2.1",
+    "version": "2.3.0",
     "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
     "main": "lib/index.js",
     "publishConfig": {
@@ -21,8 +21,8 @@
         "multi-rpc-common": "^3.2.1",
         "multi-rpc-core": "^2.1.0",
         "multi-rpc-http-transport": "^2.x",
-        "multi-rpc-json-serializer": "^2.x",
-        "multi-rpc-msgpack-serializer": "^2.x",
+        "multi-rpc-json-serializer": "^2.1.1",
+        "multi-rpc-msgpack-serializer": "^2.1.0",
         "multi-rpc-tcp-transport": "^2.x",
         "multi-rpc-websocket-transport": "^2.x"
     },
