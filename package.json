@@ -23,9 +23,11 @@
         "url": "https://github.com/znetstar/multi-rpc-msgpack-serializer/issues"
     },
     "homepage": "https://github.com/znetstar/multi-rpc-msgpack-serializer#readme",
-    "dependencies": {},
+    "dependencies": {
+    },
     "peerDependencies": {
-        "multi-rpc-common": "^3.x"
+        "multi-rpc-common": "^3.x",
+        "@znetstar/encode-tools": "^1.x"
     },
     "devDependencies": {
         "@msgpack/msgpack": "^2.7.0",

@@ -1,5 +1,5 @@
 import {EncodeToolsSerializer} from "multi-rpc-common";
-import {SerializationFormat} from "@etomon/encode-tools/lib/EncodeTools";
+import {SerializationFormat} from "@znetstar/encode-tools/lib/EncodeTools";
 
 /**
  * Represents a serializer that can serialize and deserialize MessagePack.
