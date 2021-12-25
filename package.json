@@ -1,6 +1,6 @@
 {
     "name": "multi-rpc-json-serializer",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "JSON Serializer for multi-rpc",
     "main": "lib/index.js",
     "scripts": {
@@ -20,7 +20,8 @@
     },
     "homepage": "https://github.com/znetstar/multi-rpc-json-serializer#readme",
     "peerDependencies": {
-        "multi-rpc-common": "^3.x"
+        "multi-rpc-common": "^3.x",
+        "@znetstar/encode-tools": "^1.2.1"
     },
     "dependencies": {
         "text-encoding": "^0.7.0"

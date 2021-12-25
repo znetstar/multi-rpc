@@ -1,5 +1,5 @@
 import {EncodeToolsSerializer} from "multi-rpc-common";
-import {SerializationFormat} from "@etomon/encode-tools/lib/EncodeTools";
+import {SerializationFormat} from "@znetstar/encode-tools/lib/EncodeTools";
 
 const { TextDecoder } = require("text-encoding");
 const textDecoder = new TextDecoder();
@@ -10,7 +10,8 @@ const textDecoder = new TextDecoder();
 export default class JSONSerializer extends EncodeToolsSerializer {
     constructor() {
       super({
-        serializationFormat: SerializationFormat.json
+        serializationFormat: SerializationFormat.json,
+        useToPojoBeforeSerializing: true
       });
     }
 }
