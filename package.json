@@ -18,7 +18,7 @@
     "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
     "license": "Apache-2.0",
     "dependencies": {
-        "multi-rpc-common": "^3.2.1",
+        "multi-rpc-common": "^3.2.2",
         "multi-rpc-core": "^2.1.0",
         "multi-rpc-http-transport": "^2.x",
         "multi-rpc-json-serializer": "^2.1.1",
