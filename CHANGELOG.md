@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.4.0] - 2022-02-02
+## [2.5.0] - 2022-02-02
 ### Adds
 - JSON5 as a serialization/deserialization method via `@znetstar/encode-tools@1.4.0`
 
