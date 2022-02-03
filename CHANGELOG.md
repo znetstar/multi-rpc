@@ -1,10 +1,13 @@
 
 # Changelog
 
+## [3.3.0] - 2022-02-02
+### Adds
+- JSON5 as a serialization/deserialization method via `@znetstar/encode-tools@1.4.0`
+
 ## [3.1.0] - 2021-12-12
 ### Changes
-- Replaces `@eto
-- mon/encode-tools` with `@znetstar/encode-tools` for better browser support.
+- Replaces `@etomon/encode-tools` with `@znetstar/encode-tools` for better browser support.
 
 ## [3.0.0] - 2021-12-12
 ### Added
