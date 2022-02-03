@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.4.0] - 2022-02-02
+### Adds
+- JSON5 as a serialization/deserialization method via `@znetstar/encode-tools@1.4.0`
+
 ## [2.1.0] - 2021-12-23
 ### Changes
 - Upgrades multi-rpc-common

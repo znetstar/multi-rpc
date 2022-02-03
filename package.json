@@ -1,6 +1,6 @@
 {
     "name": "multi-rpc",
-    "version": "2.3.2",
+    "version": "2.4.0",
     "description": "A JSON-RPC 2 compliant client/server implementation designed with multiple transports in mind",
     "main": "lib/index.js",
     "publishConfig": {
@@ -18,7 +18,7 @@
     "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
     "license": "Apache-2.0",
     "dependencies": {
-        "multi-rpc-common": "^3.2.3",
+        "multi-rpc-common": "^3.3.0",
         "multi-rpc-core": "^2.1.0",
         "multi-rpc-http-transport": "^2.x",
         "multi-rpc-json-serializer": "^2.1.1",
