@@ -44,6 +44,7 @@
         "grunt-contrib-clean": "^2.0.0",
         "grunt-ts": "^6.0.0-beta.22",
         "grunt-typedoc": "^0.2.4",
+        "lerna": "^4.0.0",
         "mocha": "^8.4.0",
         "request": "^2.88.2",
         "request-promise-native": "^1.0.9",
