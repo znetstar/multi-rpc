@@ -1,0 +1,9 @@
+node_modules
+docs
+.tscache
+.vscode
+.docs
+src
+Gruntfile.js
+.travis.yml
+.idea.idea
