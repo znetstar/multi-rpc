@@ -15,19 +15,17 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/znetstar/multi-rpc-msgpack-serializer.git"
+        "url": "git+https://github.com/znetstar/multi-rpc.git"
     },
     "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/znetstar/multi-rpc-msgpack-serializer/issues"
+        "url": "https://github.com/znetstar/multi-rpc/issues"
     },
-    "homepage": "https://github.com/znetstar/multi-rpc-msgpack-serializer#readme",
-    "dependencies": {
-    },
+    "homepage": "https://github.com/znetstar/multi-rpc#readme",
     "peerDependencies": {
-        "multi-rpc-common": "^3.x",
-        "@znetstar/encode-tools": "^1.x"
+        "@znetstar/encode-tools": "^1.x",
+        "multi-rpc-common": "^3.x"
     },
     "devDependencies": {
         "@msgpack/msgpack": "^2.7.0",
@@ -39,9 +37,9 @@
         "grunt-ts": "^6.0.0-beta.22",
         "grunt-typedoc": "^0.2.4",
         "mocha": "^9.0.2",
-        "multi-rpc-common": "^3.x",
+        "multi-rpc-common": "^3.3.0",
         "shelljs": "^0.8.4",
-        "typedoc": "^0.21.4",
-        "typescript": "^4.3.5"
+        "typedoc": "^0.22.14",
+        "typescript": "^4.6.3"
     }
 }

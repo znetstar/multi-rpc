@@ -14,14 +14,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/znetstar/multi-rpc-http-client-side-transport.git"
+        "url": "git+https://github.com/znetstar/multi-rpc.git"
     },
     "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/znetstar/multi-rpc-http-client-side-transport/issues"
+        "url": "https://github.com/znetstar/multi-rpc/issues"
     },
-    "homepage": "https://github.com/znetstar/multi-rpc-http-client-side-transport#readme",
+    "homepage": "https://github.com/znetstar/multi-rpc#readme",
     "dependencies": {
         "cross-fetch": "^3.0.5"
     },
@@ -38,12 +38,12 @@
         "grunt-ts": "^6.0.0-beta.22",
         "grunt-typedoc": "^0.2.4",
         "mocha": "^8.4.0",
-        "multi-rpc-common": "^3.x",
+        "multi-rpc-common": "^3.3.0",
         "multi-rpc-json-serializer": "^2.x",
         "request": "^2.88.2",
         "request-promise-native": "^1.0.9",
         "shelljs": "^0.8.4",
-        "typedoc": "^0.18.0",
-        "typescript": "^4.3.5"
+        "typedoc": "^0.22.14",
+        "typescript": "^4.6.3"
     }
 }

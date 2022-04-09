@@ -101,25 +101,25 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
      * @param portPathServerOrUrl - The port, path or HTTP(S) server the transport should listen on, or the URL the client should connect to.
      * @param hostOrEndpoint - The host the transport should listen or endpoint the server should listen on. If omitted defaults to all interfaces.
      * @param endpoint - The endpoint the server should listen on.
-     * 
+     *
      * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
     constructor(protected serializer: Serializer,  portPathServerOrUrl: HTTPServer|HTTPSServer|string|number, hostOrEndpoint?: string, protected endpoint?: string) {
         super(serializer);
 
-        if (portPathServerOrUrl instanceof HTTPServer || portPathServerOrUrl instanceof HTTPSServer) {
+        if (portPathServerOrUrl instanceof HTTPServer || (portPathServerOrUrl as any) instanceof HTTPSServer) {
             this.server = <HTTPServer|HTTPSServer>portPathServerOrUrl;
             this.setupHTTPServer();
         }
 
         else if (typeof(portPathServerOrUrl) === 'number')
             this.port = portPathServerOrUrl;
-        else if (typeof(portPathServerOrUrl) === 'string') 
+        else if (typeof(portPathServerOrUrl) === 'string')
             this.urlOrPath = portPathServerOrUrl;
 
         if (typeof(portPathServerOrUrl) === 'string' &&  typeof(hostOrEndpoint) === 'string')
             this.endpoint = hostOrEndpoint;
-        else 
+        else
             this.host = hostOrEndpoint;
     }
 
@@ -146,7 +146,7 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
                 res.end();
                 return;
             }
-            
+
 
             if (typeof(this.endpoint) === 'string' && req.url !== this.endpoint) {
                 res.writeHead(404, `${req.url} does not exist`);
@@ -170,7 +170,7 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
 
                     if (response) {
                         headers["Content-Type"] = this.serializer.content_type;
-                        
+
                         res.writeHead(200, headers);
                         res.end(this.serializer.serialize(response));
                     } else {
@@ -185,7 +185,7 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
             });
         });
     }
-    
+
     /**
      * Begins listening for connections using the HTTP(S) Server.
      * If a server was passed in the constructor, this function does nothing.
@@ -195,7 +195,7 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
         if (this.server)
             return;
 
-        
+
         this.server = new HTTPServer();
         this.serverCreated = true;
         this.setupHTTPServer();
@@ -212,7 +212,7 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
                 resolve();
             };
 
-            if (typeof(this.port) === 'number') 
+            if (typeof(this.port) === 'number')
                 this.server.listen(this.port, this.host, listenSuccess);
             else
                 this.server.listen(this.urlOrPath, listenSuccess);
@@ -226,6 +226,6 @@ export default class HTTPTransport extends HTTPClientTransport implements Server
     public async close(code?: number, reason?: string): Promise<void> {
         if (this.server && this.serverCreated) {
             this.server.close();
-        } 
+        }
     }
 }

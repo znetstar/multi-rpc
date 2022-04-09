@@ -15,14 +15,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/znetstar/multi-rpc-commonn.git"
+        "url": "git+https://github.com/znetstar/multi-rpc.git"
     },
     "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/znetstar/multi-rpc-common/issues"
+        "url": "https://github.com/znetstar/multi-rpc/issues"
     },
-    "homepage": "https://github.com/znetstar/multi-rpc-common#readme",
+    "homepage": "https://github.com/znetstar/multi-rpc#readme",
     "dependencies": {
         "@znetstar/encode-tools": "^1.4.0",
         "eventemitter2": "^6.4.4",
@@ -46,8 +46,8 @@
         "mocha": "^9.0.2",
         "shelljs": "^0.8.4",
         "ts-node": "^9.1.1",
-        "typedoc": "^0.20.37",
-        "typescript": "^4.1.6"
+        "typedoc": "^0.22.14",
+        "typescript": "^4.6.3"
     },
     "engines": {
         "node": ">=12.22.6"

@@ -8,7 +8,8 @@
         "access": "public"
     },
     "scripts": {
-        "build": "grunt build",
+        "docs": "lerna exec -- npm run docs && grunt docs",
+        "build": "lerna exec -- npm run build && grunt build",
         "prepare": "npm run build"
     },
     "repository": {
@@ -18,7 +19,6 @@
     "author": "Zachary Boyd <zachary@zacharyboyd.nyc>",
     "license": "Apache-2.0",
     "dependencies": {
-        "multi-rpc-common": "^3.3.0",
         "multi-rpc-core": "^2.1.0",
         "multi-rpc-http-transport": "^2.x",
         "multi-rpc-json-serializer": "^2.1.1",
@@ -46,10 +46,11 @@
         "grunt-typedoc": "^0.2.4",
         "lerna": "^4.0.0",
         "mocha": "^8.4.0",
+        "multi-rpc-common": "^3.3.0",
         "request": "^2.88.2",
         "request-promise-native": "^1.0.9",
         "shelljs": "^0.8.4",
-        "typedoc": "^0.18.0",
-        "typescript": "^4.3.5"
+        "typedoc": "^0.22.14",
+        "typescript": "^4.6.3"
     }
 }

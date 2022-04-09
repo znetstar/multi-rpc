@@ -12,7 +12,7 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
      * A map of clients and their IDs.
      */
     public connections: Map<any, WebSocketConnection>;
-    
+
     /**
      * The WebSocket server.
      */
@@ -101,24 +101,24 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
      * @param portPathServerOrUrl - The port, path or HTTP(S) server the transport should listen on, or the URL the client should connect to.
      * @param hostOrEndpoint - The host the transport should listen or endpoint the server should listen on. If omitted defaults to all interfaces.
      * @param endpoint - The endpoint the server should listen on.
-     * 
+     *
      * @see https://nodejs.org/api/net.html#net_identifying_paths_for_ipc_connections
      */
     constructor(protected serializer: Serializer,  portPathServerOrUrl: HTTPServer|HTTPSServer|string|number, hostOrEndpoint?: string, protected endpoint?: string) {
         super(serializer);
 
-        if (portPathServerOrUrl instanceof HTTPServer || portPathServerOrUrl instanceof HTTPSServer) {
+        if (portPathServerOrUrl instanceof HTTPServer || (portPathServerOrUrl as any) instanceof HTTPSServer) {
             this.httpServer = <HTTPServer|HTTPSServer>portPathServerOrUrl;
             this.setupHTTPServer();
         }
         else if (typeof(portPathServerOrUrl) === 'number')
             this.port = portPathServerOrUrl;
-        else if (typeof(portPathServerOrUrl) === 'string') 
+        else if (typeof(portPathServerOrUrl) === 'string')
             this.urlOrPath = portPathServerOrUrl;
-        
+
         if (typeof(portPathServerOrUrl) === 'string' &&  typeof(hostOrEndpoint) === 'string')
             this.endpoint = hostOrEndpoint;
-        else 
+        else
             this.host = hostOrEndpoint;
     }
 
@@ -156,15 +156,15 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
 
             connection.on("message", (message: IMessage) => {
                 let data: Uint8Array|string = (message.type === 'utf8') ? message.utf8Data : new Uint8Array(message.binaryData);
-    
+
                 const req = new ClientRequest(clientId, (res: Response) => {
                     if (!res) return;
-                     
+
                     let data = this.serializer.serialize(res);
                     data = (typeof(data) === 'string') ? data : Buffer.from(data);
                     let sendFunc: Function = ((typeof(data) === 'string') ? connection.sendUTF : connection.sendBytes);
                     sendFunc.call(connection, data, (err: Error) => {
-                        if (err) 
+                        if (err)
                             this.emit("error", err);
                     });
                 });
@@ -176,9 +176,9 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
             });
         });
     }
-    
+
     /**
-     * If a HTTP(s) server wasn't provided this will be the default handler for requests. 
+     * If a HTTP(s) server wasn't provided this will be the default handler for requests.
      * By default is sends status 400 and ends the request.
      * @param req - HTTP Request
      * @param res - HTTP Response
@@ -197,7 +197,7 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
         if (this.httpServer)
             return;
 
-        
+
         this.httpServer = new HTTPServer(this.httpHandler);
         this.httpServerCreated = true;
         this.setupHTTPServer();
@@ -214,7 +214,7 @@ export default class WebSocketTransport extends WebSocketClientTransport impleme
                 resolve();
             };
 
-            if (typeof(this.port) === 'number') 
+            if (typeof(this.port) === 'number')
                 this.httpServer.listen(this.port, this.host, listenSuccess);
             else
                 this.httpServer.listen(this.urlOrPath, listenSuccess);
