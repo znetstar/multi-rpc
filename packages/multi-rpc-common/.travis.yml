@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - '12'
+cache:
+  directories:
+    - node_modules
+deploy:
+  provider: npm
+  email: zachary@zacharyboyd.nyc
+  api_key:
+    secure: Z6OwcUE309mROa5it5iE4XkDtspY4rlOS6HzHWlLZaf2yaDwVYJyAkTG3oXQmGbYeL7im7Tp1nyw/PBWlTneb1idPOQwDETZu9OO3xnskk65fwA4M7FiUDvXM4xAzTaJ3qw1NSlFoURupQEMxYTT6cKImmzTzLKNclcXHcWuuauxmL/Is2GF+/avGSSMo6IDH5v+zJFPPnqFmhAEbeG6AA3Cg84/qT3Z9XXr9YQqMdh7/A0T+9fngDqRx7ZhBX58+bFNojN53CouUUYABMq/Fz9IajsCsoQ6SAKOOkrwD119tKE1N4NqGeUhOFm5wpFNjzWWwBF+EFpgQUcFNBqxhVjLKk8/u5b95HkpruqPX3oom7Wsi81ltm/gqNOBc6NyombXmuhl5Xfm0w6WpE8226rMH46dVlxVc/qFl1VzdQCR3Ed8dIprXEUEJXS35yizMsVlKpdnQ+nVFdLt4ufqulRMX7CKI2m8v4lEhmY/OUKMFMqnnncJrdmhiveq2ypQjgBErW3pAXzZ79sWTEDSNmR1RCIhs5FkEwGMxzhmXbcfReRMdN+e6eDnPNg5DeQ0fwq4E9X76qL+bptIw22KjJTq/11LeLF6mu4qZYlIxST2OGF1GJn1ViGG6rpm/GdcNsZJvWGyCobCJ67YemEKy9u3i70rSP+JISGWmWAlYpI=
+  on:
+    tags: true
+    repo: znetstar/multi-rpc-common
+  skip_cleanup: 'true'
